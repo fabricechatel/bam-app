@@ -1,0 +1,297 @@
+/*==============================================================*/
+/* Nom de SGBD :  MySQL 5.0                                     */
+/* Date de création :  03/06/2016 17:36:07                      */
+/*==============================================================*/
+
+create schema if not exists bamdb;
+
+use bamdb;
+
+drop table if exists ADRESSE;
+
+drop table if exists ARTICLE;
+
+drop table if exists CARACTERISTIQUE;
+
+drop table if exists CATEGORIE;
+
+drop table if exists CLIENT;
+
+drop table if exists COMMANDE;
+
+drop table if exists COMMENTAIRE;
+
+drop table if exists LIENS_CATEGORIE_ARTICLE;
+
+drop table if exists LIENS_CLIENT_ADRESSE;
+
+drop table if exists LIENS_PANIER_ARTICLE;
+
+drop table if exists LIENS_PROMOTION_ARTICLE;
+
+drop table if exists LIENS_SPECS_ARTICLE;
+
+drop table if exists LIENS_SPECS_CATEGORIE;
+
+drop table if exists LIGNE_COMMANDE;
+
+drop table if exists LISTE_DE_SOUHAITS;
+
+drop table if exists FICHE;
+
+drop table if exists MESSAGE;
+
+drop table if exists PANIER;
+
+drop table if exists PROMOTION;
+
+drop table if exists ROLE;
+
+drop table if exists UTILISATEUR;
+
+/*==============================================================*/
+/* Table : ADRESSE                                              */
+/*==============================================================*/
+create table ADRESSE
+(
+   ID_ADRESSE           int not null,
+   NUMERO               varchar(16) not null,
+   VOIE                 varchar(128) not null,
+   CODE_POSTAL          varchar(16) not null,
+   VILLE                varchar(64) not null,
+   primary key (ID_ADRESSE)
+);
+
+/*==============================================================*/
+/* Table : LIENS_CATEGORIE_ARTICLE                                           */
+/*==============================================================*/
+create table LIENS_CATEGORIE_ARTICLE
+(
+   ID_ARTICLE           int not null,
+   ID_CATEGORIE         int not null,
+   primary key (ID_ARTICLE, ID_CATEGORIE)
+);
+
+/*==============================================================*/
+/* Table : LIENS_PROMOTIONS_ARTICLES                                            */
+/*==============================================================*/
+create table LIENS_PROMOTIONS_ARTICLES
+(
+   ID_ARTICLE           int not null,
+   ID_PROMOTION         int not null,
+   primary key (ID_ARTICLE, ID_PROMOTION)
+);
+
+/*==============================================================*/
+/* Table : ARTICLE                                              */
+/*==============================================================*/
+create table ARTICLE
+(
+   ID_ARTICLE           int not null,
+   REFARTICLE           varchar(64) not null,
+   PRIX                 decimal not null,
+   QUANTITE             int not null,
+   primary key (ID_ARTICLE)
+);
+
+/*==============================================================*/
+/* Table : LISTE_DE_SOUHAITS                                       */
+/*==============================================================*/
+create table LISTE_DE_SOUHAITS
+(
+   ID_ARTICLE           int not null,
+   ID_CLIENT            int not null,
+   primary key (ID_ARTICLE, ID_CLIENT)
+);
+
+/*==============================================================*/
+/* Table : LIGNE_COMMANDE                                       */
+/*==============================================================*/
+create table LIGNE_COMMANDE
+(
+   ID_COMMANDE          int not null,
+   ID_ARTICLE           int not null,
+   QUANTITE             int,
+   PRIX                 decimal,
+   STATUT               varchar(16),
+   primary key (ID_COMMANDE, ID_ARTICLE)
+);
+
+/*==============================================================*/
+/* Table : CARACTERISTIQUE                                      */
+/*==============================================================*/
+create table CARACTERISTIQUE
+(
+   ID_CARACTERISTIQUE   int not null,
+   VALEUR               varchar(128) not null,
+   primary key (ID_CARACTERISTIQUE)
+);
+
+/*==============================================================*/
+/* Table : CATEGORIE                                            */
+/*==============================================================*/
+create table CATEGORIE
+(
+   ID_CATEGORIE         int not null,
+   IDPARENT             int not null,
+   primary key (ID_CATEGORIE)
+);
+
+/*==============================================================*/
+/* Table : CLIENT                                               */
+/*==============================================================*/
+create table CLIENT
+(
+   ID_CLIENT            int not null,
+   IDPANIER             int,
+   ID_UTILISATEUR       int not null,
+   EMAIL                varchar(128) not null,
+   NOM                  varchar(64) not null,
+   PRENOM               varchar(64) not null,
+   CIVILITE             varchar(8) not null,
+   primary key (ID_CLIENT)
+);
+
+/*==============================================================*/
+/* Table : COMMANDE                                             */
+/*==============================================================*/
+create table COMMANDE
+(
+   ID_COMMANDE          int not null,
+   ID_CLIENT            int not null,
+   NUMEROCOMMANDE       varchar(64) not null,
+   MONTANT_TOTAL        decimal not null,
+   DATE_PAIEMENT        datetime not null,
+   IS_CANCELLED         bool not null,
+   primary key (ID_COMMANDE)
+);
+
+/*==============================================================*/
+/* Table : COMMENTAIRE                                          */
+/*==============================================================*/
+create table COMMENTAIRE
+(
+   ID_COMMENTAIRE       int not null,
+   ID_ARTICLE           int not null,
+   ID_CLIENT            int not null,
+   NOTE                 decimal,
+   DATE                 datetime,
+   primary key (ID_COMMENTAIRE)
+);
+
+/*==============================================================*/
+/* Table : LIENS_PANIER_ARTICLE                                             */
+/*==============================================================*/
+create table LIENS_PANIER_ARTICLE
+(
+   IDPANIER             int not null,
+   ID_ARTICLE           int not null,
+   QUANTITE             int,
+   primary key (IDPANIER, ID_ARTICLE)
+);
+
+/*==============================================================*/
+/* Table : LIENS_SPECS_CATEGORIE                                             */
+/*==============================================================*/
+create table LIENS_SPECS_CATEGORIE
+(
+   ID_CARACTERISTIQUE   int not null,
+   ID_CATEGORIE         int not null,
+   primary key (ID_CARACTERISTIQUE, ID_CATEGORIE)
+);
+
+/*==============================================================*/
+/* Table : FICHE                                                */
+/*==============================================================*/
+create table FICHE
+(
+   ID_FICHE             int not null,
+   ID_ARTICLE           int not null,
+   DESCRIPTION          varchar(1024) not null,
+   REFFICHE             varchar(32),
+   IMAGE                varchar(256),
+   IS_PUBLISHED         bool,
+   primary key (ID_FICHE)
+);
+
+/*==============================================================*/
+/* Table : MESSAGE                                              */
+/*==============================================================*/
+create table MESSAGE
+(
+   ID_MESSAGE           int not null,
+   ID_UTILISATEUR       int not null,
+   UTI_ID_UTILISATEUR   int not null,
+   INTITULE             varchar(64) not null,
+   CORPS_MESSAGE        varchar(1024) not null,
+   DATE_MESSAGE         date not null,
+   primary key (ID_MESSAGE)
+);
+
+/*==============================================================*/
+/* Table : PANIER                                               */
+/*==============================================================*/
+create table PANIER
+(
+   IDPANIER             int not null,
+   ID_CLIENT            int,
+   REFINTERNAUTE        varchar(64) not null,
+   primary key (IDPANIER)
+);
+
+/*==============================================================*/
+/* Table : LIENS_CLIENT_ADRESSE                                             */
+/*==============================================================*/
+create table LIENS_CLIENT_ADRESSE
+(
+   ID_CLIENT            int not null,
+   ID_ADRESSE           int not null,
+   IS_POSTAL            bool,
+   IS_DELIVERY          bool,
+   primary key (ID_CLIENT, ID_ADRESSE)
+);
+
+/*==============================================================*/
+/* Table : PROMOTION                                            */
+/*==============================================================*/
+create table PROMOTION
+(
+   ID_PROMOTION         int not null,
+   POURCENTAGE          int not null,
+   primary key (ID_PROMOTION)
+);
+
+/*==============================================================*/
+/* Table : LIENS_SPECS_ARTICLE                                            */
+/*==============================================================*/
+create table LIENS_SPECS_ARTICLE
+(
+   ID_CARACTERISTIQUE   int not null,
+   ID_ARTICLE           int not null,
+   primary key (ID_CARACTERISTIQUE, ID_ARTICLE)
+);
+
+/*==============================================================*/
+/* Table : ROLE                                                 */
+/*==============================================================*/
+create table ROLE
+(
+   ID_ROLE              int not null,
+   NOM                  varchar(64) not null,
+   primary key (ID_ROLE)
+);
+
+/*==============================================================*/
+/* Table : UTILISATEUR                                          */
+/*==============================================================*/
+create table UTILISATEUR
+(
+   ID_UTILISATEUR       int not null,
+   ID_CLIENT            int,
+   ID_ROLE              int not null,
+   LOGIN                varchar(64) not null,
+   MDP                  varchar(64) not null,
+   primary key (ID_UTILISATEUR)
+);
+
+
