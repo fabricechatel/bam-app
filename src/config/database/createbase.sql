@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de création :  06/06/2016 15:19:10                      */
+/* Date de création :  06/06/2016 15:28:09                      */
 /*==============================================================*/
 create schema if not exists bamdb;
 
@@ -251,8 +251,8 @@ create table LISTE_DE_SOUHAITS
 create table MESSAGE
 (
    ID_MESSAGE           int not null,
-   ID_UTILISATEUR       int not null,
-   UTI_ID_UTILISATEUR   int not null,
+   ID_SENDER            int not null,
+   ID_RECEIVER          int not null,
    INTITULE             varchar(64) not null,
    CORPS_MESSAGE        varchar(1024) not null,
    DATE_MESSAGE         date not null,
@@ -301,5 +301,3 @@ create table UTILISATEUR
    MDP                  varchar(64) not null,
    primary key (ID_UTILISATEUR)
 );
-
-
