@@ -6,8 +6,6 @@
 	<persistence-unit name="bamUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
-		<class>com.bam.entity.Client</class>
-		
 		<properties>
 		    <property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
