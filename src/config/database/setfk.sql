@@ -27,6 +27,12 @@ alter table LIENS_CLIENT_ADRESSE add constraint FK_POSSEDER foreign key (ID_CLIE
 alter table LIENS_CLIENT_ADRESSE add constraint FK_POSSEDER2 foreign key (ID_ADRESSE)
       references ADRESSE (ID_ADRESSE) on delete restrict on update restrict;
 
+alter table LIENS_COMMANDE_ADRESSE add constraint FK_LIENS_COMMANDE_ADRESSE foreign key (ID_COMMANDE)
+      references COMMANDE (ID_COMMANDE) on delete restrict on update restrict;
+
+alter table LIENS_COMMANDE_ADRESSE add constraint FK_LIENS_COMMANDE_ADRESSE2 foreign key (ID_ADRESSE)
+      references ADRESSE (ID_ADRESSE) on delete restrict on update restrict;
+
 alter table LIENS_PANIER_ARTICLE add constraint FK_CONTIENT foreign key (IDPANIER)
       references PANIER (IDPANIER) on delete restrict on update restrict;
 
