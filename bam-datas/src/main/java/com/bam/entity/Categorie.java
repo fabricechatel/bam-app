@@ -2,6 +2,7 @@ package com.bam.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -22,6 +23,14 @@ public class Categorie implements Serializable {
 	@Column(nullable=false)
 	private int idparent;
 
+	//bi-directional many-to-many association to Article
+	@ManyToMany(mappedBy="categories", fetch=FetchType.EAGER)
+	private Set<Article> articles;
+
+	//bi-directional many-to-many association to Caracteristique
+	@ManyToMany(mappedBy="categories", fetch=FetchType.EAGER)
+	private Set<Caracteristique> caracteristiques;
+
 	public Categorie() {
 	}
 
@@ -39,6 +48,22 @@ public class Categorie implements Serializable {
 
 	public void setIdparent(int idparent) {
 		this.idparent = idparent;
+	}
+
+	public Set<Article> getArticles() {
+		return this.articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
+	}
+
+	public Set<Caracteristique> getCaracteristiques() {
+		return this.caracteristiques;
+	}
+
+	public void setCaracteristiques(Set<Caracteristique> caracteristiques) {
+		this.caracteristiques = caracteristiques;
 	}
 
 }

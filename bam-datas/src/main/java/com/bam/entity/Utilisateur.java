@@ -27,12 +27,8 @@ public class Utilisateur implements Serializable {
 	private String mdp;
 
 	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="utilisateur1", fetch=FetchType.EAGER)
-	private Set<Message> messages1;
-
-	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="utilisateur2", fetch=FetchType.EAGER)
-	private Set<Message> messages2;
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.EAGER)
+	private Set<Message> messages;
 
 	//bi-directional many-to-one association to Role
 	@ManyToOne
@@ -66,48 +62,26 @@ public class Utilisateur implements Serializable {
 		this.mdp = mdp;
 	}
 
-	public Set<Message> getMessages1() {
-		return this.messages1;
+	public Set<Message> getMessages() {
+		return this.messages;
 	}
 
-	public void setMessages1(Set<Message> messages1) {
-		this.messages1 = messages1;
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
 	}
 
-	public Message addMessages1(Message messages1) {
-		getMessages1().add(messages1);
-		messages1.setUtilisateur1(this);
+	public Message addMessage(Message message) {
+		getMessages().add(message);
+		message.setUtilisateur(this);
 
-		return messages1;
+		return message;
 	}
 
-	public Message removeMessages1(Message messages1) {
-		getMessages1().remove(messages1);
-		messages1.setUtilisateur1(null);
+	public Message removeMessage(Message message) {
+		getMessages().remove(message);
+		message.setUtilisateur(null);
 
-		return messages1;
-	}
-
-	public Set<Message> getMessages2() {
-		return this.messages2;
-	}
-
-	public void setMessages2(Set<Message> messages2) {
-		this.messages2 = messages2;
-	}
-
-	public Message addMessages2(Message messages2) {
-		getMessages2().add(messages2);
-		messages2.setUtilisateur2(this);
-
-		return messages2;
-	}
-
-	public Message removeMessages2(Message messages2) {
-		getMessages2().remove(messages2);
-		messages2.setUtilisateur2(null);
-
-		return messages2;
+		return message;
 	}
 
 	public Role getRole() {

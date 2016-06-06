@@ -36,6 +36,10 @@ public class Adresse implements Serializable {
 	@ManyToMany(mappedBy="adresses", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	private Set<Commande> commandes;
 
+	//bi-directional many-to-many association to Client
+	@ManyToMany(mappedBy="adresses", fetch=FetchType.EAGER)
+	private Set<Client> clients;
+
 	public Adresse() {
 	}
 
@@ -85,6 +89,14 @@ public class Adresse implements Serializable {
 
 	public void setCommandes(Set<Commande> commandes) {
 		this.commandes = commandes;
+	}
+
+	public Set<Client> getClients() {
+		return this.clients;
+	}
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
 	}
 
 }

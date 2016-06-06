@@ -2,6 +2,7 @@ package com.bam.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -22,6 +23,10 @@ public class Promotion implements Serializable {
 	@Column(nullable=false)
 	private int pourcentage;
 
+	//bi-directional many-to-many association to Article
+	@ManyToMany(mappedBy="promotions", fetch=FetchType.EAGER)
+	private Set<Article> articles;
+
 	public Promotion() {
 	}
 
@@ -39,6 +44,14 @@ public class Promotion implements Serializable {
 
 	public void setPourcentage(int pourcentage) {
 		this.pourcentage = pourcentage;
+	}
+
+	public Set<Article> getArticles() {
+		return this.articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
 	}
 
 }

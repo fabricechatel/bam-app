@@ -2,6 +2,7 @@ package com.bam.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -22,6 +23,32 @@ public class Caracteristique implements Serializable {
 	@Column(nullable=false, length=128)
 	private String valeur;
 
+	//bi-directional many-to-many association to Article
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+		name="liens_specs_article"
+		, joinColumns={
+			@JoinColumn(name="ID_CARACTERISTIQUE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_ARTICLE", nullable=false)
+			}
+		)
+	private Set<Article> articles;
+
+	//bi-directional many-to-many association to Categorie
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+		name="liens_specs_categorie"
+		, joinColumns={
+			@JoinColumn(name="ID_CARACTERISTIQUE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_CATEGORIE", nullable=false)
+			}
+		)
+	private Set<Categorie> categories;
+
 	public Caracteristique() {
 	}
 
@@ -39,6 +66,22 @@ public class Caracteristique implements Serializable {
 
 	public void setValeur(String valeur) {
 		this.valeur = valeur;
+	}
+
+	public Set<Article> getArticles() {
+		return this.articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
+	}
+
+	public Set<Categorie> getCategories() {
+		return this.categories;
+	}
+
+	public void setCategories(Set<Categorie> categories) {
+		this.categories = categories;
 	}
 
 }

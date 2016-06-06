@@ -56,6 +56,36 @@ public class Article implements Serializable {
 	@OneToOne(mappedBy="article")
 	private Fiche fiche;
 
+	//bi-directional many-to-many association to Categorie
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+		name="liens_categorie_article"
+		, joinColumns={
+			@JoinColumn(name="ID_ARTICLE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_CATEGORIE", nullable=false)
+			}
+		)
+	private Set<Categorie> categories;
+
+	//bi-directional many-to-many association to Promotion
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+		name="liens_promotions_articles"
+		, joinColumns={
+			@JoinColumn(name="ID_ARTICLE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_PROMOTION", nullable=false)
+			}
+		)
+	private Set<Promotion> promotions;
+
+	//bi-directional many-to-many association to Caracteristique
+	@ManyToMany(mappedBy="articles", fetch=FetchType.EAGER)
+	private Set<Caracteristique> caracteristiques;
+
 	public Article() {
 	}
 
@@ -135,6 +165,30 @@ public class Article implements Serializable {
 
 	public void setFiche(Fiche fiche) {
 		this.fiche = fiche;
+	}
+
+	public Set<Categorie> getCategories() {
+		return this.categories;
+	}
+
+	public void setCategories(Set<Categorie> categories) {
+		this.categories = categories;
+	}
+
+	public Set<Promotion> getPromotions() {
+		return this.promotions;
+	}
+
+	public void setPromotions(Set<Promotion> promotions) {
+		this.promotions = promotions;
+	}
+
+	public Set<Caracteristique> getCaracteristiques() {
+		return this.caracteristiques;
+	}
+
+	public void setCaracteristiques(Set<Caracteristique> caracteristiques) {
+		this.caracteristiques = caracteristiques;
 	}
 
 }

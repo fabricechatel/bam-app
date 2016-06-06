@@ -15,6 +15,8 @@ import java.math.BigDecimal;
 public class LigneCommande implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@EmbeddedId
+	private LigneCommandePK id;
 
 	@Column(precision=10)
 	private BigDecimal prix;
@@ -34,6 +36,14 @@ public class LigneCommande implements Serializable {
 	private Commande commande;
 
 	public LigneCommande() {
+	}
+
+	public LigneCommandePK getId() {
+		return this.id;
+	}
+
+	public void setId(LigneCommandePK id) {
+		this.id = id;
 	}
 
 	public BigDecimal getPrix() {

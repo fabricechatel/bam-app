@@ -1,9 +1,7 @@
 package com.bam.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
@@ -38,9 +36,7 @@ public class Commande implements Serializable {
 	private String numerocommande;
 
 	//bi-directional many-to-many association to Adresse
-	//@ManyToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	//@JoinColumn(name="ID_COMMANDE", nullable=false, insertable=false, updatable=false)
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	@JoinTable(
 		name="liens_commande_adresse"
 		, joinColumns={

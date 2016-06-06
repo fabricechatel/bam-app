@@ -47,6 +47,19 @@ public class Client implements Serializable {
 	@OneToMany(mappedBy="client", fetch=FetchType.EAGER)
 	private Set<Commentaire> commentaires;
 
+	//bi-directional many-to-many association to Adresse
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+		name="liens_client_adresse"
+		, joinColumns={
+			@JoinColumn(name="ID_CLIENT", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_ADRESSE", nullable=false)
+			}
+		)
+	private Set<Adresse> adresses;
+
 	public Client() {
 	}
 
@@ -148,6 +161,14 @@ public class Client implements Serializable {
 		commentaire.setClient(null);
 
 		return commentaire;
+	}
+
+	public Set<Adresse> getAdresses() {
+		return this.adresses;
+	}
+
+	public void setAdresses(Set<Adresse> adresses) {
+		this.adresses = adresses;
 	}
 
 }
