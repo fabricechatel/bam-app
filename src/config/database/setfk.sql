@@ -69,10 +69,10 @@ alter table LISTE_DE_SOUHAITS add constraint FK_LISTE_DE_SOUHAITS foreign key (I
 alter table LISTE_DE_SOUHAITS add constraint FK_LISTE_DE_SOUHAITS2 foreign key (ID_CLIENT)
       references CLIENT (ID_CLIENT) on delete restrict on update restrict;
 
-alter table MESSAGE add constraint FK_ENVOIE foreign key (ID_UTILISATEUR)
+alter table MESSAGE add constraint FK_ENVOIE foreign key (ID_SENDER)
       references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
 
-alter table MESSAGE add constraint FK_RECOIT foreign key (UTI_ID_UTILISATEUR)
+alter table MESSAGE add constraint FK_RECOIT foreign key (ID_RECEIVER)
       references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
 
 alter table PANIER add constraint FK_APPARTIENT foreign key (ID_CLIENT)
