@@ -1,32 +1,5 @@
 ﻿use bamdb;
 
-alter table APPARTENIR add constraint FK_APPARTENIR foreign key (ID_ARTICLE)
-      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
-
-alter table APPARTENIR add constraint FK_APPARTENIR2 foreign key (ID_CATEGORIE)
-      references CATEGORIE (ID_CATEGORIE) on delete restrict on update restrict;
-
-alter table APPLIQUER add constraint FK_APPLIQUER foreign key (ID_ARTICLE)
-      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
-
-alter table APPLIQUER add constraint FK_APPLIQUER2 foreign key (ID_PROMOTION)
-      references PROMOTION (ID_PROMOTION) on delete restrict on update restrict;
-
-alter table ASSOCIATION_17 add constraint FK_ASSOCIATION_21 foreign key (ID_ARTICLE)
-      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
-
-alter table ASSOCIATION_17 add constraint FK_ASSOCIATION_22 foreign key (ID_CLIENT)
-      references CLIENT (ID_CLIENT) on delete restrict on update restrict;
-
-alter table ASSOCIATION_18 add constraint FK_ASSOCIATION_18 foreign key (ID_COMMANDE)
-      references COMMANDE (ID_COMMANDE) on delete restrict on update restrict;
-
-alter table ASSOCIATION_18 add constraint FK_ASSOCIATION_20 foreign key (ID_ARTICLE)
-      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
-
-alter table CLIENT add constraint FK_APPARTIENT2 foreign key (IDPANIER)
-      references PANIER (IDPANIER) on delete restrict on update restrict;
-
 alter table CLIENT add constraint FK_ASSOCIATION_17 foreign key (ID_UTILISATEUR)
       references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
 
@@ -39,43 +12,64 @@ alter table COMMENTAIRE add constraint FK_CONCERNE foreign key (ID_ARTICLE)
 alter table COMMENTAIRE add constraint FK_FAIT foreign key (ID_CLIENT)
       references CLIENT (ID_CLIENT) on delete restrict on update restrict;
 
-alter table CONTIENT add constraint FK_CONTIENT foreign key (IDPANIER)
-      references PANIER (IDPANIER) on delete restrict on update restrict;
-
-alter table CONTIENT add constraint FK_CONTIENT2 foreign key (ID_ARTICLE)
-      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
-
-alter table DEPENDRE add constraint FK_DEPENDRE foreign key (ID_CARACTERISTIQUE)
-      references CARACTERISTIQUE (ID_CARACTERISTIQUE) on delete restrict on update restrict;
-
-alter table DEPENDRE add constraint FK_DEPENDRE2 foreign key (ID_CATEGORIE)
-      references CATEGORIE (ID_CATEGORIE) on delete restrict on update restrict;
-
 alter table FICHE add constraint FK_POSSEDE foreign key (ID_ARTICLE)
       references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
 
-alter table MESSAGE add constraint FK_ASSOCIATION_19 foreign key (UTI_ID_UTILISATEUR)
-      references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
+alter table LIENS_CATEGORIE_ARTICLE add constraint FK_LIENS_CATEGORIE_ARTICLE foreign key (ID_ARTICLE)
+      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
+
+alter table LIENS_CATEGORIE_ARTICLE add constraint FK_LIENS_CATEGORIE_ARTICLE2 foreign key (ID_CATEGORIE)
+      references CATEGORIE (ID_CATEGORIE) on delete restrict on update restrict;
+
+alter table LIENS_CLIENT_ADRESSE add constraint FK_POSSEDER foreign key (ID_CLIENT)
+      references CLIENT (ID_CLIENT) on delete restrict on update restrict;
+
+alter table LIENS_CLIENT_ADRESSE add constraint FK_POSSEDER2 foreign key (ID_ADRESSE)
+      references ADRESSE (ID_ADRESSE) on delete restrict on update restrict;
+
+alter table LIENS_PANIER_ARTICLE add constraint FK_CONTIENT foreign key (IDPANIER)
+      references PANIER (IDPANIER) on delete restrict on update restrict;
+
+alter table LIENS_PANIER_ARTICLE add constraint FK_CONTIENT2 foreign key (ID_ARTICLE)
+      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
+
+alter table LIENS_PROMOTIONS_ARTICLES add constraint FK_LIENS_PROMOTION_ARTICLE foreign key (ID_ARTICLE)
+      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
+
+alter table LIENS_PROMOTIONS_ARTICLES add constraint FK_LIENS_PROMOTION_ARTICLE2 foreign key (ID_PROMOTION)
+      references PROMOTION (ID_PROMOTION) on delete restrict on update restrict;
+
+alter table LIENS_SPECS_ARTICLE add constraint FK_LIENS_CARACTERISTIQUE_ARTIC foreign key (ID_CARACTERISTIQUE)
+      references CARACTERISTIQUE (ID_CARACTERISTIQUE) on delete restrict on update restrict;
+
+alter table LIENS_SPECS_ARTICLE add constraint FK_LIENS_CARACTERISTIQUE_ARTI2 foreign key (ID_ARTICLE)
+      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
+
+alter table LIENS_SPECS_CATEGORIE add constraint FK_LIENS_SPECS_CATEGORIE foreign key (ID_CARACTERISTIQUE)
+      references CARACTERISTIQUE (ID_CARACTERISTIQUE) on delete restrict on update restrict;
+
+alter table LIENS_SPECS_CATEGORIE add constraint FK_LIENS_SPECS_CATEGORIE2 foreign key (ID_CATEGORIE)
+      references CATEGORIE (ID_CATEGORIE) on delete restrict on update restrict;
+
+alter table LIGNE_COMMANDE add constraint FK_LIGNE_COMMANDE foreign key (ID_COMMANDE)
+      references COMMANDE (ID_COMMANDE) on delete restrict on update restrict;
+
+alter table LIGNE_COMMANDE add constraint FK_LIGNE_COMMANDE2 foreign key (ID_ARTICLE)
+      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
+
+alter table LISTE_DE_SOUHAITS add constraint FK_LISTE_DE_SOUHAITS foreign key (ID_ARTICLE)
+      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
+
+alter table LISTE_DE_SOUHAITS add constraint FK_LISTE_DE_SOUHAITS2 foreign key (ID_CLIENT)
+      references CLIENT (ID_CLIENT) on delete restrict on update restrict;
 
 alter table MESSAGE add constraint FK_ENVOIE foreign key (ID_UTILISATEUR)
       references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
 
+alter table MESSAGE add constraint FK_RECOIT foreign key (UTI_ID_UTILISATEUR)
+      references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
+
 alter table PANIER add constraint FK_APPARTIENT foreign key (ID_CLIENT)
-      references CLIENT (ID_CLIENT) on delete restrict on update restrict;
-
-alter table POSSEDER add constraint FK_POSSEDER foreign key (ID_CLIENT)
-      references CLIENT (ID_CLIENT) on delete restrict on update restrict;
-
-alter table POSSEDER add constraint FK_POSSEDER2 foreign key (ID_ADRESSE)
-      references ADRESSE (ID_ADRESSE) on delete restrict on update restrict;
-
-alter table REGROUPER add constraint FK_REGROUPER foreign key (ID_CARACTERISTIQUE)
-      references CARACTERISTIQUE (ID_CARACTERISTIQUE) on delete restrict on update restrict;
-
-alter table REGROUPER add constraint FK_REGROUPER2 foreign key (ID_ARTICLE)
-      references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
-
-alter table UTILISATEUR add constraint FK_ASSOCIATION_16 foreign key (ID_CLIENT)
       references CLIENT (ID_CLIENT) on delete restrict on update restrict;
 
 alter table UTILISATEUR add constraint FK_IDENTIFIER foreign key (ID_ROLE)
