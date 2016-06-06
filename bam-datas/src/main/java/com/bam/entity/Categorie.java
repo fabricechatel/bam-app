@@ -24,11 +24,29 @@ public class Categorie implements Serializable {
 	private int idparent;
 
 	//bi-directional many-to-many association to Article
-	@ManyToMany(mappedBy="categories", fetch=FetchType.EAGER)
+	@ManyToMany
+	@JoinTable(
+		name="liens_categorie_article"
+		, joinColumns={
+			@JoinColumn(name="ID_CATEGORIE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_ARTICLE", nullable=false)
+			}
+		)
 	private Set<Article> articles;
 
 	//bi-directional many-to-many association to Caracteristique
-	@ManyToMany(mappedBy="categories", fetch=FetchType.EAGER)
+	@ManyToMany
+	@JoinTable(
+		name="liens_specs_categorie"
+		, joinColumns={
+			@JoinColumn(name="ID_CATEGORIE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_CARACTERISTIQUE", nullable=false)
+			}
+		)
 	private Set<Caracteristique> caracteristiques;
 
 	public Categorie() {

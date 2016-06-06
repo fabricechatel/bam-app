@@ -26,12 +26,20 @@ public class Utilisateur implements Serializable {
 	@Column(nullable=false, length=64)
 	private String mdp;
 
-	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="utilisateur", fetch=FetchType.EAGER)
-	private Set<Message> messages;
+	//bi-directional one-to-one association to Client
+	@OneToOne(mappedBy="utilisateur")
+	private Client client;
 
-	//bi-directional many-to-one association to Role
-	@ManyToOne
+	//bi-directional many-to-one association to Message
+	@OneToMany(mappedBy="sender")
+	private Set<Message> messagesSended;
+
+	//bi-directional many-to-one association to Message
+	@OneToMany(mappedBy="receiver")
+	private Set<Message> messagesReceived;
+
+	//bi-directional one-to-one association to Role
+	@OneToOne
 	@JoinColumn(name="ID_ROLE", nullable=false)
 	private Role role;
 
@@ -62,26 +70,56 @@ public class Utilisateur implements Serializable {
 		this.mdp = mdp;
 	}
 
-	public Set<Message> getMessages() {
-		return this.messages;
+	public Client getClient() {
+		return this.client;
 	}
 
-	public void setMessages(Set<Message> messages) {
-		this.messages = messages;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
-	public Message addMessage(Message message) {
-		getMessages().add(message);
-		message.setUtilisateur(this);
-
-		return message;
+	public Set<Message> getMessagesSended() {
+		return this.messagesSended;
 	}
 
-	public Message removeMessage(Message message) {
-		getMessages().remove(message);
-		message.setUtilisateur(null);
+	public void setMessagesSended(Set<Message> messagesSended) {
+		this.messagesSended = messagesSended;
+	}
 
-		return message;
+	public Message addMessagesSended(Message messagesSended) {
+		getMessagesSended().add(messagesSended);
+		messagesSended.setSender(this);
+
+		return messagesSended;
+	}
+
+	public Message removeMessagesSended(Message messagesSended) {
+		getMessagesSended().remove(messagesSended);
+		messagesSended.setSender(null);
+
+		return messagesSended;
+	}
+
+	public Set<Message> getMessagesReceived() {
+		return this.messagesReceived;
+	}
+
+	public void setMessagesReceived(Set<Message> messagesReceived) {
+		this.messagesReceived = messagesReceived;
+	}
+
+	public Message addMessagesReceived(Message messagesReceived) {
+		getMessagesReceived().add(messagesReceived);
+		messagesReceived.setReceiver(this);
+
+		return messagesReceived;
+	}
+
+	public Message removeMessagesReceived(Message messagesReceived) {
+		getMessagesReceived().remove(messagesReceived);
+		messagesReceived.setReceiver(null);
+
+		return messagesReceived;
 	}
 
 	public Role getRole() {

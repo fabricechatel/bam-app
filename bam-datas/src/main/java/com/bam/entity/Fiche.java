@@ -22,19 +22,17 @@ public class Fiche implements Serializable {
 	@Column(nullable=false, length=1024)
 	private String description;
 
+	@Column(name="ID_ARTICLE", nullable=false)
+	private int idArticle;
+
 	@Column(length=256)
 	private String image;
 
 	@Column(name="IS_PUBLISHED")
-	private Object isPublished;
+	private byte isPublished;
 
 	@Column(length=32)
 	private String reffiche;
-
-	//bi-directional one-to-one association to Article
-	@OneToOne
-	@JoinColumn(name="ID_ARTICLE", nullable=false)
-	private Article article;
 
 	public Fiche() {
 	}
@@ -55,6 +53,14 @@ public class Fiche implements Serializable {
 		this.description = description;
 	}
 
+	public int getIdArticle() {
+		return this.idArticle;
+	}
+
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
+	}
+
 	public String getImage() {
 		return this.image;
 	}
@@ -63,11 +69,11 @@ public class Fiche implements Serializable {
 		this.image = image;
 	}
 
-	public Object getIsPublished() {
+	public byte getIsPublished() {
 		return this.isPublished;
 	}
 
-	public void setIsPublished(Object isPublished) {
+	public void setIsPublished(byte isPublished) {
 		this.isPublished = isPublished;
 	}
 
@@ -77,14 +83,6 @@ public class Fiche implements Serializable {
 
 	public void setReffiche(String reffiche) {
 		this.reffiche = reffiche;
-	}
-
-	public Article getArticle() {
-		return this.article;
-	}
-
-	public void setArticle(Article article) {
-		this.article = article;
 	}
 
 }

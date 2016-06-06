@@ -30,61 +30,42 @@ public class Article implements Serializable {
 	@Column(nullable=false, length=64)
 	private String refarticle;
 
-	//bi-directional many-to-many association to Client
-	@ManyToMany(fetch=FetchType.EAGER)
+	//bi-directional many-to-many association to Panier
+	@ManyToMany
 	@JoinTable(
-		name="liste_de_souhaits"
+		name="liens_panier_article"
 		, joinColumns={
 			@JoinColumn(name="ID_ARTICLE", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="ID_CLIENT", nullable=false)
+			@JoinColumn(name="IDPANIER", nullable=false)
 			}
 		)
-	private Set<Client> clients;
-
-	//bi-directional one-to-one association to LigneCommande
-	@OneToOne
-	@JoinColumn(name="ID_ARTICLE", referencedColumnName="ID_ARTICLE", nullable=false, insertable=false, updatable=false)
-	private LigneCommande ligneCommande;
-
-	//bi-directional many-to-one association to Commentaire
-	@OneToMany(mappedBy="article", fetch=FetchType.EAGER)
-	private Set<Commentaire> commentaires;
-
-	//bi-directional one-to-one association to Fiche
-	@OneToOne(mappedBy="article")
-	private Fiche fiche;
-
-	//bi-directional many-to-many association to Categorie
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(
-		name="liens_categorie_article"
-		, joinColumns={
-			@JoinColumn(name="ID_ARTICLE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_CATEGORIE", nullable=false)
-			}
-		)
-	private Set<Categorie> categories;
-
-	//bi-directional many-to-many association to Promotion
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(
-		name="liens_promotions_articles"
-		, joinColumns={
-			@JoinColumn(name="ID_ARTICLE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_PROMOTION", nullable=false)
-			}
-		)
-	private Set<Promotion> promotions;
+	private Set<Panier> paniers;
 
 	//bi-directional many-to-many association to Caracteristique
-	@ManyToMany(mappedBy="articles", fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="articles")
 	private Set<Caracteristique> caracteristiques;
+
+	//bi-directional many-to-many association to Categorie
+	@ManyToMany(mappedBy="articles")
+	private Set<Categorie> categories;
+
+	//bi-directional many-to-many association to Client
+	@ManyToMany(mappedBy="articles")
+	private Set<Client> clients;
+
+	//bi-directional many-to-one association to Commentaire
+	@OneToMany(mappedBy="article")
+	private Set<Commentaire> commentaires;
+
+	//bi-directional one-to-one association to LigneCommande
+	@OneToOne(mappedBy="article")
+	private LigneCommande ligneCommande;
+
+	//bi-directional many-to-many association to Promotion
+	@ManyToMany(mappedBy="articles")
+	private Set<Promotion> promotions;
 
 	public Article() {
 	}
@@ -121,20 +102,36 @@ public class Article implements Serializable {
 		this.refarticle = refarticle;
 	}
 
+	public Set<Panier> getPaniers() {
+		return this.paniers;
+	}
+
+	public void setPaniers(Set<Panier> paniers) {
+		this.paniers = paniers;
+	}
+
+	public Set<Caracteristique> getCaracteristiques() {
+		return this.caracteristiques;
+	}
+
+	public void setCaracteristiques(Set<Caracteristique> caracteristiques) {
+		this.caracteristiques = caracteristiques;
+	}
+
+	public Set<Categorie> getCategories() {
+		return this.categories;
+	}
+
+	public void setCategories(Set<Categorie> categories) {
+		this.categories = categories;
+	}
+
 	public Set<Client> getClients() {
 		return this.clients;
 	}
 
 	public void setClients(Set<Client> clients) {
 		this.clients = clients;
-	}
-
-	public LigneCommande getLigneCommande() {
-		return this.ligneCommande;
-	}
-
-	public void setLigneCommande(LigneCommande ligneCommande) {
-		this.ligneCommande = ligneCommande;
 	}
 
 	public Set<Commentaire> getCommentaires() {
@@ -159,20 +156,12 @@ public class Article implements Serializable {
 		return commentaire;
 	}
 
-	public Fiche getFiche() {
-		return this.fiche;
+	public LigneCommande getLigneCommande() {
+		return this.ligneCommande;
 	}
 
-	public void setFiche(Fiche fiche) {
-		this.fiche = fiche;
-	}
-
-	public Set<Categorie> getCategories() {
-		return this.categories;
-	}
-
-	public void setCategories(Set<Categorie> categories) {
-		this.categories = categories;
+	public void setLigneCommande(LigneCommande ligneCommande) {
+		this.ligneCommande = ligneCommande;
 	}
 
 	public Set<Promotion> getPromotions() {
@@ -181,14 +170,6 @@ public class Article implements Serializable {
 
 	public void setPromotions(Set<Promotion> promotions) {
 		this.promotions = promotions;
-	}
-
-	public Set<Caracteristique> getCaracteristiques() {
-		return this.caracteristiques;
-	}
-
-	public void setCaracteristiques(Set<Caracteristique> caracteristiques) {
-		this.caracteristiques = caracteristiques;
 	}
 
 }

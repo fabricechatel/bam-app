@@ -2,6 +2,7 @@ package com.bam.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -24,6 +25,10 @@ public class Panier implements Serializable {
 
 	@Column(nullable=false, length=64)
 	private String refinternaute;
+
+	//bi-directional many-to-many association to Article
+	@ManyToMany(mappedBy="paniers")
+	private Set<Article> articles;
 
 	public Panier() {
 	}
@@ -50,6 +55,14 @@ public class Panier implements Serializable {
 
 	public void setRefinternaute(String refinternaute) {
 		this.refinternaute = refinternaute;
+	}
+
+	public Set<Article> getArticles() {
+		return this.articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
 	}
 
 }

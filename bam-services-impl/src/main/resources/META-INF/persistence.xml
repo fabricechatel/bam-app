@@ -6,6 +6,22 @@
 	<persistence-unit name="bamUnit" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
+		<class>com.bam.entity.Adresse</class>
+		<class>com.bam.entity.Article</class>
+		<class>com.bam.entity.Caracteristique</class>
+		<class>com.bam.entity.Categorie</class>
+		<class>com.bam.entity.Client</class>
+		<class>com.bam.entity.Commande</class>
+		<class>com.bam.entity.Commentaire</class>
+		<class>com.bam.entity.Fiche</class>
+		<class>com.bam.entity.LigneCommande</class>
+		<class>com.bam.entity.LigneCommandePK</class>
+		<class>com.bam.entity.Message</class>
+		<class>com.bam.entity.Panier</class>
+		<class>com.bam.entity.Promotion</class>
+		<class>com.bam.entity.Role</class>
+		<class>com.bam.entity.Utilisateur</class>
+		
 		<properties>
 		    <property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />

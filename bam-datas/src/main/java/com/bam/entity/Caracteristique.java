@@ -24,7 +24,7 @@ public class Caracteristique implements Serializable {
 	private String valeur;
 
 	//bi-directional many-to-many association to Article
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(
 		name="liens_specs_article"
 		, joinColumns={
@@ -37,16 +37,7 @@ public class Caracteristique implements Serializable {
 	private Set<Article> articles;
 
 	//bi-directional many-to-many association to Categorie
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(
-		name="liens_specs_categorie"
-		, joinColumns={
-			@JoinColumn(name="ID_CARACTERISTIQUE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_CATEGORIE", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="caracteristiques")
 	private Set<Categorie> categories;
 
 	public Caracteristique() {

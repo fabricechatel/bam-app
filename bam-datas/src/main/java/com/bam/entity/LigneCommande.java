@@ -27,7 +27,8 @@ public class LigneCommande implements Serializable {
 	private String statut;
 
 	//bi-directional one-to-one association to Article
-	@OneToOne(mappedBy="ligneCommande")
+	@OneToOne
+	@JoinColumn(name="ID_ARTICLE", nullable=false, insertable=false, updatable=false)
 	private Article article;
 
 	//bi-directional many-to-one association to Commande

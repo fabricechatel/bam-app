@@ -32,13 +32,31 @@ public class Adresse implements Serializable {
 	@Column(nullable=false, length=128)
 	private String voie;
 
-	//bi-directional many-to-many association to Commande
-	@ManyToMany(mappedBy="adresses", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	private Set<Commande> commandes;
-
 	//bi-directional many-to-many association to Client
-	@ManyToMany(mappedBy="adresses", fetch=FetchType.EAGER)
+	@ManyToMany
+	@JoinTable(
+		name="liens_client_adresse"
+		, joinColumns={
+			@JoinColumn(name="ID_ADRESSE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_CLIENT", nullable=false)
+			}
+		)
 	private Set<Client> clients;
+
+	//bi-directional many-to-many association to Commande
+	@ManyToMany
+	@JoinTable(
+		name="liens_commande_adresse"
+		, joinColumns={
+			@JoinColumn(name="ID_ADRESSE", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_COMMANDE", nullable=false)
+			}
+		)
+	private Set<Commande> commandes;
 
 	public Adresse() {
 	}
@@ -83,20 +101,20 @@ public class Adresse implements Serializable {
 		this.voie = voie;
 	}
 
-	public Set<Commande> getCommandes() {
-		return this.commandes;
-	}
-
-	public void setCommandes(Set<Commande> commandes) {
-		this.commandes = commandes;
-	}
-
 	public Set<Client> getClients() {
 		return this.clients;
 	}
 
 	public void setClients(Set<Client> clients) {
 		this.clients = clients;
+	}
+
+	public Set<Commande> getCommandes() {
+		return this.commandes;
+	}
+
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
 	}
 
 }

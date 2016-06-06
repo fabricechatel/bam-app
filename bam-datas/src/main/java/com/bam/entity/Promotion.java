@@ -24,7 +24,16 @@ public class Promotion implements Serializable {
 	private int pourcentage;
 
 	//bi-directional many-to-many association to Article
-	@ManyToMany(mappedBy="promotions", fetch=FetchType.EAGER)
+	@ManyToMany
+	@JoinTable(
+		name="liens_promotions_articles"
+		, joinColumns={
+			@JoinColumn(name="ID_PROMOTION", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_ARTICLE", nullable=false)
+			}
+		)
 	private Set<Article> articles;
 
 	public Promotion() {

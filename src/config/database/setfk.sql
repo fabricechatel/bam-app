@@ -1,4 +1,4 @@
-﻿use bamdb;
+use bamdb;
 
 alter table CLIENT add constraint FK_ASSOCIATION_17 foreign key (ID_UTILISATEUR)
       references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;

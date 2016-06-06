@@ -27,16 +27,18 @@ public class Message implements Serializable {
 	@Column(name="DATE_MESSAGE", nullable=false)
 	private Date dateMessage;
 
-	@Column(name="ID_SENDER", nullable=false)
-	private int idSender;
-
 	@Column(nullable=false, length=64)
 	private String intitule;
 
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
+	@JoinColumn(name="ID_SENDER", nullable=false)
+	private Utilisateur sender;
+
+	//bi-directional many-to-one association to Utilisateur
+	@ManyToOne
 	@JoinColumn(name="ID_RECEIVER", nullable=false)
-	private Utilisateur utilisateur;
+	private Utilisateur receiver;
 
 	public Message() {
 	}
@@ -65,14 +67,6 @@ public class Message implements Serializable {
 		this.dateMessage = dateMessage;
 	}
 
-	public int getIdSender() {
-		return this.idSender;
-	}
-
-	public void setIdSender(int idSender) {
-		this.idSender = idSender;
-	}
-
 	public String getIntitule() {
 		return this.intitule;
 	}
@@ -81,12 +75,20 @@ public class Message implements Serializable {
 		this.intitule = intitule;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return this.utilisateur;
+	public Utilisateur getSender() {
+		return this.sender;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setSender(Utilisateur sender) {
+		this.sender = sender;
+	}
+
+	public Utilisateur getReceiver() {
+		return this.receiver;
+	}
+
+	public void setReceiver(Utilisateur receiver) {
+		this.receiver = receiver;
 	}
 
 }

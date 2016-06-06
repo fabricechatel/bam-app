@@ -2,7 +2,6 @@ package com.bam.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Set;
 
 
 /**
@@ -23,9 +22,9 @@ public class Role implements Serializable {
 	@Column(nullable=false, length=64)
 	private String nom;
 
-	//bi-directional many-to-one association to Utilisateur
-	@OneToMany(mappedBy="role", fetch=FetchType.EAGER)
-	private Set<Utilisateur> utilisateurs;
+	//bi-directional one-to-one association to Utilisateur
+	@OneToOne(mappedBy="role")
+	private Utilisateur utilisateur;
 
 	public Role() {
 	}
@@ -46,26 +45,12 @@ public class Role implements Serializable {
 		this.nom = nom;
 	}
 
-	public Set<Utilisateur> getUtilisateurs() {
-		return this.utilisateurs;
+	public Utilisateur getUtilisateur() {
+		return this.utilisateur;
 	}
 
-	public void setUtilisateurs(Set<Utilisateur> utilisateurs) {
-		this.utilisateurs = utilisateurs;
-	}
-
-	public Utilisateur addUtilisateur(Utilisateur utilisateur) {
-		getUtilisateurs().add(utilisateur);
-		utilisateur.setRole(this);
-
-		return utilisateur;
-	}
-
-	public Utilisateur removeUtilisateur(Utilisateur utilisateur) {
-		getUtilisateurs().remove(utilisateur);
-		utilisateur.setRole(null);
-
-		return utilisateur;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 }

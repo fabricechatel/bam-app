@@ -27,7 +27,7 @@ public class Commande implements Serializable {
 	private Date datePaiement;
 
 	@Column(name="IS_CANCELLED", nullable=false)
-	private Object isCancelled;
+	private byte isCancelled;
 
 	@Column(name="MONTANT_TOTAL", nullable=false, precision=10)
 	private BigDecimal montantTotal;
@@ -36,16 +36,7 @@ public class Commande implements Serializable {
 	private String numerocommande;
 
 	//bi-directional many-to-many association to Adresse
-	@ManyToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinTable(
-		name="liens_commande_adresse"
-		, joinColumns={
-			@JoinColumn(name="ID_COMMANDE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_ADRESSE", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="commandes")
 	private Set<Adresse> adresses;
 
 	//bi-directional many-to-one association to Client
@@ -54,7 +45,7 @@ public class Commande implements Serializable {
 	private Client client;
 
 	//bi-directional many-to-one association to LigneCommande
-	@OneToMany(mappedBy="commande", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="commande")
 	private Set<LigneCommande> ligneCommandes;
 
 	public Commande() {
@@ -76,11 +67,11 @@ public class Commande implements Serializable {
 		this.datePaiement = datePaiement;
 	}
 
-	public Object getIsCancelled() {
+	public byte getIsCancelled() {
 		return this.isCancelled;
 	}
 
-	public void setIsCancelled(Object isCancelled) {
+	public void setIsCancelled(byte isCancelled) {
 		this.isCancelled = isCancelled;
 	}
 

@@ -26,39 +26,41 @@ public class Client implements Serializable {
 	@Column(nullable=false, length=128)
 	private String email;
 
-	@Column(name="ID_UTILISATEUR", nullable=false)
-	private int idUtilisateur;
-
 	@Column(nullable=false, length=64)
 	private String nom;
 
 	@Column(nullable=false, length=64)
 	private String prenom;
 
-	//bi-directional many-to-many association to Article
-	@ManyToMany(mappedBy="clients", fetch=FetchType.EAGER)
-	private Set<Article> articles;
-
-	//bi-directional many-to-one association to Commande
-	@OneToMany(mappedBy="client", fetch=FetchType.EAGER)
-	private Set<Commande> commandes;
-
-	//bi-directional many-to-one association to Commentaire
-	@OneToMany(mappedBy="client", fetch=FetchType.EAGER)
-	private Set<Commentaire> commentaires;
-
 	//bi-directional many-to-many association to Adresse
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="clients")
+	private Set<Adresse> adresses;
+
+	//bi-directional many-to-many association to Article
+	@ManyToMany
 	@JoinTable(
-		name="liens_client_adresse"
+		name="liste_de_souhaits"
 		, joinColumns={
 			@JoinColumn(name="ID_CLIENT", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="ID_ADRESSE", nullable=false)
+			@JoinColumn(name="ID_ARTICLE", nullable=false)
 			}
 		)
-	private Set<Adresse> adresses;
+	private Set<Article> articles;
+
+	//bi-directional one-to-one association to Utilisateur
+	@OneToOne
+	@JoinColumn(name="ID_UTILISATEUR", nullable=false)
+	private Utilisateur utilisateur;
+
+	//bi-directional many-to-one association to Commande
+	@OneToMany(mappedBy="client")
+	private Set<Commande> commandes;
+
+	//bi-directional many-to-one association to Commentaire
+	@OneToMany(mappedBy="client")
+	private Set<Commentaire> commentaires;
 
 	public Client() {
 	}
@@ -87,14 +89,6 @@ public class Client implements Serializable {
 		this.email = email;
 	}
 
-	public int getIdUtilisateur() {
-		return this.idUtilisateur;
-	}
-
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
-	}
-
 	public String getNom() {
 		return this.nom;
 	}
@@ -111,12 +105,28 @@ public class Client implements Serializable {
 		this.prenom = prenom;
 	}
 
+	public Set<Adresse> getAdresses() {
+		return this.adresses;
+	}
+
+	public void setAdresses(Set<Adresse> adresses) {
+		this.adresses = adresses;
+	}
+
 	public Set<Article> getArticles() {
 		return this.articles;
 	}
 
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return this.utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	public Set<Commande> getCommandes() {
@@ -161,14 +171,6 @@ public class Client implements Serializable {
 		commentaire.setClient(null);
 
 		return commentaire;
-	}
-
-	public Set<Adresse> getAdresses() {
-		return this.adresses;
-	}
-
-	public void setAdresses(Set<Adresse> adresses) {
-		this.adresses = adresses;
 	}
 
 }
