@@ -3,11 +3,9 @@ package com.bam.dao;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.bam.entity.Fiche;
+import com.bam.entity.Article;
 
-@Component("ficheDao")
-public class FicheDaoImpl extends GenericDaoImpl<Fiche, Integer> implements FicheDao {
-
+@Component("articletDao")
+public class ArticleDaoImpl extends GenericDaoImpl<Article, Integer> implements ArticleDao{
 	Logger log = Logger.getLogger(getClass());
-	
 }
