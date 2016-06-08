@@ -37,9 +37,6 @@ public class ClientBusinessImpl implements ClientBusiness {
 
 	@Override
 	public List<Client> findAll() {
-		for(Client client : dao.findAll()){
-			System.out.println(client.toString());
-		}
 		return dao.findAll();
 	}
 }
