@@ -50,7 +50,7 @@ public class Client implements Serializable {
 	private Set<Article> articles;
 
 	//bi-directional one-to-one association to Utilisateur
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name="ID_UTILISATEUR", nullable=false)
 	private Utilisateur utilisateur;
 
