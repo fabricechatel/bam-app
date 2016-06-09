@@ -1,7 +1,6 @@
 package com.bam.business;
 
 import com.bam.dao.UtilisateurDao;
-import com.bam.entity.Role;
 import com.bam.entity.Utilisateur;
 
 import org.springframework.beans.factory.annotation.Autowired;

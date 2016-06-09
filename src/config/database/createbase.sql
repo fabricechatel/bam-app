@@ -1,10 +1,8 @@
 /*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de création :  06/06/2016 15:28:09                      */
+/* Date de création :  09/06/2016 16:35:41                      */
 /*==============================================================*/
-create schema if not exists bamdb;
 
-use bamdb;
 
 drop table if exists ADRESSE;
 
@@ -72,6 +70,7 @@ create table ARTICLE
    REFARTICLE           varchar(64) not null,
    PRIX                 decimal not null,
    QUANTITE             int not null,
+   VISIBLE              bool,
    primary key (ID_ARTICLE)
 );
 
@@ -81,6 +80,7 @@ create table ARTICLE
 create table CARACTERISTIQUE
 (
    ID_CARACTERISTIQUE   int not null,
+   ATTRIBUT             varchar(128),
    VALEUR               varchar(128) not null,
    primary key (ID_CARACTERISTIQUE)
 );
@@ -92,6 +92,8 @@ create table CATEGORIE
 (
    ID_CATEGORIE         int not null,
    IDPARENT             int not null,
+   LIBELLE_CATEGORIE    varchar(128),
+   ACTIVE               bool,
    primary key (ID_CATEGORIE)
 );
 
@@ -106,6 +108,7 @@ create table CLIENT
    NOM                  varchar(64) not null,
    PRENOM               varchar(64) not null,
    CIVILITE             varchar(8) not null,
+   ACTIF                bool,
    primary key (ID_CLIENT)
 );
 
@@ -118,7 +121,7 @@ create table COMMANDE
    ID_CLIENT            int not null,
    NUMEROCOMMANDE       varchar(64) not null,
    MONTANT_TOTAL        decimal not null,
-   DATE_PAIEMENT        datetime not null,
+   DATE_PAIEMENT        timestamp not null,
    IS_CANCELLED         bool not null,
    primary key (ID_COMMANDE)
 );
@@ -133,6 +136,7 @@ create table COMMENTAIRE
    ID_CLIENT            int not null,
    NOTE                 decimal,
    DATE                 datetime,
+   VISIBLE              bool,
    primary key (ID_COMMENTAIRE)
 );
 
@@ -143,8 +147,9 @@ create table FICHE
 (
    ID_FICHE             int not null,
    ID_ARTICLE           int not null,
-   DESCRIPTION          varchar(1024) not null,
+   NOM                  varchar(64),
    REFFICHE             varchar(32),
+   DESCRIPTION          varchar(1024) not null,
    IMAGE                varchar(256),
    IS_PUBLISHED         bool,
    primary key (ID_FICHE)
@@ -256,6 +261,7 @@ create table MESSAGE
    INTITULE             varchar(64) not null,
    CORPS_MESSAGE        varchar(1024) not null,
    DATE_MESSAGE         date not null,
+   LU                   bool,
    primary key (ID_MESSAGE)
 );
 
@@ -276,7 +282,9 @@ create table PANIER
 create table PROMOTION
 (
    ID_PROMOTION         int not null,
+   NOM                  varchar(64),
    POURCENTAGE          int not null,
+   ACTIVE               bool,
    primary key (ID_PROMOTION)
 );
 
@@ -287,6 +295,7 @@ create table ROLE
 (
    ID_ROLE              int not null,
    NOM                  varchar(64) not null,
+   ACTIF                bool,
    primary key (ID_ROLE)
 );
 
@@ -299,5 +308,6 @@ create table UTILISATEUR
    ID_ROLE              int not null,
    LOGIN                varchar(64) not null,
    MDP                  varchar(64) not null,
+   ACTIF                bool,
    primary key (ID_UTILISATEUR)
 );

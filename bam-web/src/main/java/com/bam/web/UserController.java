@@ -1,9 +1,9 @@
-package com.hellokoding.account.web;
+package com.bam.web;
 
-import com.hellokoding.account.model.User;
-import com.hellokoding.account.service.SecurityService;
-import com.hellokoding.account.service.UserService;
-import com.hellokoding.account.validator.UserValidator;
+import com.bam.entity.Utilisateur;
+import com.bam.business.SecurityService;
+import com.bam.business.UtilisateurBusiness;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,33 +14,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
+	
     @Autowired
-    private UserService userService;
+    private UtilisateurBusiness userService;
 
     @Autowired
     private SecurityService securityService;
 
-    @Autowired
-    private UserValidator userValidator;
+//    @Autowired
+//    private UserValidator userValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new Utilisateur());
 
         return "registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
+    public String registration(@ModelAttribute("userForm") Utilisateur userForm, BindingResult bindingResult, Model model) {
+//        userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";
         }
 
-        userService.save(userForm);
+        userService.register(userForm);
 
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+        securityService.autologin(userForm.getLogin(), userForm.getMdp());
 
         return "redirect:/welcome";
     }
