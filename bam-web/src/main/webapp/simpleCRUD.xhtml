@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Simple CRUD</title>
+</h:head>
+    
+<h:body>
+    <h3>List client</h3>
+    <h:form rendered="#{not empty freshSafeCrudBean.list}">
+        <p:dataTable value="#{freshSafeCrudBean.clients}" 
+        			var="item" 
+        			style="margin-left:20px; max-width:1000px"
+        			tableStyle="width:auto"
+        			scrollable="true" 
+        			scrollHeight="600">
+    	
+            <p:column headerText="ID">
+            	<h:outputText value="#{item.idClient}" />
+            </p:column>
+            <p:column headerText="NOM">
+            	<h:outputText value="#{item.nom}" />
+            </p:column>
+            <p:column>
+                <h:commandButton value="edit" action="#{freshSafeCrudBean.edit(item)}" />
+            </p:column>
+            <p:column>
+                <h:commandButton value="delete" action="#{freshSafeCrudBean.delete(item)}" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    
+    <h:panelGroup rendered="#{empty freshSafeCrudBean.list}">
+        <p>No client! Please add client.</p>
+    </h:panelGroup>
+    
+    <h:panelGroup rendered="#{!freshSafeCrudBean.edit}">
+        <h3>Add student</h3>
+        <h:form>
+            <p>Name: <p:inputText value="#{freshSafeCrudBean.item.nom}" /></p>
+            <p>
+                <p:commandButton value="add" action="#{freshSafeCrudBean.add}" />
+                <p:commandButton value="reset" action="#{freshSafeCrudBean.resetAdd}" />
+            </p>
+        </h:form>
+    </h:panelGroup>
+    
+    <h:panelGroup rendered="#{freshSafeCrudBean.edit}">
+        <h3>Edit client #{freshSafeCrudBean.item.idClient}</h3>
+        <h:form>
+            <p>Nom: <p:inputText value="#{freshSafeCrudBean.item.nom}" /></p>
+            <p>
+                <p:commandButton value="save" action="#{freshSafeCrudBean.saveEdit}" />
+                <p:commandButton value="cancel" action="#{freshSafeCrudBean.cancelEdit}" />
+            </p>
+        </h:form>
+    </h:panelGroup>
+    <p>
+        <a href="#{appUrlStore.baseUrl}">Go back to index</a>
+    </p>
+</h:body>
+</html>
+
