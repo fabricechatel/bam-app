@@ -19,7 +19,7 @@ public class LiensUtilisateurRole implements Serializable {
 
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
-	@JoinColumn(name="ID_UTILISATEUR")
+	@JoinColumn(name="ID_UTILISATEUR", insertable=false, updatable=false)
 	private Utilisateur utilisateur;
 
 	public LiensUtilisateurRole() {

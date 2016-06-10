@@ -18,7 +18,7 @@ public class PanierCtrlTest {
 	@Test
 	public void test(){		
 		
-		for(Article a: panierCtrl.getPanierArticles(0)) System.out.println(a.getRefarticle());
+		for(Article a: panierCtrl.getPanierArticles(0)) System.out.println(a);
 		
 		//Assert.assertNotNull(panier);
 	}

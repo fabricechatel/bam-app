@@ -21,12 +21,12 @@ public class LiensPanierArticle implements Serializable {
 
 	//bi-directional many-to-one association to Article
 	@ManyToOne
-	@JoinColumn(name="ID_ARTICLE")
+	@JoinColumn(name="ID_ARTICLE", insertable=false, updatable=false)
 	private Article article;
 
 	//bi-directional many-to-one association to Panier
 	@ManyToOne
-	@JoinColumn(name="IDPANIER")
+	@JoinColumn(name="IDPANIER", insertable=false, updatable=false)
 	private Panier panier;
 
 	public LiensPanierArticle() {

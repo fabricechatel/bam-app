@@ -21,12 +21,12 @@ public class LiensCommandeAdresse implements Serializable {
 
 	//bi-directional many-to-one association to Adresse
 	@ManyToOne
-	@JoinColumn(name="ID_ADRESSE")
+	@JoinColumn(name="ID_ADRESSE", insertable=false, updatable=false)
 	private Adresse adresse;
 
 	//bi-directional many-to-one association to Commande
 	@ManyToOne
-	@JoinColumn(name="ID_COMMANDE")
+	@JoinColumn(name="ID_COMMANDE", insertable=false, updatable=false)
 	private Commande commande;
 
 	public LiensCommandeAdresse() {

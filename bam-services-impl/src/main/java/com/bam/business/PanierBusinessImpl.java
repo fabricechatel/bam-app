@@ -1,6 +1,8 @@
 package com.bam.business;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bam.dao.PanierDao;
 import com.bam.business.PanierBusiness;
+import com.bam.entity.Article;
+import com.bam.entity.LiensPanierArticle;
 import com.bam.entity.Panier;
 
 @Service
@@ -37,6 +41,19 @@ public class PanierBusinessImpl implements PanierBusiness {
 		Panier panier = dao.find(entityID);
 		Hibernate.initialize(panier.getLiensPanierArticles());
 		return panier;
+	}
+	
+	public Set<Article> getPanierArticles(int entityID){
+		Set<LiensPanierArticle> liens = getPanierById(entityID).getLiensPanierArticles();
+		
+		Set<Article> articles= new HashSet<Article>();
+		
+		for(LiensPanierArticle l:liens ) {
+			Hibernate.initialize(l.getArticle());
+			articles.add(l.getArticle());
+		}
+		
+		return articles;
 	}
 
 	@Override

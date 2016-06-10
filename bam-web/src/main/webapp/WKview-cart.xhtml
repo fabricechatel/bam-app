@@ -55,7 +55,7 @@
 <!--           <h3 class="title"><i class="icon-shopping-cart"></i> Items in your cart [<span class="color">5</span>]</h3> -->
 <!--             <br /> -->
 
-				<h:dataTable value="#{panierCtrl.getPanier(0).articles}" var="item" 
+				<h:dataTable value="#{panierCtrl.getPanierArticles(0).getArticle}" var="item" 
 								styleClass="table table-striped tcart">
 					<!-- Index -->
 					<h:column>
@@ -65,7 +65,7 @@
 					<!-- Product  name -->
 					<h:column>
 						<f:facet name="header">nom</f:facet>
-						<h:outputText value="#{item.refarticle}" />
+						<h:outputText value="#{item.refArticle}" />
 					</h:column>
 					<!-- Product image -->
 					<h:column>
