@@ -1,7 +1,9 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Set;
 
 
@@ -63,6 +65,33 @@ public class Client implements Serializable {
 	private Set<Commentaire> commentaires;
 
 	public Client() {
+	}
+
+	public Client(String civilite, String email, String nom, String prenom,	Utilisateur utilisateur) {
+		super();
+		this.civilite = civilite;
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.utilisateur = utilisateur;
+	}
+
+	public Client(String civilite, String email, String nom, String prenom) {
+		super();
+		this.civilite = civilite;
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+
+	public Client(String civilite, String email, String nom, String prenom,	Set<Adresse> adresses, Utilisateur utilisateur) {
+		super();
+		this.civilite = civilite;
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresses = adresses;
+		this.utilisateur = utilisateur;
 	}
 
 	public int getIdClient() {

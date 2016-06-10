@@ -31,9 +31,10 @@ public abstract class GenericDaoImpl<T,ID extends Serializable> implements Gener
 		}
 		
 		@Override
-		public void save(T entity) {
+		public T save(T entity) {
 			em.persist(entity);
-			em.flush();		
+			em.flush();
+			return entity;
 		}
 
 		@Override

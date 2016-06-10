@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bam.dao.AdresseDao;
 import com.bam.dao.ClientDao;
+import com.bam.dao.RoleDao;
+import com.bam.dao.UtilisateurDao;
 import com.bam.business.ClientBusiness;
 import com.bam.entity.Client;
 
@@ -13,33 +16,80 @@ import com.bam.entity.Client;
 public class ClientBusinessImpl implements ClientBusiness {
 
 	@Autowired
-//	CRUD<Client> dao;
-	ClientDao dao;	
+	ClientDao daoClient;
 	
-	public void setDao(ClientDao dao) {
-		this.dao = dao;
+	@Autowired
+	AdresseDao daoAdresse;
+	
+	@Autowired
+	UtilisateurDao daoUtilisateur;
+	
+	@Autowired
+	RoleDao daoRole;
+
+	public ClientDao getDaoClient() {
+		return daoClient;
 	}
-	
-	@Override
-	public void sauvegarderClient(Client entity) {
-		dao.save(entity);		
+
+	public void setDaoClient(ClientDao daoClient) {
+		this.daoClient = daoClient;
+	}
+
+	public AdresseDao getDaoAdresse() {
+		return daoAdresse;
+	}
+
+	public void setDaoAdresse(AdresseDao daoAdresse) {
+		this.daoAdresse = daoAdresse;
+	}
+
+	public UtilisateurDao getDaoUtilisateur() {
+		return daoUtilisateur;
+	}
+
+	public void setDaoUtilisateur(UtilisateurDao daoUtilisateur) {
+		this.daoUtilisateur = daoUtilisateur;
+	}
+
+	public RoleDao getDaoRole() {
+		return daoRole;
+	}
+
+	public void setDaoRole(RoleDao daoRole) {
+		this.daoRole = daoRole;
 	}
 
 	@Override
-	public void effacerClient(Client entity) {
-		dao.delete(entity);
+	public Client sauvegarderClient(Client client) {
+		// TODO Auto-generated method stub
+		return daoClient.save(client);
 	}
 
 	@Override
-	public Client getClientById(int entityID) {
-		return dao.find(entityID);
+	public void modifierClient(Client client) {
+		// TODO Auto-generated method stub
+		daoClient.update(client);
+	}
+
+	@Override
+	public void effacerClient(Client client) {
+		// TODO Auto-generated method stub
+		daoClient.delete(client);
+	}
+
+	@Override
+	public Client getClientById(int clientId) {
+		// TODO Auto-generated method stub
+		return daoClient.find(clientId);
 	}
 
 	@Override
 	public List<Client> findAll() {
-		for(Client client : dao.findAll()){
+		// TODO Auto-generated method stub
+		for(Client client : daoClient.findAll()){
 			System.out.println(client.toString());
 		}
-		return dao.findAll();
-	}
+		return daoClient.findAll();
+	}	
+	
 }

@@ -6,9 +6,9 @@ import com.bam.entity.Client;
 
 public interface ClientBusiness {
 
-	public void sauvegarderClient(Client entity);
-	public void effacerClient(Client entity);
-	public Client getClientById(int entityID);
-	
+	public Client sauvegarderClient(Client client);
+	public void modifierClient(Client client);
+	public void effacerClient(Client client);
+	public Client getClientById(int clientId);
 	public List<Client> findAll();
 }

@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bam.entity.Client;
 
-
 @Component("clientDao")
 public class ClientDaoImpl extends GenericDaoImpl<Client, Integer> implements ClientDao {
 	

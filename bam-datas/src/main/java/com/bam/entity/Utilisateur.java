@@ -47,6 +47,12 @@ public class Utilisateur implements Serializable {
 
 	public Utilisateur() {
 	}
+	
+	public Utilisateur(String login, String mdp) {
+		super();
+		this.login = login;
+		this.mdp = mdp;
+	}
 
 	public int getIdUtilisateur() {
 		return this.idUtilisateur;
