@@ -1,11 +1,12 @@
 use bamdb;
+
 alter table CLIENT add constraint FK_ASSOCIATION_17 foreign key (ID_UTILISATEUR)
       references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
 
 alter table COMMANDE add constraint FK_PASSER foreign key (ID_CLIENT)
       references CLIENT (ID_CLIENT) on delete restrict on update restrict;
 
-alter table COMMENTAIRE add constraint FK_CONCERNE foreign key (ID_ARTICLE) 
+alter table COMMENTAIRE add constraint FK_CONCERNE foreign key (ID_ARTICLE)
       references ARTICLE (ID_ARTICLE) on delete restrict on update restrict;
 
 alter table COMMENTAIRE add constraint FK_FAIT foreign key (ID_CLIENT)

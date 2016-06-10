@@ -1,6 +1,6 @@
-/*==============================================================*/
+ï»¿/*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de création :  10/06/2016 11:34:33                      */
+/* Date de crï¿½ation :  10/06/2016 13:45:56                      */
 /*==============================================================*/
 
 create schema if not exists bamdb;
@@ -127,7 +127,7 @@ create table COMMANDE
    ID_CLIENT            int not null,
    NUMEROCOMMANDE       varchar(64) not null,
    MONTANT_TOTAL        decimal not null,
-   DATE_PAIEMENT        timestamp not null,
+   DATE_PAIEMENT        datetime not null,
    IS_CANCELLED         bool not null,
    primary key (ID_COMMANDE)
 );
@@ -276,7 +276,7 @@ create table MESSAGE
    ID_RECEIVER          int not null,
    INTITULE             varchar(64) not null,
    CORPS_MESSAGE        varchar(1024) not null,
-   DATE_MESSAGE         date not null,
+   DATE_MESSAGE         datetime not null,
    LU                   bool,
    primary key (ID_MESSAGE)
 );
