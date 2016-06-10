@@ -23,6 +23,9 @@ public class UtilisateurDaoImpl extends GenericDaoImpl<Utilisateur, Integer>
 	public Utilisateur findByUserName(String login){
 		Query q = em.createQuery("FROM Utilisateur WHERE LOGIN = :login" );
 		q.setParameter("login", login);
-		return (Utilisateur) q.getSingleResult();		
+		if (q.getResultList().isEmpty()){
+			return null;
+		}
+		return (Utilisateur) q.getResultList().get(0);		
 	}
 }

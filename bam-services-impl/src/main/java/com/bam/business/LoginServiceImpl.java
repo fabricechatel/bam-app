@@ -29,6 +29,9 @@ public class LoginServiceImpl implements UserDetailsService {
 			throws UsernameNotFoundException {
 
 		Utilisateur user = utilisateurDao.findByUserName(username);
+		if (user == null){
+			throw new UsernameNotFoundException(username);
+		}
 
 		List<GrantedAuthority> authorities = buildUserAuthority(user
 				.getUtilisateurRoles());
