@@ -1,4 +1,4 @@
-package com.beingjavaguys.service.login;
+package com.bam.business;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,41 +14,41 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.beingjavaguys.dao.login.LoginDao;
-import com.beingjavaguys.models.login.UserRole;
-import com.beingjavaguys.models.login.Users;
+import com.bam.dao.UtilisateurDao;
+import com.bam.entity.Utilisateur;
+import com.bam.entity.UtilisateurRole;
 
 @Service("loginService")
 public class LoginServiceImpl implements UserDetailsService {
 
 	@Autowired
-	LoginDao loginDao;
+	private UtilisateurDao utilisateurDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 
-		Users user = loginDao.findByUserName(username);
+		Utilisateur user = utilisateurDao.findByUserName(username);
 
 		List<GrantedAuthority> authorities = buildUserAuthority(user
-				.getUserRole());
+				.getUtilisateurRoles());
 
 		return buildUserForAuthentication(user, authorities);
 	}
 
-	private User buildUserForAuthentication(Users user,
+	private User buildUserForAuthentication(Utilisateur user,
 			List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), user.getPassword(),
+		return new User(user.getLogin(), user.getMdp(),
 				user.isEnabled(), true, true, true, authorities);
 	}
 
-	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildUserAuthority(Set<UtilisateurRole> utilisateurRoles) {
 
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 
 		// Build user's authorities
-		for (UserRole userRole : userRoles) {
-			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+		for (UtilisateurRole userRole : utilisateurRoles) {
+			setAuths.add(new SimpleGrantedAuthority(userRole.getNomrole()));
 		}
 
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(

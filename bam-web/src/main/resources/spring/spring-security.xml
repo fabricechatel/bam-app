@@ -30,6 +30,6 @@
 		</authentication-provider>
 	</authentication-manager>
 	
-	<beans:bean id="loginService" class="com.beingjavaguys.service.login.LoginServiceImpl"></beans:bean>
+	<beans:bean id="loginService" class="com.bam.business.LoginServiceImpl"></beans:bean>
 	
 </beans:beans>
