@@ -78,5 +78,8 @@ alter table MESSAGE add constraint FK_RECOIT foreign key (ID_RECEIVER)
 alter table PANIER add constraint FK_APPARTIENT foreign key (ID_CLIENT)
       references CLIENT (ID_CLIENT) on delete restrict on update restrict;
 
-alter table UTILISATEUR add constraint FK_IDENTIFIER foreign key (ID_ROLE)
-      references ROLE (ID_ROLE) on delete restrict on update restrict;
+alter table UTILISATEUR_ROLES add constraint FK_REFERENCE_27 foreign key (NOMROLE)
+      references ROLE (NOMROLE) on delete restrict on update restrict;
+
+alter table UTILISATEUR_ROLES add constraint FK_REFERENCE_28 foreign key (ID_UTILISATEUR)
+      references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
