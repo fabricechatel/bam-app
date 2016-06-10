@@ -1,8 +1,11 @@
 /*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de création :  09/06/2016 16:35:41                      */
+/* Date de création :  10/06/2016 11:34:33                      */
 /*==============================================================*/
 
+create schema if not exists bamdb;
+
+use bamdb;
 
 drop table if exists ADRESSE;
 
@@ -33,6 +36,8 @@ drop table if exists LIENS_PROMOTIONS_ARTICLES;
 drop table if exists LIENS_SPECS_ARTICLE;
 
 drop table if exists LIENS_SPECS_CATEGORIE;
+
+drop table if exists LIENS_UTILISATEUR_ROLE;
 
 drop table if exists LIGNE_COMMANDE;
 
@@ -67,9 +72,10 @@ create table ADRESSE
 create table ARTICLE
 (
    ID_ARTICLE           int not null,
+   LIBELLE              varchar(128),
    REFARTICLE           varchar(64) not null,
    PRIX                 decimal not null,
-   QUANTITE             int not null,
+   QUANTITESTOCK        int not null,
    VISIBLE              bool,
    primary key (ID_ARTICLE)
 );
@@ -193,7 +199,7 @@ create table LIENS_PANIER_ARTICLE
 (
    IDPANIER             int not null,
    ID_ARTICLE           int not null,
-   QUANTITE             int,
+   QUANTITEPANIER       int,
    primary key (IDPANIER, ID_ARTICLE)
 );
 
@@ -228,13 +234,23 @@ create table LIENS_SPECS_CATEGORIE
 );
 
 /*==============================================================*/
+/* Table : LIENS_UTILISATEUR_ROLE                               */
+/*==============================================================*/
+create table LIENS_UTILISATEUR_ROLE
+(
+   ID_ROLE              int not null,
+   ID_UTILISATEUR       int not null,
+   primary key (ID_ROLE, ID_UTILISATEUR)
+);
+
+/*==============================================================*/
 /* Table : LIGNE_COMMANDE                                       */
 /*==============================================================*/
 create table LIGNE_COMMANDE
 (
    ID_COMMANDE          int not null,
    ID_ARTICLE           int not null,
-   QUANTITE             int,
+   QUANTITECOMMANDE     int,
    PRIX                 decimal,
    STATUT               varchar(16),
    primary key (ID_COMMANDE, ID_ARTICLE)
@@ -305,7 +321,6 @@ create table ROLE
 create table UTILISATEUR
 (
    ID_UTILISATEUR       int not null,
-   ID_ROLE              int not null,
    LOGIN                varchar(64) not null,
    MDP                  varchar(64) not null,
    ACTIF                bool,
