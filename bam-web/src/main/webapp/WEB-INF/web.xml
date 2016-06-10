@@ -6,7 +6,7 @@
 
   	<context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/classes/spring/application-config.xml,/WEB-INF/classes/spring/spring-security.xml,/WEB-INF/classes/spring/spring-dispatcher-servlet.xml</param-value>
+        <param-value>/WEB-INF/classes/spring/application-config.xml,/WEB-INF/classes/spring/spring-security.xml</param-value>
     </context-param>
 	
     <listener>
@@ -27,17 +27,15 @@
   </context-param>
   
 	<servlet>
-		<servlet-name>spring-dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<servlet-name>FacesServlet</servlet-name>
+<!-- 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>spring-dispatcher</servlet-name>
+		<servlet-name>FacesServlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>spring-dispatcher</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
+		
 	</servlet-mapping>
 	
 	<filter>
@@ -51,6 +49,6 @@
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>welcome.xhtml</welcome-file>
 	</welcome-file-list>
 </web-app>
