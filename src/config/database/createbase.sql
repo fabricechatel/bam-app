@@ -1,6 +1,6 @@
 ﻿/*==============================================================*/
 /* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de cr�ation :  10/06/2016 13:45:56                      */
+/* Date de cr�ation :  10/06/2016 15:14:21                      */
 /*==============================================================*/
 
 create schema if not exists bamdb;
@@ -37,8 +37,6 @@ drop table if exists LIENS_SPECS_ARTICLE;
 
 drop table if exists LIENS_SPECS_CATEGORIE;
 
-drop table if exists LIENS_UTILISATEUR_ROLE;
-
 drop table if exists LIGNE_COMMANDE;
 
 drop table if exists LISTE_DE_SOUHAITS;
@@ -52,6 +50,8 @@ drop table if exists PROMOTION;
 drop table if exists ROLE;
 
 drop table if exists UTILISATEUR;
+
+drop table if exists UTILISATEUR_ROLES;
 
 /*==============================================================*/
 /* Table : ADRESSE                                              */
@@ -234,16 +234,6 @@ create table LIENS_SPECS_CATEGORIE
 );
 
 /*==============================================================*/
-/* Table : LIENS_UTILISATEUR_ROLE                               */
-/*==============================================================*/
-create table LIENS_UTILISATEUR_ROLE
-(
-   ID_ROLE              int not null,
-   ID_UTILISATEUR       int not null,
-   primary key (ID_ROLE, ID_UTILISATEUR)
-);
-
-/*==============================================================*/
 /* Table : LIGNE_COMMANDE                                       */
 /*==============================================================*/
 create table LIGNE_COMMANDE
@@ -309,10 +299,9 @@ create table PROMOTION
 /*==============================================================*/
 create table ROLE
 (
-   ID_ROLE              int not null,
-   NOM                  varchar(64) not null,
-   ACTIF                bool,
-   primary key (ID_ROLE)
+   NOMROLE              varchar(64) not null,
+   ENABLED              bool not null,
+   primary key (NOMROLE)
 );
 
 /*==============================================================*/
@@ -325,4 +314,15 @@ create table UTILISATEUR
    MDP                  varchar(64) not null,
    ACTIF                bool,
    primary key (ID_UTILISATEUR)
+);
+
+/*==============================================================*/
+/* Table : UTILISATEUR_ROLES                                    */
+/*==============================================================*/
+create table UTILISATEUR_ROLES
+(
+   NOMROLE              varchar(64) not null,
+   ID_UTILISATEUR       int not null,
+   ENABLED              bool,
+   primary key (NOMROLE, ID_UTILISATEUR)
 );

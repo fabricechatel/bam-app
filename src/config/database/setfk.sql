@@ -57,9 +57,6 @@ alter table LIENS_SPECS_CATEGORIE add constraint FK_LIENS_SPECS_CATEGORIE foreig
 alter table LIENS_SPECS_CATEGORIE add constraint FK_LIENS_SPECS_CATEGORIE2 foreign key (ID_CATEGORIE)
       references CATEGORIE (ID_CATEGORIE) on delete restrict on update restrict;
 
-alter table LIENS_UTILISATEUR_ROLE add constraint FK_IDENTIFIER2 foreign key (ID_UTILISATEUR)
-      references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
-
 alter table LIGNE_COMMANDE add constraint FK_LIGNE_COMMANDE foreign key (ID_COMMANDE)
       references COMMANDE (ID_COMMANDE) on delete restrict on update restrict;
 
@@ -80,3 +77,9 @@ alter table MESSAGE add constraint FK_RECOIT foreign key (ID_RECEIVER)
 
 alter table PANIER add constraint FK_APPARTIENT foreign key (ID_CLIENT)
       references CLIENT (ID_CLIENT) on delete restrict on update restrict;
+
+alter table UTILISATEUR_ROLES add constraint FK_REFERENCE_27 foreign key (NOMROLE)
+      references ROLE (NOMROLE) on delete restrict on update restrict;
+
+alter table UTILISATEUR_ROLES add constraint FK_REFERENCE_28 foreign key (ID_UTILISATEUR)
+      references UTILISATEUR (ID_UTILISATEUR) on delete restrict on update restrict;
