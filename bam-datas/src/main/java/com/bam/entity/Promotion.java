@@ -10,30 +10,23 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="promotion")
 @NamedQuery(name="Promotion.findAll", query="SELECT p FROM Promotion p")
 public class Promotion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_PROMOTION", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_PROMOTION")
 	private int idPromotion;
 
-	@Column(nullable=false)
+	private byte active;
+
+	private String nom;
+
 	private int pourcentage;
 
 	//bi-directional many-to-many association to Article
-	@ManyToMany
-	@JoinTable(
-		name="liens_promotions_articles"
-		, joinColumns={
-			@JoinColumn(name="ID_PROMOTION", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_ARTICLE", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="promotions")
 	private Set<Article> articles;
 
 	public Promotion() {
@@ -45,6 +38,22 @@ public class Promotion implements Serializable {
 
 	public void setIdPromotion(int idPromotion) {
 		this.idPromotion = idPromotion;
+	}
+
+	public byte getActive() {
+		return this.active;
+	}
+
+	public void setActive(byte active) {
+		this.active = active;
+	}
+
+	public String getNom() {
+		return this.nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public int getPourcentage() {

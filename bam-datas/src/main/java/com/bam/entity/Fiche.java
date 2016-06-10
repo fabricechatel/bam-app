@@ -9,30 +9,30 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="fiche")
 @NamedQuery(name="Fiche.findAll", query="SELECT f FROM Fiche f")
 public class Fiche implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_FICHE", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_FICHE")
 	private int idFiche;
 
-	@Column(nullable=false, length=1024)
 	private String description;
 
-	@Column(name="ID_ARTICLE", nullable=false)
-	private int idArticle;
-
-	@Column(length=256)
 	private String image;
 
 	@Column(name="IS_PUBLISHED")
 	private byte isPublished;
 
-	@Column(length=32)
+	private String nom;
+
 	private String reffiche;
+
+	//bi-directional many-to-one association to Article
+	@ManyToOne
+	@JoinColumn(name="ID_ARTICLE")
+	private Article article;
 
 	public Fiche() {
 	}
@@ -53,14 +53,6 @@ public class Fiche implements Serializable {
 		this.description = description;
 	}
 
-	public int getIdArticle() {
-		return this.idArticle;
-	}
-
-	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
-	}
-
 	public String getImage() {
 		return this.image;
 	}
@@ -77,12 +69,28 @@ public class Fiche implements Serializable {
 		this.isPublished = isPublished;
 	}
 
+	public String getNom() {
+		return this.nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
 	public String getReffiche() {
 		return this.reffiche;
 	}
 
 	public void setReffiche(String reffiche) {
 		this.reffiche = reffiche;
+	}
+
+	public Article getArticle() {
+		return this.article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 }

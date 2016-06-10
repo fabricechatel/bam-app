@@ -10,35 +10,35 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="message")
 @NamedQuery(name="Message.findAll", query="SELECT m FROM Message m")
 public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_MESSAGE", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_MESSAGE")
 	private int idMessage;
 
-	@Column(name="CORPS_MESSAGE", nullable=false, length=1024)
+	@Column(name="CORPS_MESSAGE")
 	private String corpsMessage;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="DATE_MESSAGE", nullable=false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="DATE_MESSAGE")
 	private Date dateMessage;
 
-	@Column(nullable=false, length=64)
 	private String intitule;
 
-	//bi-directional many-to-one association to Utilisateur
-	@ManyToOne
-	@JoinColumn(name="ID_SENDER", nullable=false)
-	private Utilisateur sender;
+	private byte lu;
 
 	//bi-directional many-to-one association to Utilisateur
 	@ManyToOne
-	@JoinColumn(name="ID_RECEIVER", nullable=false)
-	private Utilisateur receiver;
+	@JoinColumn(name="ID_RECEIVER")
+	private Utilisateur utilisateur1;
+
+	//bi-directional many-to-one association to Utilisateur
+	@ManyToOne
+	@JoinColumn(name="ID_SENDER")
+	private Utilisateur utilisateur2;
 
 	public Message() {
 	}
@@ -75,20 +75,28 @@ public class Message implements Serializable {
 		this.intitule = intitule;
 	}
 
-	public Utilisateur getSender() {
-		return this.sender;
+	public byte getLu() {
+		return this.lu;
 	}
 
-	public void setSender(Utilisateur sender) {
-		this.sender = sender;
+	public void setLu(byte lu) {
+		this.lu = lu;
 	}
 
-	public Utilisateur getReceiver() {
-		return this.receiver;
+	public Utilisateur getUtilisateur1() {
+		return this.utilisateur1;
 	}
 
-	public void setReceiver(Utilisateur receiver) {
-		this.receiver = receiver;
+	public void setUtilisateur1(Utilisateur utilisateur1) {
+		this.utilisateur1 = utilisateur1;
+	}
+
+	public Utilisateur getUtilisateur2() {
+		return this.utilisateur2;
+	}
+
+	public void setUtilisateur2(Utilisateur utilisateur2) {
+		this.utilisateur2 = utilisateur2;
 	}
 
 }

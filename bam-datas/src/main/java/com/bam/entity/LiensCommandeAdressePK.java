@@ -4,21 +4,21 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the ligne_commande database table.
+ * The primary key class for the liens_commande_adresse database table.
  * 
  */
 @Embeddable
-public class LigneCommandePK implements Serializable {
+public class LiensCommandeAdressePK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="ID_COMMANDE", insertable=false, updatable=false)
 	private int idCommande;
 
-	@Column(name="ID_ARTICLE", insertable=false, updatable=false)
-	private int idArticle;
+	@Column(name="ID_ADRESSE", insertable=false, updatable=false)
+	private int idAdresse;
 
-	public LigneCommandePK() {
+	public LiensCommandeAdressePK() {
 	}
 	public int getIdCommande() {
 		return this.idCommande;
@@ -26,31 +26,31 @@ public class LigneCommandePK implements Serializable {
 	public void setIdCommande(int idCommande) {
 		this.idCommande = idCommande;
 	}
-	public int getIdArticle() {
-		return this.idArticle;
+	public int getIdAdresse() {
+		return this.idAdresse;
 	}
-	public void setIdArticle(int idArticle) {
-		this.idArticle = idArticle;
+	public void setIdAdresse(int idAdresse) {
+		this.idAdresse = idAdresse;
 	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof LigneCommandePK)) {
+		if (!(other instanceof LiensCommandeAdressePK)) {
 			return false;
 		}
-		LigneCommandePK castOther = (LigneCommandePK)other;
+		LiensCommandeAdressePK castOther = (LiensCommandeAdressePK)other;
 		return 
 			(this.idCommande == castOther.idCommande)
-			&& (this.idArticle == castOther.idArticle);
+			&& (this.idAdresse == castOther.idAdresse);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
 		hash = hash * prime + this.idCommande;
-		hash = hash * prime + this.idArticle;
+		hash = hash * prime + this.idAdresse;
 		
 		return hash;
 	}

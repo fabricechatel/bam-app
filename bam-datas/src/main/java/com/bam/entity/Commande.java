@@ -12,37 +12,35 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="commande")
 @NamedQuery(name="Commande.findAll", query="SELECT c FROM Commande c")
 public class Commande implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_COMMANDE", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_COMMANDE")
 	private int idCommande;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="DATE_PAIEMENT", nullable=false)
+	@Column(name="DATE_PAIEMENT")
 	private Date datePaiement;
 
-	@Column(name="IS_CANCELLED", nullable=false)
+	@Column(name="IS_CANCELLED")
 	private byte isCancelled;
 
-	@Column(name="MONTANT_TOTAL", nullable=false, precision=10)
+	@Column(name="MONTANT_TOTAL")
 	private BigDecimal montantTotal;
 
-	@Column(nullable=false, length=64)
 	private String numerocommande;
-
-	//bi-directional many-to-many association to Adresse
-	@ManyToMany(mappedBy="commandes")
-	private Set<Adresse> adresses;
 
 	//bi-directional many-to-one association to Client
 	@ManyToOne
-	@JoinColumn(name="ID_CLIENT", nullable=false)
+	@JoinColumn(name="ID_CLIENT")
 	private Client client;
+
+	//bi-directional many-to-one association to LiensCommandeAdresse
+	@OneToMany(mappedBy="commande")
+	private Set<LiensCommandeAdresse> liensCommandeAdresses;
 
 	//bi-directional many-to-one association to LigneCommande
 	@OneToMany(mappedBy="commande")
@@ -91,20 +89,34 @@ public class Commande implements Serializable {
 		this.numerocommande = numerocommande;
 	}
 
-	public Set<Adresse> getAdresses() {
-		return this.adresses;
-	}
-
-	public void setAdresses(Set<Adresse> adresses) {
-		this.adresses = adresses;
-	}
-
 	public Client getClient() {
 		return this.client;
 	}
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Set<LiensCommandeAdresse> getLiensCommandeAdresses() {
+		return this.liensCommandeAdresses;
+	}
+
+	public void setLiensCommandeAdresses(Set<LiensCommandeAdresse> liensCommandeAdresses) {
+		this.liensCommandeAdresses = liensCommandeAdresses;
+	}
+
+	public LiensCommandeAdresse addLiensCommandeAdress(LiensCommandeAdresse liensCommandeAdress) {
+		getLiensCommandeAdresses().add(liensCommandeAdress);
+		liensCommandeAdress.setCommande(this);
+
+		return liensCommandeAdress;
+	}
+
+	public LiensCommandeAdresse removeLiensCommandeAdress(LiensCommandeAdresse liensCommandeAdress) {
+		getLiensCommandeAdresses().remove(liensCommandeAdress);
+		liensCommandeAdress.setCommande(null);
+
+		return liensCommandeAdress;
 	}
 
 	public Set<LigneCommande> getLigneCommandes() {

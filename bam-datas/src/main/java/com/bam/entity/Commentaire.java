@@ -11,30 +11,30 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="commentaire")
 @NamedQuery(name="Commentaire.findAll", query="SELECT c FROM Commentaire c")
 public class Commentaire implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_COMMENTAIRE", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_COMMENTAIRE")
 	private int idCommentaire;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
-	@Column(precision=10)
 	private BigDecimal note;
+
+	private byte visible;
 
 	//bi-directional many-to-one association to Article
 	@ManyToOne
-	@JoinColumn(name="ID_ARTICLE", nullable=false)
+	@JoinColumn(name="ID_ARTICLE")
 	private Article article;
 
 	//bi-directional many-to-one association to Client
 	@ManyToOne
-	@JoinColumn(name="ID_CLIENT", nullable=false)
+	@JoinColumn(name="ID_CLIENT")
 	private Client client;
 
 	public Commentaire() {
@@ -62,6 +62,14 @@ public class Commentaire implements Serializable {
 
 	public void setNote(BigDecimal note) {
 		this.note = note;
+	}
+
+	public byte getVisible() {
+		return this.visible;
+	}
+
+	public void setVisible(byte visible) {
+		this.visible = visible;
 	}
 
 	public Article getArticle() {

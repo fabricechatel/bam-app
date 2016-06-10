@@ -14,6 +14,12 @@
 		<class>com.bam.entity.Commande</class>
 		<class>com.bam.entity.Commentaire</class>
 		<class>com.bam.entity.Fiche</class>
+		<class>com.bam.entity.LiensCommandeAdresse</class>
+		<class>com.bam.entity.LiensCommandeAdressePK</class>
+		<class>com.bam.entity.LiensPanierArticle</class>
+		<class>com.bam.entity.LiensPanierArticlePK</class>
+		<class>com.bam.entity.LiensUtilisateurRole</class>
+		<class>com.bam.entity.LiensUtilisateurRolePK</class>
 		<class>com.bam.entity.LigneCommande</class>
 		<class>com.bam.entity.LigneCommandePK</class>
 		<class>com.bam.entity.Message</class>

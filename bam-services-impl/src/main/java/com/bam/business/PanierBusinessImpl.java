@@ -35,7 +35,7 @@ public class PanierBusinessImpl implements PanierBusiness {
 	@Transactional
 	public Panier getPanierById(int entityID) {
 		Panier panier = dao.find(entityID);
-		Hibernate.initialize(panier.getArticles());
+		Hibernate.initialize(panier.getLiensPanierArticles());
 		return panier;
 	}
 

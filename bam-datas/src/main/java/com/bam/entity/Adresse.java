@@ -10,53 +10,31 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="adresse")
 @NamedQuery(name="Adresse.findAll", query="SELECT a FROM Adresse a")
 public class Adresse implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_ADRESSE", unique=true, nullable=false)
+	@Column(name="ID_ADRESSE")
 	private int idAdresse;
 
-	@Column(name="CODE_POSTAL", nullable=false, length=16)
+	@Column(name="CODE_POSTAL")
 	private String codePostal;
 
-	@Column(nullable=false, length=16)
 	private String numero;
 
-	@Column(nullable=false, length=64)
 	private String ville;
 
-	@Column(nullable=false, length=128)
 	private String voie;
 
 	//bi-directional many-to-many association to Client
-	@ManyToMany
-	@JoinTable(
-		name="liens_client_adresse"
-		, joinColumns={
-			@JoinColumn(name="ID_ADRESSE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_CLIENT", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="adresses")
 	private Set<Client> clients;
 
-	//bi-directional many-to-many association to Commande
-	@ManyToMany
-	@JoinTable(
-		name="liens_commande_adresse"
-		, joinColumns={
-			@JoinColumn(name="ID_ADRESSE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_COMMANDE", nullable=false)
-			}
-		)
-	private Set<Commande> commandes;
+	//bi-directional many-to-one association to LiensCommandeAdresse
+	@OneToMany(mappedBy="adresse")
+	private Set<LiensCommandeAdresse> liensCommandeAdresses;
 
 	public Adresse() {
 	}
@@ -109,12 +87,26 @@ public class Adresse implements Serializable {
 		this.clients = clients;
 	}
 
-	public Set<Commande> getCommandes() {
-		return this.commandes;
+	public Set<LiensCommandeAdresse> getLiensCommandeAdresses() {
+		return this.liensCommandeAdresses;
 	}
 
-	public void setCommandes(Set<Commande> commandes) {
-		this.commandes = commandes;
+	public void setLiensCommandeAdresses(Set<LiensCommandeAdresse> liensCommandeAdresses) {
+		this.liensCommandeAdresses = liensCommandeAdresses;
+	}
+
+	public LiensCommandeAdresse addLiensCommandeAdress(LiensCommandeAdresse liensCommandeAdress) {
+		getLiensCommandeAdresses().add(liensCommandeAdress);
+		liensCommandeAdress.setAdresse(this);
+
+		return liensCommandeAdress;
+	}
+
+	public LiensCommandeAdresse removeLiensCommandeAdress(LiensCommandeAdresse liensCommandeAdress) {
+		getLiensCommandeAdresses().remove(liensCommandeAdress);
+		liensCommandeAdress.setAdresse(null);
+
+		return liensCommandeAdress;
 	}
 
 }

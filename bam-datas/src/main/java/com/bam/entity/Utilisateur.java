@@ -1,9 +1,7 @@
 package com.bam.entity;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
 import java.util.Set;
 
 
@@ -12,38 +10,36 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="utilisateur")
 @NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
 public class Utilisateur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_UTILISATEUR", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_UTILISATEUR")
 	private int idUtilisateur;
 
-	@Column(nullable=false, length=64)
+	private byte actif;
+
 	private String login;
 
-	@Column(nullable=false, length=64)
 	private String mdp;
 
 	//bi-directional one-to-one association to Client
 	@OneToOne(mappedBy="utilisateur")
 	private Client client;
 
-	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="sender")
-	private Set<Message> messagesSended;
+	//bi-directional many-to-one association to LiensUtilisateurRole
+	@OneToMany(mappedBy="utilisateur")
+	private Set<LiensUtilisateurRole> liensUtilisateurRoles;
 
 	//bi-directional many-to-one association to Message
-	@OneToMany(mappedBy="receiver")
-	private Set<Message> messagesReceived;
+	@OneToMany(mappedBy="utilisateur1")
+	private Set<Message> messages1;
 
-	//bi-directional many-to-one association to Role
-	@ManyToOne
-	@JoinColumn(name="ID_ROLE")
-	private Role role;
+	//bi-directional many-to-one association to Message
+	@OneToMany(mappedBy="utilisateur2")
+	private Set<Message> messages2;
 
 	public Utilisateur() {
 	}
@@ -54,6 +50,14 @@ public class Utilisateur implements Serializable {
 
 	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
+	}
+
+	public byte getActif() {
+		return this.actif;
+	}
+
+	public void setActif(byte actif) {
+		this.actif = actif;
 	}
 
 	public String getLogin() {
@@ -80,56 +84,70 @@ public class Utilisateur implements Serializable {
 		this.client = client;
 	}
 
-	public Set<Message> getMessagesSended() {
-		return this.messagesSended;
+	public Set<LiensUtilisateurRole> getLiensUtilisateurRoles() {
+		return this.liensUtilisateurRoles;
 	}
 
-	public void setMessagesSended(Set<Message> messagesSended) {
-		this.messagesSended = messagesSended;
+	public void setLiensUtilisateurRoles(Set<LiensUtilisateurRole> liensUtilisateurRoles) {
+		this.liensUtilisateurRoles = liensUtilisateurRoles;
 	}
 
-	public Message addMessagesSended(Message messagesSended) {
-		getMessagesSended().add(messagesSended);
-		messagesSended.setSender(this);
+	public LiensUtilisateurRole addLiensUtilisateurRole(LiensUtilisateurRole liensUtilisateurRole) {
+		getLiensUtilisateurRoles().add(liensUtilisateurRole);
+		liensUtilisateurRole.setUtilisateur(this);
 
-		return messagesSended;
+		return liensUtilisateurRole;
 	}
 
-	public Message removeMessagesSended(Message messagesSended) {
-		getMessagesSended().remove(messagesSended);
-		messagesSended.setSender(null);
+	public LiensUtilisateurRole removeLiensUtilisateurRole(LiensUtilisateurRole liensUtilisateurRole) {
+		getLiensUtilisateurRoles().remove(liensUtilisateurRole);
+		liensUtilisateurRole.setUtilisateur(null);
 
-		return messagesSended;
+		return liensUtilisateurRole;
 	}
 
-	public Set<Message> getMessagesReceived() {
-		return this.messagesReceived;
+	public Set<Message> getMessages1() {
+		return this.messages1;
 	}
 
-	public void setMessagesReceived(Set<Message> messagesReceived) {
-		this.messagesReceived = messagesReceived;
+	public void setMessages1(Set<Message> messages1) {
+		this.messages1 = messages1;
 	}
 
-	public Message addMessagesReceived(Message messagesReceived) {
-		getMessagesReceived().add(messagesReceived);
-		messagesReceived.setReceiver(this);
+	public Message addMessages1(Message messages1) {
+		getMessages1().add(messages1);
+		messages1.setUtilisateur1(this);
 
-		return messagesReceived;
+		return messages1;
 	}
 
-	public Message removeMessagesReceived(Message messagesReceived) {
-		getMessagesReceived().remove(messagesReceived);
-		messagesReceived.setReceiver(null);
+	public Message removeMessages1(Message messages1) {
+		getMessages1().remove(messages1);
+		messages1.setUtilisateur1(null);
 
-		return messagesReceived;
+		return messages1;
 	}
 
-	public Role getRole() {
-		return this.role;
+	public Set<Message> getMessages2() {
+		return this.messages2;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setMessages2(Set<Message> messages2) {
+		this.messages2 = messages2;
+	}
+
+	public Message addMessages2(Message messages2) {
+		getMessages2().add(messages2);
+		messages2.setUtilisateur2(this);
+
+		return messages2;
+	}
+
+	public Message removeMessages2(Message messages2) {
+		getMessages2().remove(messages2);
+		messages2.setUtilisateur2(null);
+
+		return messages2;
 	}
 
 }

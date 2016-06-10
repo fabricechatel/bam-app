@@ -18,22 +18,20 @@ public class LigneCommande implements Serializable {
 	@EmbeddedId
 	private LigneCommandePK id;
 
-	@Column(precision=10)
 	private BigDecimal prix;
 
-	private int quantite;
+	private int quantitecommande;
 
-	@Column(length=16)
 	private String statut;
 
-	//bi-directional one-to-one association to Article
-	@OneToOne
-	@JoinColumn(name="ID_ARTICLE", nullable=false, insertable=false, updatable=false)
+	//bi-directional many-to-one association to Article
+	@ManyToOne
+	@JoinColumn(name="ID_ARTICLE")
 	private Article article;
 
 	//bi-directional many-to-one association to Commande
 	@ManyToOne
-	@JoinColumn(name="ID_COMMANDE", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="ID_COMMANDE")
 	private Commande commande;
 
 	public LigneCommande() {
@@ -55,12 +53,12 @@ public class LigneCommande implements Serializable {
 		this.prix = prix;
 	}
 
-	public int getQuantite() {
-		return this.quantite;
+	public int getQuantitecommande() {
+		return this.quantitecommande;
 	}
 
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
+	public void setQuantitecommande(int quantitecommande) {
+		this.quantitecommande = quantitecommande;
 	}
 
 	public String getStatut() {

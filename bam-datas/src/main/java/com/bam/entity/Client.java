@@ -10,48 +10,45 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="client")
 @NamedQuery(name="Client.findAll", query="SELECT c FROM Client c")
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_CLIENT", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_CLIENT")
 	private int idClient;
 
-	@Column(nullable=false, length=8)
+	private byte actif;
+
 	private String civilite;
 
-	@Column(nullable=false, length=128)
 	private String email;
 
-	@Column(nullable=false, length=64)
 	private String nom;
 
-	@Column(nullable=false, length=64)
 	private String prenom;
 
-	//bi-directional many-to-many association to Adresse
-	@ManyToMany(mappedBy="clients")
-	private Set<Adresse> adresses;
-
 	//bi-directional many-to-many association to Article
-	@ManyToMany
-	@JoinTable(
-		name="liste_de_souhaits"
-		, joinColumns={
-			@JoinColumn(name="ID_CLIENT", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_ARTICLE", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="clients")
 	private Set<Article> articles;
 
+	//bi-directional many-to-many association to Adresse
+	@ManyToMany
+	@JoinTable(
+		name="liens_client_adresse"
+		, joinColumns={
+			@JoinColumn(name="ID_CLIENT")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_ADRESSE")
+			}
+		)
+	private Set<Adresse> adresses;
+
 	//bi-directional one-to-one association to Utilisateur
-	@OneToOne
-	@JoinColumn(name="ID_UTILISATEUR", nullable=false)
+	@OneToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="ID_UTILISATEUR")
 	private Utilisateur utilisateur;
 
 	//bi-directional many-to-one association to Commande
@@ -62,6 +59,10 @@ public class Client implements Serializable {
 	@OneToMany(mappedBy="client")
 	private Set<Commentaire> commentaires;
 
+	//bi-directional many-to-one association to Panier
+	@OneToMany(mappedBy="client")
+	private Set<Panier> paniers;
+
 	public Client() {
 	}
 
@@ -71,6 +72,14 @@ public class Client implements Serializable {
 
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
+	}
+
+	public byte getActif() {
+		return this.actif;
+	}
+
+	public void setActif(byte actif) {
+		this.actif = actif;
 	}
 
 	public String getCivilite() {
@@ -105,20 +114,20 @@ public class Client implements Serializable {
 		this.prenom = prenom;
 	}
 
-	public Set<Adresse> getAdresses() {
-		return this.adresses;
-	}
-
-	public void setAdresses(Set<Adresse> adresses) {
-		this.adresses = adresses;
-	}
-
 	public Set<Article> getArticles() {
 		return this.articles;
 	}
 
 	public void setArticles(Set<Article> articles) {
 		this.articles = articles;
+	}
+
+	public Set<Adresse> getAdresses() {
+		return this.adresses;
+	}
+
+	public void setAdresses(Set<Adresse> adresses) {
+		this.adresses = adresses;
 	}
 
 	public Utilisateur getUtilisateur() {
@@ -172,7 +181,27 @@ public class Client implements Serializable {
 
 		return commentaire;
 	}
-	
-	
+
+	public Set<Panier> getPaniers() {
+		return this.paniers;
+	}
+
+	public void setPaniers(Set<Panier> paniers) {
+		this.paniers = paniers;
+	}
+
+	public Panier addPanier(Panier panier) {
+		getPaniers().add(panier);
+		panier.setClient(this);
+
+		return panier;
+	}
+
+	public Panier removePanier(Panier panier) {
+		getPaniers().remove(panier);
+		panier.setClient(null);
+
+		return panier;
+	}
 
 }
