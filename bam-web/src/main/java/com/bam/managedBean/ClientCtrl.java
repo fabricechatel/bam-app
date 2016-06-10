@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.bam.business.Facade;
+import com.bam.entity.Article;
 import com.bam.entity.Client;
 
 @Component("clientCtrl")

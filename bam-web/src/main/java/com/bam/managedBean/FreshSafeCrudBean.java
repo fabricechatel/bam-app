@@ -72,21 +72,21 @@ public class FreshSafeCrudBean implements Serializable {
         util.redirectWithGet();
     }
     
-    public void edit(Client item) {
-        beforeEditItem = (Client) item.clone();
-        this.item = item;
-        edit = true;
-    
-        util.redirectWithGet();
-    }
-    
-    public void cancelEdit() {
-        this.item.restore(beforeEditItem);
-        this.item = new Client();
-        edit = false;
-    
-        util.redirectWithGet();
-    }
+//    public void edit(Client item) {
+//        beforeEditItem = (Client) item.clone();
+//        this.item = item;
+//        edit = true;
+//    
+//        util.redirectWithGet();
+//    }
+//    
+//    public void cancelEdit() {
+//        this.item.restore(beforeEditItem);
+//        this.item = new Client();
+//        edit = false;
+//    
+//        util.redirectWithGet();
+//    }
     
     public void saveEdit() {
         // DAO save the edit
