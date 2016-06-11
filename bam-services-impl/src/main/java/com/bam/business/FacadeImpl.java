@@ -12,9 +12,17 @@ public class FacadeImpl implements Facade {
 	@Autowired
 	ClientBusiness clientBusiness;
 	
+	@Autowired
+	ArticleBusiness articleBusiness;
+	
 	@Override
 	public ClientBusiness getClientBusiness() {
 		return clientBusiness;
+	}
+
+	@Override
+	public ArticleBusiness getArticleBusiness() {
+		return articleBusiness;
 	}
 
 }
