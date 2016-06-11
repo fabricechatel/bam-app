@@ -1,6 +1,8 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 
 
@@ -20,12 +22,12 @@ public class LiensPanierArticle implements Serializable {
 	private int quantitepanier;
 
 	//bi-directional many-to-one association to Article
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ID_ARTICLE", insertable=false, updatable=false)
 	private Article article;
 
 	//bi-directional many-to-one association to Panier
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IDPANIER", insertable=false, updatable=false)
 	private Panier panier;
 
@@ -63,5 +65,11 @@ public class LiensPanierArticle implements Serializable {
 	public void setPanier(Panier panier) {
 		this.panier = panier;
 	}
+	
+	public BigDecimal getPrixCummule(){
+		return this.getArticle().getPrix().multiply(new BigDecimal(this.getQuantitepanier()))   ;
+		
+	}
+	
 
 }

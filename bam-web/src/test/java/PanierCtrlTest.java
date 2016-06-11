@@ -12,8 +12,8 @@ import com.bam.managedBean.PanierCtrl;
 public class PanierCtrlTest {
 	
 
-	
-	PanierCtrl panierCtrl = new PanierCtrl();
+	@Autowired
+	PanierCtrl panierCtrl;
 	
 	@Test
 	public void test(){		

@@ -55,9 +55,12 @@ public class FreshSafeCrudBean implements Serializable {
     
     public void add() {
         // DAO save the add
-        item.setIdClient(list.isEmpty() ? 1 : list.get(list.size() - 1).getIdClient() + 1);
-        list.add(item);
+    	System.out.println(item.getNom()+ "taille liste "+ list.get(list.size()));
+        //item.setIdClient(list.isEmpty() ? 1 : list.get(list.size() - 1).getIdClient() + 1);
+        //list.add(item);
         item = new Client();
+        
+        //System.out.println(item.getNom()+ "taille liste "+ list.get(list.size()));
     
         util.redirectWithGet();
     }

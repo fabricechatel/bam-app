@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bam.dao.LiensPanierArticleDao;
 import com.bam.dao.PanierDao;
 import com.bam.business.PanierBusiness;
 import com.bam.entity.Article;
@@ -20,7 +21,11 @@ public class PanierBusinessImpl implements PanierBusiness {
 
 	@Autowired
 //	CRUD<Panier> dao;
-	PanierDao dao;	
+	PanierDao dao;
+	
+	@Autowired
+	LiensPanierArticleDao lienDao;
+
 	
 	public void setDao(PanierDao dao) {
 		this.dao = dao;
@@ -43,13 +48,14 @@ public class PanierBusinessImpl implements PanierBusiness {
 		return panier;
 	}
 	
+	@Transactional
 	public Set<Article> getPanierArticles(int entityID){
 		Set<LiensPanierArticle> liens = getPanierById(entityID).getLiensPanierArticles();
 		
 		Set<Article> articles= new HashSet<Article>();
 		
 		for(LiensPanierArticle l:liens ) {
-			Hibernate.initialize(l.getArticle());
+			//Hibernate.initialize(l.getArticle());
 			articles.add(l.getArticle());
 		}
 		
@@ -62,6 +68,16 @@ public class PanierBusinessImpl implements PanierBusiness {
 			System.out.println(panier.toString());
 		}
 		return dao.findAll();
+	}
+
+	@Transactional
+	public Set<LiensPanierArticle> getLiensPanierArticles(int panierID) {	
+		return getPanierById(panierID).getLiensPanierArticles();
+	}
+	
+	@Transactional
+	public void updateQuantiteLienPanierArticle(int lienID, int quantite){
+		lienDao.find(lienID).setQuantitepanier(quantite);
 	}
 	
 }

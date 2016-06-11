@@ -13,6 +13,14 @@ import java.util.Set;
 @Entity
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
 public class Article implements Serializable {
+
+	@Override
+	public String toString() {
+		return "Article [idArticle=" + idArticle + ", libelle=" + libelle
+				+ ", prix=" + prix + ", refarticle=" + refarticle
+				+ ", visible=" + visible + "]";
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
