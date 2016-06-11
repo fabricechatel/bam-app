@@ -41,39 +41,40 @@
 </head>
 <body onload='document.loginForm.username.focus();'>
 
-	<div id="login-box">
+<h:outputStylesheet library="primefaces" name="jquery/ui/jquery-ui.css" />
+    <h:outputStylesheet library="css" name="login.css" />
 
-		<h3>Login with Username and Password</h3>
+    <div class="message">
+        <c:if test="#{param.error == 1 and SPRING_SECURITY_LAST_EXCEPTION != null}">
+            <span class="error"><h:outputText value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/></span>
+        </c:if>
+        <h:outputText value="#{loginController.message}" />
+    </div>
 
-		<c:if test="${not empty error}">
-			<div class="error">${error}</div>
-		</c:if>
-		<c:if test="${not empty msg}">
-			<div class="msg">${msg}</div>
-		</c:if>
+	<ui:fragment rendered="${!empty param['error']}">
+		<div>${message}</div>
+	</ui:fragment>
 
-		<form name='loginForm' action="/login" method="POST">
+    <div class="login">
+        <form action="../j_spring_security_check" method="post">
+            <h:panelGrid columns="2">
+                <h:outputText value="Username" />
+                <h:inputText id="username" />
+                <h:outputText value="Password" />
+                <h:inputSecret id="password" />
+            </h:panelGrid>
 
-			<table>
-				<tr>
-					<td>User:</td>
-					<td><input type='text' name='username' /></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type='password' name='password' /></td>
-				</tr>
-				<tr>
-					<td colspan='2'><input name="submit" type="submit"
-						value="submit" /></td>
-				</tr>
-			</table>
-
-			<input type="hidden" name="${_csrf.parameterName}"
+            <div class="submit">
+                <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                    <span class="ui-button-text">Login</span>
+                </button>
+            </div>
+            
+            <input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
-
-		</form>
-	</div>
+            
+        </form>
+    </div>
 
 </body>
 </html>

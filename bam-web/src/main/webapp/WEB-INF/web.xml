@@ -8,6 +8,16 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/classes/spring/application-config.xml,/WEB-INF/classes/spring/spring-security.xml</param-value>
     </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.jsp .xhtml</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>javax.faces.FACELETS_VIEW_MAPPINGS</param-name>
+        <param-value>*.xhtml</param-value>
+    </context-param> 
 	
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

@@ -1,6 +1,4 @@
 package com.bam.managedBean;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,9 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bam.entity.Utilisateur;
 
-@ManagedBean(name = "userLogin", eager = true)
-@RequestScoped
+@Controller
 public class LoginController {
+	
+	private String message;
+
+	public String getMessage() {
+		return message;
+	}
 
 	@RequestMapping(value = { "/", "/home" })
 	public String getUserDefault() {
@@ -28,7 +31,7 @@ public class LoginController {
 			@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
 
-		String message = "";
+		message = "";
 		if (error != null) {
 			message = "Incorrect username or password !";
 		} else if (logout != null) {
