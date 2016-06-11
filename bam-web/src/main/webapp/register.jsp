@@ -1,11 +1,12 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
   <!-- Title and other stuffs -->
-  <title>Login - MacKart</title>
+  <title>Register - MacKart</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -25,7 +26,7 @@
   <link href="style/style.css" rel="stylesheet">
   <!-- Stylesheet for Color -->
   <link href="style/red.css" rel="stylesheet">
-  
+ 
   
   <!-- HTML5 Support for IE -->
   <!--[if lt IE 9]>
@@ -41,13 +42,13 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 <!-- Page content starts -->
+
 <div class="content">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-
         <!-- Some content -->
-                  <h3 class="title">Connectez-vous <span class="color">!!!</span></h3>
+                  <h3 class="title">Register Today <span class="color">!!!</span></h3>
                   <h4 >Morbi tincidunt posuere turpis eu laoreet</h4>
                   <p>Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
                   <h5>Maecenas hendrerit neque id</h5>
@@ -59,60 +60,80 @@
                     <li>Maecenas hendrerit neque id ante dictum mattis</li>
                     <li>Vivamus non neque lacus, et cursus tortor</li>
                   </ul>
-				  </div>		
+				  </div>
                   <p>Nullam in est urna. In vitae adipiscing enim. In ut nulla est. Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
 
                 </div>
 
-
-<!-- Login form -->
                 <div class="col-md-6">
                   <div class="formy well">
-                     <h4 class="title">Connection</h4>
+                     <h4 class="title">Register for New Account</h4>
                                   <div class="form">
-
-                                      <!-- Login  form (not working)-->
-                                      <form class="form-horizontal">                                         
+                                      <!-- Register form (not working)-->
+                                      <form class="form-horizontal">
+                                          <!-- Name -->
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="name1">Name</label>
+                                            <div class="col-md-6">
+                                              <input type="text" class="form-control" id="name1">
+                                            </div>
+                                          </div>   
+                                          <!-- Email -->
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3" for="email1">Email</label>
+                                            <div class="col-md-6">
+                                              <input type="text" class="form-control" id="email1">
+                                            </div>
+                                          </div>
+                                          <!-- Select box -->
+                                          <div class="form-group">
+                                            <label class="control-label col-md-3">Drop Down</label>
+                                            <div class="col-md-6">                               
+                                                <select class="form-control">
+                                                <option>&nbsp;</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                                </select>  
+                                            </div>
+                                          </div>                                           
                                           <!-- Username -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3" for="username2">login</label>
+                                            <label class="control-label col-md-3" for="username2">Username</label>
                                             <div class="col-md-6">
                                               <input type="text" class="form-control" id="username2">
                                             </div>
                                           </div>
                                           <!-- Password -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3" for="password2">mot de passe</label>
-                                            <div class="controls col-md-6">
+                                            <label class="control-label col-md-3" for="password2">Password</label>
+                                            <div class="col-md-6">
                                               <input type="password" class="form-control" id="password2">
                                             </div>
                                           </div>
                                           <!-- Checkbox -->
                                           <div class="form-group">
-                                             <div class="col-md-3 col-md-offset-3">
+                                             <div class="col-md-9 col-md-offset-3">
                                                 <label class="checkbox-inline">
-                                                   <input type="checkbox" id="inlineCheckbox3" value="agree"> Se souvenir du mot de passe
+                                                   <input type="checkbox" id="inlineCheckbox3" value="agree"> Agree with Terms and Conditions
                                                 </label>
                                              </div>
                                           </div> 
                                           
                                           <!-- Buttons -->
-                                          <div class="form-group">
+                                          <div class="form-actions">
                                              <!-- Buttons -->
-											 <div class="col-md-6 col-md-offset-3">
-												<button type="submit" class="btn btn-default">valider</button>
-												<button type="reset" class="btn btn-default">effacer</button>
-											 </div>
+											 <div class="col-md-9 col-md-offset-3">
+												<button type="submit" class="btn btn-default">Register</button>
+												<button type="reset" class="btn btn-default">Reset</button>
+											</div>
                                           </div>
                                       </form>
-                                      <hr />
-                                      <h5>Se connecter via</h5>
-                                      <a href="#"><img src="img/social/facebook.png" alt="" /></a><br />
-                                      <a href="#"><img src="img/social/twitter.png" alt="" /></a><br />
-                                      <a href="#"><img src="img/social/linkedin.png" alt="" /></a><br />
-                                      <hr />
-                                      <h5>Nouveau compte</h5>
-                                             Pas encore inscrit? <a href="register.jsp">Cliquez ici</a>
+									  <div class="clearfix"></div>
+									  <hr />
+										<p>Already have an Account? <a href="login.jsp">Login</a></p>
                                     </div> 
                                   </div>
 
