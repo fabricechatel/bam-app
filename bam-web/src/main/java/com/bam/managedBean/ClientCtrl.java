@@ -15,7 +15,7 @@ import com.bam.entity.Client;
 import com.bam.entity.Role;
 import com.bam.entity.Utilisateur;
 
-@ManagedBean
+//@ManagedBean
 @Component("clientCtrl")
 @Scope("request")
 public class ClientCtrl implements Serializable {
@@ -52,6 +52,15 @@ public class ClientCtrl implements Serializable {
 	}
 	public void setFacade(Facade facade) {
 		this.facade = facade;
+	}
+
+	
+	public String getMessageAjoutClient() {
+		return messageAjoutClient;
+	}
+
+	public void setMessageAjoutClient(String messageAjoutClient) {
+		this.messageAjoutClient = messageAjoutClient;
 	}
 
 	public String getCivilite() {

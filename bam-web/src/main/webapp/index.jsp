@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+ 	pageEncoding="ISO-8859-1"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html 
    xmlns:h="http://java.sun.com/jsf/html"
@@ -41,11 +41,12 @@
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="img/favicon/favicon.png">
+
 </head>
 
 <body>
 
-
+<h:form>
 	<!-- Header starts -->
 	<header>
 	<div class="container">
@@ -55,7 +56,7 @@
 				<!-- Logo. Use class "color" to add color to the text. -->
 				<div class="logo">
 					<h1>
-						<a href="#">Boîte <span class="color bold">à Musique</span></a>
+						<a href="#">BoÃ®te <span class="color bold">Ã  Musique</span></a>
 					</h1>
 					<p class="meta">musique-instruments-spectacles</p>
 				</div>
@@ -100,7 +101,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
+						aria-hidden="true">Ã—</button>
 					<h4>Panier</h4>
 				</div>
 				<div class="modal-body">
@@ -109,7 +110,7 @@
 						<thead>
 							<tr>
 								<th>Nom</th>
-								<th>Quantité</th>
+								<th>QuantitÃ©</th>
 								<th>Prix</th>
 							</tr>
 						</thead>
@@ -139,7 +140,7 @@
 
 				</div>
 				<div class="modal-footer">
-					<a href="index.jsp" class="btn">Continuez vos courses</a>
+					<a href="index2.xhtml" class="btn">Continuez vos courses</a>
 					<a href="checkout.jsp" class="btn btn-danger">Paiement</a>
 				</div>
 			</div>
@@ -154,7 +155,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
+						aria-hidden="true">Ã—</button>
 					<h4>Login</h4>
 				</div>
 				<div class="modal-body">
@@ -211,7 +212,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">Ã—</button>
 					<h4>Formulaire d'enregistrement</h4>
 				</div>
 				<div class="modal-body">
@@ -220,38 +221,40 @@
 						<div class="form-group">
 							<label class="control-label col-md-3" for="civilite">Civilité</label>
 							<div class="col-md-9">
-   		                        <input type="radio" name="civilite" value="M" checked="checked">M
-   		                        <input type="radio" name="civilite" value="Mme">Mme
+   		                        <h:selectOneRadio value="${clientCtrl.clientACreer.civilite}">
+            	                    <f:selectItem itemValue="M" itemLabel="M" />
+   	                                <f:selectItem itemValue="Mme" itemLabel="Mme" />
+                                </h:selectOneRadio>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3" for="nom">Nom</label>
 							<div class="col-md-9">
-								<input type="text"  value="#{clientCtrl.clientACreer.nom}" class="form-control" id="nom">
+								<input type="text"  value="${clientCtrl.clientACreer.nom}" class="form-control" id="nom">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3" for="prenom">Prenom</label>
 							<div class="col-md-9">
-								<input type="text" value="#{clientCtrl.clientACreer.prenom}" class="form-control" id="prenom">
+								<input type="text" value="${clientCtrl.clientACreer.prenom}" class="form-control" id="prenom">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3" for="email">Email</label>
 							<div class="col-md-9">
-								<input type="text" value="#{clientCtrl.clientACreer.email}" class="form-control" id="email">
+								<input type="text" value="${clientCtrl.clientACreer.email}" class="form-control" id="email">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3" for="login">Login</label>
 							<div class="col-md-9">
-								<input type="text" value="#{clientCtrl.login}" class="form-control" id="login">
+								<input type="text" value="${clientCtrl.login}" class="form-control" id="login">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3" for="mdp">Mot de passe</label>
 							<div class="col-md-9">
-								<input type="password" value="#{clientCtrl.mdp}" class="form-control" id="mdp">
+								<input type="password" value="${clientCtrl.mdp}" class="form-control" id="mdp">
 							</div>
 						</div>
 <!-- 						<div class="form-group">
@@ -271,16 +274,19 @@
 						</div>
 						<div class="form-group">
 							<div class="col-md-9 col-md-offset-5">
-								<button type="submit" class="btn btn-default" onclick="">Valider</button>
+								<button type="submit" class="btn btn-default" onclick="${clientCtrl.saveClient()}" >Valider</button>
 								<button type="reset" class="btn btn-default">Effacer</button>
 							</div>
 						</div>
+						<div style="text-align: center;">
+                          <strong><h:outputText style="color: green;"  value="${clientCtrl.messageAjoutClient}"/></strong>
+                        </div>
 					  </form>
 					</div>
 				</div>
 				<div class="modal-footer">
 					<p>
-						Vous avez déjà un compte? <a href="login.jsp">Se connecter</a> ici.
+						Vous avez dÃ©jÃ  un compte? <a href="login.jsp">Se connecter</a> ici.
 					</p>
 				</div>
 			</div>
@@ -305,7 +311,7 @@
 			<nav class="collapse navbar-collapse bs-navbar-collapse"
 				role="navigation">
 			<ul class="nav navbar-nav">
-				<li><a href="index.jsp"><i class="icon-home"></i></a></li>
+				<li><a href="index2.xhtml"><i class="icon-home"></i></a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Mon compte <b class="caret"></b></a>
 					<ul class="dropdown-menu">
@@ -318,7 +324,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Tutoriels <b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="blog.jsp">Accès aux tutos</a></li>
+						<li><a href="blog.jsp">AccÃ¨s aux tutos</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Instruments <b class="caret"></b></a>
@@ -327,7 +333,7 @@
 						<li><a href="items.jsp">Cuivres</a></li>
 						<li><a href="items.jsp">Bois</a></li>
 						<li><a href="items.jsp">Cordes</a></li>
-						<li><a href="items.jsp">Numérique/Digital</a></li>
+						<li><a href="items.jsp">NumÃ©rique/Digital</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="items.jsp"
 					class="dropdown-toggle" data-toggle="dropdown">CD/DVD <b
@@ -339,13 +345,13 @@
 					class="dropdown-toggle" data-toggle="dropdown">Mp3 <b
 						class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="items.jsp">Télécharger</a></li>
+						<li><a href="items.jsp">TÃ©lÃ©charger</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="items.jsp"
 					class="dropdown-toggle" data-toggle="dropdown">Logiciels <b
 						class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="items.jsp">Télécharger</a></li>
+						<li><a href="items.jsp">TÃ©lÃ©charger</a></li>
 					</ul></li>
 			</ul>
 			</nav>
@@ -460,7 +466,7 @@
 							</p>
 							<!-- Para -->
 							<p class="psmall">
-								<a href="items.jsp">Accédez à une sélection de musique en téléchargement payant 
+								<a href="items.jsp">AccÃ©dez Ã  une sÃ©lection de musique en tÃ©lÃ©chargement payant 
 								ou disponible en CD et/ou DVD.      </a>
 							</p>
 						</div>
@@ -481,8 +487,8 @@
 								<a href="items.jsp">Instruments</a>
 							</p>
 							<p class="psmall">
-								<a href="items.jsp">Quel instruments allez vous apprendre à jouer aujoud'hui?
-								Accédez à notre liste d'instruments.</a>
+								<a href="items.jsp">Quel instruments allez vous apprendre Ã  jouer aujoud'hui?
+								AccÃ©dez Ã  notre liste d'instruments.</a>
 							</p>
 						</div>
 						<div class="clearfix"></div>
@@ -659,7 +665,7 @@
 					<h5>
 						<i class="icon-envelope-alt"></i> Ne ratez rien de ce qui se passe!!!
 					</h5>
-					<p>Inscrivez-vous à une newsletter responsable, sans spam garantit!</p>
+					<p>Inscrivez-vous Ã  une newsletter responsable, sans spam garantit!</p>
 					<form class="form-inline" role="form">
 						<div class="form-group">
 							<input type="email" class="form-control" id="search"
@@ -713,11 +719,11 @@
 						<div class="widget">
 							<h5>a propos</h5>
 							<hr />
-							<p>Ouvert du lundu au vendredi de 10h à 19h. Ouvert le samedi
-								de 9h à 13h. Fermé le dimanche. Vous devez reserver des essais
-								en ligne ou par téléphone, autrement, il est strictement
-								interdit de toucher aux instruments ou au matériel exposé à
-								moins que cela ne soit précisé.</p>
+							<p>Ouvert du lundu au vendredi de 10h Ã  19h. Ouvert le samedi
+								de 9h Ã  13h. FermÃ© le dimanche. Vous devez reserver des essais
+								en ligne ou par tÃ©lÃ©phone, autrement, il est strictement
+								interdit de toucher aux instruments ou au matÃ©riel exposÃ© Ã 
+								moins que cela ne soit prÃ©cisÃ©.</p>
 						</div>
 					</div>
 
@@ -757,7 +763,7 @@
 					<!-- Copyright info -->
 					<p class="copy">
 						Copyright &copy; 2016 | <a href="#">Notre site</a> - <a href="#">Home</a>
-						| <a href="#">à propos de nous</a> | <a href="#">Service</a> | <a href="#">Contactez
+						| <a href="#">Ã  propos de nous</a> | <a href="#">Service</a> | <a href="#">Contactez
 							Nous</a>
 					</p>
 				</div>
@@ -788,6 +794,6 @@
 	<!-- Carousel for recent posts -->
 	<script src="js/custom.js"></script>
 	<!-- Custom codes -->
-
+</h:form>
 </body>
 </html>
