@@ -85,10 +85,6 @@ public class ClientBusinessImpl implements ClientBusiness {
 
 	@Override
 	public List<Client> findAll() {
-		// TODO Auto-generated method stub
-		for(Client client : daoClient.findAll()){
-			System.out.println(client.toString());
-		}
 		return daoClient.findAll();
 	}	
 	

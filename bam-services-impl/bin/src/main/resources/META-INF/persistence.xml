@@ -19,9 +19,8 @@
 		<class>com.bam.entity.Message</class>
 		<class>com.bam.entity.Panier</class>
 		<class>com.bam.entity.Promotion</class>
-		<class>com.bam.entity.Utilisateur</class>
-		<class>com.bam.entity.UtilisateurRole</class>
 		<class>com.bam.entity.Role</class>
+		<class>com.bam.entity.Utilisateur</class>
 		
 		<properties>
 		    <property name="hibernate.hbm2ddl.auto" value="update" />
