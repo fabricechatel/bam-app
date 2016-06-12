@@ -53,22 +53,11 @@
 									value="Bienvenue ${request.remoteUser}" /> / <a
 								href="../j_spring_security_logout" role="button"
 								data-toggle="modal">Se déconnecter</a>
-								
-							</span>
-							<div class="form-group">
-								<form action="../j_spring_security_logout" method="post" >
-								<button type="submit" class="btn btn-default">Se
-									déconnecter</button>
-								<h:commandLink id="logout" action="#{login.logout}" value="Logout">Se déconnecter</h:commandLink>
+								<h:link value="Se déconnecter" outcome="/login.xhtml?logout">
+								    <f:param name="logout" value="#{login.logout()}" />
+								</h:link></span>
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" />
-									</form>
-									
-									
-									<form action="#{request.contextPath}/j_spring_security_logout">
-									    <input type="submit" value="Logout" />
-									</form>
-							</div>
 						</ui:fragment>
 
 						<ui:fragment rendered="${empty request.remoteUser}">
