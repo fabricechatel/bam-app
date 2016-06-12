@@ -21,6 +21,7 @@ public class LigneCommande implements Serializable {
 	@Column(precision=10)
 	private BigDecimal prix;
 
+	@Column(name="QUANTITECOMMANDE")
 	private int quantite;
 
 	@Column(length=16)
