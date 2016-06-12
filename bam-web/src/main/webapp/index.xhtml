@@ -1,46 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="fr">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<!-- Title and other stuffs -->
-<title>MacKart</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="author" content="">
-
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600'
-	rel='stylesheet' type='text/css'>
-
-<!-- Stylesheets -->
-<link href="style/bootstrap.css" rel="stylesheet">
-<!-- Pretty Photo -->
-<link href="style/prettyPhoto.css" rel="stylesheet">
-<!-- Flex slider -->
-<link href="style/flexslider.css" rel="stylesheet">
-<!-- Font awesome icon -->
-<link rel="stylesheet" href="style/font-awesome.css">
-<!-- Main stylesheet -->
-<link href="style/style.css" rel="stylesheet">
-<!-- Stylesheet for Color -->
-<link href="style/red.css" rel="stylesheet">
-
-
-<!-- HTML5 Support for IE -->
-<!--[if lt IE 9]>
-  <script src="js/html5shim.js"></script>
-  <![endif]-->
-
-<!-- Favicon -->
-<link rel="shortcut icon" href="img/favicon/favicon.png">
-</head>
-
-<body>
-
-<jsp:include page="header.jsp"></jsp:include>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
+  <!ENTITY % xhtml-symbol
+    PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-symbol.ent">
+  %xhtml-symbol;
+]>
+<ui:composition template="/commun/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+                
+<ui:define name="content-to-include">
+	<!-- Page content starts -->
 	
 	<!-- Flex Slider starts -->
 
@@ -66,7 +37,7 @@
 									quam posuere posuere. Morbi tincidunt posuere turpis eu
 									laoreet.</p>
 								<div class="button">
-									<a href="single-item.jsp">Buy Now</a>
+									<a href="single-item.xhtml">Buy Now</a>
 								</div>
 							</div>
 						</li>
@@ -84,7 +55,7 @@
 									quam posuere posuere. Morbi tincidunt posuere turpis eu
 									laoreet.</p>
 								<div class="button">
-									<a href="single-item.jsp">Buy Now</a>
+									<a href="single-item.xhtml">Buy Now</a>
 								</div>
 							</div></li>
 
@@ -100,7 +71,7 @@
 									quam posuere posuere. Morbi tincidunt posuere turpis eu
 									laoreet.</p>
 								<div class="button">
-									<a href="single-item.jsp">Buy Now</a>
+									<a href="single-item.xhtml">Buy Now</a>
 								</div>
 							</div></li>
 
@@ -116,7 +87,7 @@
 									quam posuere posuere. Morbi tincidunt posuere turpis eu
 									laoreet.</p>
 								<div class="button">
-									<a href="single-item.jsp">Buy Now</a>
+									<a href="single-item.xhtml">Buy Now</a>
 								</div>
 							</div></li>
 
@@ -141,16 +112,16 @@
 					<div class="pbox rcolor">
 						<div class="pcol-left">
 							<!-- Image -->
-							<a href="items.jsp"><img src="img/photos/play-button.png" alt="" /></a>
+							<a href="items.xhtml"><img src="img/photos/play-button.png" alt="" /></a>
 						</div>
 						<div class="pcol-right">
 							<!-- Title -->
 							<p class="pmed">
-								<a href="items.jsp">Musique</a>
+								<a href="items.xhtml">Musique</a>
 							</p>
 							<!-- Para -->
 							<p class="psmall">
-								<a href="items.jsp">Accédez à une sélection de musique en téléchargement payant 
+								<a href="items.xhtml">AccÃ©dez Ã  une sÃ©lection de musique en tÃ©lÃ©chargement payant 
 								ou disponible en CD et/ou DVD.      </a>
 							</p>
 						</div>
@@ -164,15 +135,15 @@
 					<!-- bcolor =  Blue color -->
 					<div class="pbox bcolor">
 						<div class="pcol-left">
-							<a href="items.jsp"><img src="img/photos/piano.png" alt="" /></a>
+							<a href="items.xhtml"><img src="img/photos/piano.png" alt="" /></a>
 						</div>
 						<div class="pcol-right">
 							<p class="pmed">
-								<a href="items.jsp">Instruments</a>
+								<a href="items.xhtml">Instruments</a>
 							</p>
 							<p class="psmall">
-								<a href="items.jsp">Quel instruments allez vous apprendre à jouer aujoud'hui?
-								Accédez à notre liste d'instruments.</a>
+								<a href="items.xhtml">Quel instruments allez vous apprendre Ã  jouer aujoud'hui?
+								AccÃ©dez Ã  notre liste d'instruments.</a>
 							</p>
 						</div>
 						<div class="clearfix"></div>
@@ -184,14 +155,14 @@
 					<!-- gcolor =  Green Color -->
 					<div class="pbox gcolor">
 						<div class="pcol-left">
-							<a href="items.jsp"><img src="img/photos/theatre.png" alt="" /></a>
+							<a href="items.xhtml"><img src="img/photos/theatre.png" alt="" /></a>
 						</div>
 						<div class="pcol-right">
 							<p class="pmed">
-								<a href="items.jsp">Spectacles</a>
+								<a href="items.xhtml">Spectacles</a>
 							</p>
 							<p class="psmall">
-								<a href="items.jsp">Et si vous viviez votre musique en live?
+								<a href="items.xhtml">Et si vous viviez votre musique en live?
 								Commandez votre place de spectacle ici sans plus tarder!
 								</a>
 							</p>
@@ -231,13 +202,13 @@
 							<div class="rp-item">
 								<div class="rp-image">
 									<!-- Image -->
-									<a href="single-item.jsp"><img src="img/photos/2.png"
+									<a href="single-item.xhtml"><img src="img/photos/2.png"
 										alt="" /></a>
 								</div>
 								<div class="rp-details">
 									<!-- Title and para -->
 									<h5>
-										<a href="single-item.jsp">HTC One V <span
+										<a href="single-item.xhtml">HTC One V <span
 											class="price pull-right">$225</span></a>
 									</h5>
 									<div class="clearfix"></div>
@@ -250,13 +221,13 @@
 						<li>
 							<div class="rp-item">
 								<div class="rp-image">
-									<a href="single-item.jsp"><img src="img/photos/3.png"
+									<a href="single-item.xhtml"><img src="img/photos/3.png"
 										alt="" /></a>
 								</div>
 								<div class="rp-details">
 									<!-- Title and para -->
 									<h5>
-										<a href="single-item.jsp">Sony Xperia Pro <span
+										<a href="single-item.xhtml">Sony Xperia Pro <span
 											class="price pull-right">$525</span></a>
 									</h5>
 									<div class="clearfix"></div>
@@ -267,13 +238,13 @@
 						<li>
 							<div class="rp-item">
 								<div class="rp-image">
-									<a href="single-item.jsp"><img src="img/photos/4.png"
+									<a href="single-item.xhtml"><img src="img/photos/4.png"
 										alt="" /></a>
 								</div>
 								<div class="rp-details">
 									<!-- Title and para -->
 									<h5>
-										<a href="single-item.jsp">Samsung Pop <span
+										<a href="single-item.xhtml">Samsung Pop <span
 											class="price pull-right">$255</span></a>
 									</h5>
 									<div class="clearfix"></div>
@@ -284,13 +255,13 @@
 						<li>
 							<div class="rp-item">
 								<div class="rp-image">
-									<a href="single-item.jsp"><img src="img/photos/5.png"
+									<a href="single-item.xhtml"><img src="img/photos/5.png"
 										alt="" /></a>
 								</div>
 								<div class="rp-details">
 									<!-- Title and para -->
 									<h5>
-										<a href="single-item.jsp">Motorola Droid <span
+										<a href="single-item.xhtml">Motorola Droid <span
 											class="price pull-right">$325</span></a>
 									</h5>
 									<div class="clearfix"></div>
@@ -301,13 +272,13 @@
 						<li>
 							<div class="rp-item">
 								<div class="rp-image">
-									<a href="single-item.jsp"><img src="img/photos/6.png"
+									<a href="single-item.xhtml"><img src="img/photos/6.png"
 										alt="" /></a>
 								</div>
 								<div class="rp-details">
 									<!-- Title and para -->
 									<h5>
-										<a href="single-item.jsp">Blackberry Force <span
+										<a href="single-item.xhtml">Blackberry Force <span
 											class="price pull-right">$125</span></a>
 									</h5>
 									<div class="clearfix"></div>
@@ -318,13 +289,13 @@
 						<li>
 							<div class="rp-item">
 								<div class="rp-image">
-									<a href="single-item.jsp"><img src="img/photos/7.png"
+									<a href="single-item.xhtml"><img src="img/photos/7.png"
 										alt="" /></a>
 								</div>
 								<div class="rp-details">
 									<!-- Title and para -->
 									<h5>
-										<a href="single-item.jsp">Pantech One <span
+										<a href="single-item.xhtml">Pantech One <span
 											class="price pull-right">$253</span></a>
 									</h5>
 									<div class="clearfix"></div>
@@ -341,27 +312,6 @@
 	<!-- Recent Posts ends -->
 
 
-	<!-- Scroll to top -->
-	<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
-
-	<!-- JS -->
-	<script src="js/jquery.js"></script>
-	<!-- jQuery -->
-	<script src="js/bootstrap.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/jquery.prettyPhoto.js"></script>
-	<!-- Pretty Photo -->
-	<script src="js/filter.js"></script>
-	<!-- Filter for support page -->
-
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Flex slider -->
-
-	<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script>
-	<!-- Carousel for recent posts -->
-	<script src="js/custom.js"></script>
-	<!-- Custom codes -->
-
-<jsp:include page="footer.jsp"></jsp:include>
-</body>
-</html>
+	<!-- Page content ends -->
+    </ui:define>
+</ui:composition>

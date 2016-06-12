@@ -1,48 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <!-- Title and other stuffs -->
-  <title>Checkout - MacKart</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
-
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-
-  <!-- Stylesheets -->
-  <link href="style/bootstrap.css" rel="stylesheet">
-  <!-- Pretty Photo -->
-  <link href="style/prettyPhoto.css" rel="stylesheet">
-  <!-- Sidebar nav -->
-  <link href="style/sidebar-nav.css" rel="stylesheet">
-  <!-- Flex slider -->
-  <link href="style/flexslider.css" rel="stylesheet">
-  <!-- Font awesome icon -->
-  <link rel="stylesheet" href="style/font-awesome.css"> 
-  <!-- Main stylesheet -->
-  <link href="style/style.css" rel="stylesheet">
-  <!-- Stylesheet for Color -->
-  <link href="style/red.css" rel="stylesheet">
- 
-  
-  <!-- HTML5 Support for IE -->
-  <!--[if lt IE 9]>
-  <script src="js/html5shim.js"></script>
-  <![endif]-->
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="img/favicon/favicon.png">
-</head>
-
-<body>
-
-<jsp:include page="header.jsp"></jsp:include>
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
+  <!ENTITY % xhtml-symbol
+    PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-symbol.ent">
+  %xhtml-symbol;
+]>
+<ui:composition template="/commun/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+                
+<ui:define name="content-to-include">
+	<!-- Page content starts -->
 <!-- Checkout starts -->
 
 <div class="checkout">
@@ -54,7 +23,7 @@
           <h4 class="title"><i class="icon-shopping-cart"></i> Payer ses courses</h4>
 
           <!-- Sub title -->
-          <h5 class="title">Expédition &amp; Détails de facturation</h5>
+          <h5 class="title">ExpÃ©dition &amp; DÃ©tails de facturation</h5>
           <!-- Address and Shipping details form -->
             <div class="form form-small">
                                       <!-- Register form (not working)-->
@@ -63,21 +32,21 @@
                                           <div class="form-group">
                                             <label class="control-label col-md-3" for="name1">Nom</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="name1">
+                                              <input type="text" class="form-control" id="name1" />
                                             </div>
                                           </div>   
                                           <!-- Email -->
                                           <div class="form-group">
                                             <label class="control-label col-md-3" for="email1">Email</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="email1">
+                                              <input type="text" class="form-control" id="email1" />
                                             </div>
                                           </div>
                                           <!-- Telephone -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3" for="telephone">Téléphone</label>
+                                            <label class="control-label col-md-3" for="telephone">TÃ©lÃ©phone</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="telephone">
+                                              <input type="text" class="form-control" id="telephone" />
                                             </div>
                                           </div>  
                                           <!-- Address -->
@@ -92,7 +61,7 @@
 <!--                                             <label class="control-label col-md-3">Country</label> -->
 <!--                                             <div class="col-md-6">                                -->
 <!--                                                 <select class="form-control"> -->
-<!--                                                 <option value=""> --- Please Select --- </option> -->
+<!--                                                 <option value=""> - - - Please Select - - - </option> -->
 <!--                                           <option value="1">Afghanistan</option> -->
 <!--                                                         <option value="2">Albania</option> -->
 <!--                                                         <option value="3">Algeria</option> -->
@@ -337,16 +306,16 @@
 <!--                                           </div>   -->
                                           <!-- State -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3" for="city">Département</label>
+                                            <label class="control-label col-md-3" for="city">DÃ©partement</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="state">
+                                              <input type="text" class="form-control" id="state" />
                                             </div>
                                           </div>                                               
                                           <!-- City -->
                                           <div class="form-group">
                                             <label class="control-label col-md-3" for="city">Ville</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="city">
+                                              <input type="text" class="form-control" id="city" />
                                             </div>
                                           </div>    
                                           
@@ -358,28 +327,28 @@
 
       <!-- Payment details section -->
         <!-- Title -->
-          <h5 class="title">Détails de paiement</h5>
+          <h5 class="title">DÃ©tails de paiement</h5>
 
           <!-- Radio buttons to select payment type -->
 
           <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>
-            Carte de crédit
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked="checked" />
+            Carte de crÃ©dit
           </label>
           <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="2">
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="2" />
             Carte de paiment
           </label>
           <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios3" value="3">
+            <input type="radio" name="optionsRadios" id="optionsRadios3" value="3" />
             Banque en ligne
           </label>
           <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios4" value="4">
-            Paiement en liquide à la livraison
+            <input type="radio" name="optionsRadios" id="optionsRadios4" value="4" />
+            Paiement en liquide Ã  la livraison
           </label>          
           <label class="radio-inline">
-            <input type="radio" name="optionsRadios" id="optionsRadios5" value="5">
+            <input type="radio" name="optionsRadios" id="optionsRadios5" value="5" />
             Paypal
           </label>                    
 
@@ -389,7 +358,7 @@
               <div class="row">
                 <div class="col-md-4 col-md-offset-8">
                   <div class="pull-right">
-                    <a href="checkout.jsp" class="btn btn-danger">Confirmez votre paiement</a>
+                    <a href="checkout.xhtml" class="btn btn-danger">Confirmez votre paiement</a>
                   </div>
                 </div>
               </div>
@@ -401,21 +370,6 @@
 
 <!-- Cart ends -->
 
-<jsp:include page="footer.jsp"></jsp:include>
-
-<!-- Scroll to top -->
-<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
-
-<!-- JS -->
-<script src="js/jquery.js"></script> <!-- jQuery -->
-<script src="js/bootstrap.js"></script> <!-- Bootstrap -->
-<script src="js/jquery.prettyPhoto.js"></script> <!-- Pretty Photo -->
-<script src="js/filter.js"></script> <!-- Filter for support page -->
-
-<script src="js/jquery.flexslider-min.js"></script> <!-- Flex slider -->
-<script src="js/nav.js"></script> <!-- Sidebar navigation -->
-<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script> <!-- Carousel for recent posts -->
-<script src="js/custom.js"></script> <!-- Custom codes -->
-
-</body>
-</html>
+	<!-- Page content ends -->
+    </ui:define>
+</ui:composition>
