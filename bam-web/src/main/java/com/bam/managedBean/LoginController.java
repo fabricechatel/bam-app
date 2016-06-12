@@ -1,5 +1,6 @@
 package com.bam.managedBean;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bam.entity.Utilisateur;
 
-@Controller
+@Controller("login")
+@Scope("session")
 public class LoginController {
 	
 	private String message;

@@ -52,7 +52,7 @@ public class Utilisateur implements Serializable {
 	private Set<Message> messagesReceived;
 
 	//bi-directional many-to-one association to UtilisateurRole
-	@OneToMany(mappedBy="utilisateur")
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.EAGER)
 	private Set<UtilisateurRole> utilisateurRoles;
 
 	public Utilisateur() {
