@@ -8,63 +8,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <body>
 	<ui:composition>
 
 		<!-- Header starts -->
 		<header>
-			<div class="container">
-				<div class="row">
+		<div class="container">
+			<div class="row">
 
-					<div class="col-md-4">
-						<!-- Logo. Use class "color" to add color to the text. -->
-						<div class="logo">
-							<h1>
-								<a href="#">Boîte <span class="color bold">à Musique</span></a>
-							</h1>
-							<p class="meta">musique-instruments-spectacles</p>
-						</div>
+				<div class="col-md-4">
+					<!-- Logo. Use class "color" to add color to the text. -->
+					<div class="logo">
+						<h1>
+							<a href="#">Boite <span class="color bold">à Musique</span></a>
+						</h1>
+						<p class="meta">musique-instruments-spectacles</p>
 					</div>
+				</div>
 
-					<div class="col-md-5 col-md-offset-3">
+				<div class="col-md-5 col-md-offset-3">
 
-						<!-- Search form -->
-						<form class="form-inline" role="form">
-							<div class="form-group">
-								<input type="email" class="form-control" id="search"
-									placeholder="Rechercher" />
-							</div>
-
-							<button type="submit" class="btn btn-default">Rechercher</button>
-						</form>
-
-						<div class="hlinks">
-							<span> <!-- item details with price --> <a href="#cart"
-								role="button" data-toggle="modal">3 articles dans votre <i
-									class="icon-shopping-cart"></i></a> -<span class="bold">$25</span>
-
-							</span>
-
-							<ui:fragment rendered="${!empty request.remoteUser}">
-								<!-- Login and Register link -->
-								<span class="lr"><h:outputText
-										value="Bienvenue, ${request.remoteUser}" /> / <a href="#"
-									role="button" data-toggle="modal">Se déconnecter</a></span>
-							</ui:fragment>
-
-							<ui:fragment rendered="${empty request.remoteUser}">
-								<!-- Login and Register link -->
-								<span class="lr"><a href="#login" role="button"
-									data-toggle="modal">Connexion</a> / <a href="#register"
-									role="button" data-toggle="modal">Enregistrement</a></span>
-							</ui:fragment>
+					<!-- Search form -->
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<input type="email" class="form-control" id="search"
+								placeholder="Rechercher" />
 						</div>
 
+						<button type="submit" class="btn btn-default">Rechercher</button>
+					</form>
+
+					<div class="hlinks">
+						<span> <!-- item details with price --> <a href="#cart"
+							role="button" data-toggle="modal">3 articles dans votre <i
+								class="icon-shopping-cart"></i></a> -<span class="bold">$25</span>
+
+						</span>
+
+						<ui:fragment rendered="${!empty request.remoteUser}">
+							<!-- Login and Register link -->
+							<span class="lr"><h:outputText
+									value="Bienvenue ${request.remoteUser}" /> / <a
+								href="../j_spring_security_logout" role="button"
+								data-toggle="modal">Se déconnecter</a>
+								
+							</span>
+							<div class="form-group">
+								<form action="../j_spring_security_logout" method="post" >
+								<button type="submit" class="btn btn-default">Se
+									déconnecter</button>
+								<h:commandLink id="logout" action="#{login.logout}" value="Logout">Se déconnecter</h:commandLink>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+									</form>
+									
+									
+									<form action="#{request.contextPath}/j_spring_security_logout">
+									    <input type="submit" value="Logout" />
+									</form>
+							</div>
+						</ui:fragment>
+
+						<ui:fragment rendered="${empty request.remoteUser}">
+							<!-- Login and Register link -->
+							<span class="lr"><a href="#login" role="button"
+								data-toggle="modal">Connexion</a> / <a href="#register"
+								role="button" data-toggle="modal">Enregistrement</a></span>
+						</ui:fragment>
 					</div>
 
 				</div>
+
 			</div>
+		</div>
 		</header>
 		<!-- Header ends -->
 
@@ -176,14 +194,14 @@
 										</div>
 									</div>
 								</div>
-								
-								<input type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}" />
 
 								<div class="form-group">
 									<div class="col-md-9 col-md-offset-3">
-										<button type="submit" class="btn btn-default">Se connecter</button>
-											<button type="reset" class="btn btn-default">Effacer</button>
+										<button type="submit" class="btn btn-default">Se
+											connecter</button>
+										<button type="reset" class="btn btn-default">Effacer</button>
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
 									</div>
 								</div>
 							</form>
@@ -302,52 +320,52 @@
 				</div>
 				<nav class="collapse navbar-collapse bs-navbar-collapse"
 					role="navigation">
-					<ul class="nav navbar-nav">
-						<li><a href="index.xhtml"><i class="icon-home"></i></a></li>
-						<ui:fragment rendered="${!empty request.remoteUser}">
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">Mon compte <b class="caret"></b></a>
-								<ul class="dropdown-menu">
-									<li><a href="myaccount.xhtml">Compte</a></li>
-									<li><a href="view-cart.xhtml">panier</a></li>
-									<li><a href="checkout.xhtml">Paiement</a></li>
-									<li><a href="order-history.xhtml">Historiques</a></li>
-									<li><a href="edit-profile.xhtml">modifier profil</a></li>
-								</ul></li>
-						</ui:fragment>
+				<ul class="nav navbar-nav">
+					<li><a href="index.xhtml"><i class="icon-home"></i></a></li>
+					<ui:fragment rendered="${!empty request.remoteUser}">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Tutoriels <b class="caret"></b></a>
+							data-toggle="dropdown">Mon compte <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="blog.xhtml">Accès aux tutos</a></li>
+								<li><a href="myaccount.xhtml">Compte</a></li>
+								<li><a href="view-cart.xhtml">panier</a></li>
+								<li><a href="checkout.xhtml">Paiement</a></li>
+								<li><a href="order-history.xhtml">Historiques</a></li>
+								<li><a href="edit-profile.xhtml">modifier profil</a></li>
 							</ul></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Instruments <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="items.xhtml">vents</a></li>
-								<li><a href="items.xhtml">Cuivres</a></li>
-								<li><a href="items.xhtml">Bois</a></li>
-								<li><a href="items.xhtml">Cordes</a></li>
-								<li><a href="items.xhtml">Numérique/Digital</a></li>
-							</ul></li>
-						<li class="dropdown"><a href="items.xhtml"
-							class="dropdown-toggle" data-toggle="dropdown">CD/DVD <b
-								class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="items.xhtml">CD/DVD</a></li>
-							</ul></li>
-						<li class="dropdown"><a href="items.xhtml"
-							class="dropdown-toggle" data-toggle="dropdown">Mp3 <b
-								class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="items.xhtml">Télécharger</a></li>
-							</ul></li>
-						<li class="dropdown"><a href="items.xhtml"
-							class="dropdown-toggle" data-toggle="dropdown">Logiciels <b
-								class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="items.xhtml">Télécharger</a></li>
-							</ul></li>
-					</ul>
+					</ui:fragment>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Tutoriels <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="blog.xhtml">Accès aux tutos</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Instruments <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">vents</a></li>
+							<li><a href="items.xhtml">Cuivres</a></li>
+							<li><a href="items.xhtml">Bois</a></li>
+							<li><a href="items.xhtml">Cordes</a></li>
+							<li><a href="items.xhtml">Numérique/Digital</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="items.xhtml"
+						class="dropdown-toggle" data-toggle="dropdown">CD/DVD <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">CD/DVD</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="items.xhtml"
+						class="dropdown-toggle" data-toggle="dropdown">Mp3 <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">Télécharger</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="items.xhtml"
+						class="dropdown-toggle" data-toggle="dropdown">Logiciels <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">Télécharger</a></li>
+						</ul></li>
+				</ul>
 				</nav>
 			</div>
 		</div>

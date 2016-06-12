@@ -1,5 +1,8 @@
 package com.bam.managedBean;
 
+import java.io.Serializable;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -8,16 +11,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bam.business.Facade;
 import com.bam.entity.Utilisateur;
 
 @Controller("login")
 @Scope("session")
-public class LoginController {
-	
+public class LoginController implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String message;
+	
+	@Autowired
+	Facade facade;
 
 	public String getMessage() {
 		return message;
@@ -64,5 +72,10 @@ public class LoginController {
 
 		return new ModelAndView("403", "username", username);
 	}
-
+	
+	@RequestMapping("/logout")
+	public String logout(){
+        SecurityContextHolder.clearContext();
+        return "logout";
+    }
 }
