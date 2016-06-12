@@ -1,3 +1,5 @@
+drop schema bamdb;
+
 create schema if not exists bamdb;
 
 use bamdb;
