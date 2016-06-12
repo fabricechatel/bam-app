@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -52,8 +53,8 @@ public class Utilisateur implements Serializable {
 	private Set<Message> messagesReceived;
 
 	//bi-directional many-to-one association to UtilisateurRole
-	@OneToMany(mappedBy="utilisateur", fetch=FetchType.EAGER)
-	private Set<UtilisateurRole> utilisateurRoles;
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Set<UtilisateurRole> utilisateurRoles = new HashSet<>(0);
 
 	public Utilisateur() {
 	}

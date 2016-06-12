@@ -4,5 +4,6 @@ import com.bam.entity.Utilisateur;
 
 public interface UtilisateurBusiness {
 	
-	Utilisateur findByUserName(String username);
+	public Utilisateur findByUserName(String username);
+	public boolean userExists(String username);
 }
