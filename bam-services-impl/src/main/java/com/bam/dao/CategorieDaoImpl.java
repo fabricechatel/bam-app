@@ -1,5 +1,10 @@
 package com.bam.dao;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.Query;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 

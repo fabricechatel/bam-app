@@ -20,6 +20,6 @@ public class FicheDaoTest {
 	public void Test() {
 		
 		Fiche maFiche = ficheDao.findByIdArticle(1);
-		System.out.println(maFiche.getDescription());
+		System.out.println(maFiche.getImage());
 	}
 }

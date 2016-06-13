@@ -1,7 +1,9 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -21,6 +23,9 @@ public class Article implements Serializable {
 	@Column(name="ID_ARTICLE", unique=true, nullable=false)
 	private int idArticle;
 
+	@Column(name="LIBELLE")
+	private String libelle;
+	
 	@Column(nullable=false, precision=10)
 	private BigDecimal prix;
 
@@ -44,11 +49,11 @@ public class Article implements Serializable {
 	private Set<Panier> paniers;
 
 	//bi-directional many-to-many association to Caracteristique
-	@ManyToMany(mappedBy="articles")
+	@ManyToMany(mappedBy="articles", fetch = FetchType.EAGER)
 	private Set<Caracteristique> caracteristiques;
 
 	//bi-directional many-to-many association to Categorie
-	@ManyToMany(mappedBy="articles")
+	@ManyToMany(mappedBy="articles", fetch = FetchType.EAGER)
 	private Set<Categorie> categories;
 
 	//bi-directional many-to-many association to Client
@@ -172,4 +177,43 @@ public class Article implements Serializable {
 		this.promotions = promotions;
 	}
 
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public Article(int idArticle, String libelle, BigDecimal prix,
+			int quantite, String refarticle, Set<Panier> paniers,
+			Set<Caracteristique> caracteristiques, Set<Categorie> categories,
+			Set<Client> clients, Set<Commentaire> commentaires,
+			LigneCommande ligneCommande, Set<Promotion> promotions) {
+		super();
+		this.idArticle = idArticle;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.refarticle = refarticle;
+		this.paniers = paniers;
+		this.caracteristiques = caracteristiques;
+		this.categories = categories;
+		this.clients = clients;
+		this.commentaires = commentaires;
+		this.ligneCommande = ligneCommande;
+		this.promotions = promotions;
+	}
+
+	public Article(int idArticle, String libelle, BigDecimal prix,
+			int quantite, String refarticle) {
+		super();
+		this.idArticle = idArticle;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.refarticle = refarticle;
+	}
+
+	
 }
