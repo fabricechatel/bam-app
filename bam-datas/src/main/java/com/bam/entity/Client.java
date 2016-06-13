@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -33,10 +34,13 @@ public class Client implements Serializable {
 
 	@Column(nullable=false, length=64)
 	private String prenom;
+	
+	@Column(name="ACTIF")
+	private boolean enabled;
 
 	//bi-directional many-to-many association to Adresse
-	@ManyToMany(mappedBy="clients")
-	private Set<Adresse> adresses;
+	@ManyToMany(mappedBy="clients", cascade=CascadeType.PERSIST)
+	private Set<Adresse> adresses = new HashSet<>(0);
 
 	//bi-directional many-to-many association to Article
 	@ManyToMany
@@ -202,6 +206,11 @@ public class Client implements Serializable {
 		return commentaire;
 	}
 	
-	
+	public boolean isEnabled() {
+		return enabled;
+	}
 
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 }

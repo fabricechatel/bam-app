@@ -13,16 +13,19 @@ public class FacadeImpl implements Facade {
 	@Autowired
 	ClientBusiness clientBusiness;
 
-	@Override
-	public Client saveClient(Client client) {
-		// TODO Auto-generated method stub
-		return clientBusiness.sauvegarderClient(client);
-	}
+	@Autowired
+	UtilisateurBusiness utilisateurBusiness;
+
 
 	/*
 	@Override
 	public ClientBusiness getClientBusiness() {
 		return clientBusiness;
+	}
+
+	@Override
+	public UtilisateurBusiness getUtilisateurBusiness() {
+		return utilisateurBusiness;
 	}
 	*/
 

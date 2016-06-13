@@ -19,8 +19,10 @@ public class UtilisateurRole implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idutilisateurrole;
 
+	@Column(name="ENABLED")
 	private boolean enabled;
 
+	@Column(name="NOMROLE")
 	private String nomrole;
 
 	//bi-directional many-to-one association to Utilisateur
@@ -29,6 +31,13 @@ public class UtilisateurRole implements Serializable {
 	private Utilisateur utilisateur;
 
 	public UtilisateurRole() {
+	}
+	
+	
+	public UtilisateurRole(boolean enabled, String nomrole) {
+		super();
+		this.enabled = enabled;
+		this.nomrole = nomrole;
 	}
 
 	public int getIdutilisateurrole() {
