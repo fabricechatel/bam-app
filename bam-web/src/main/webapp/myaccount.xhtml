@@ -38,7 +38,7 @@
 <!-- Main content -->
       <div class="col-md-9 col-sm-9">
 
-          <h5 class="title">Mon compte</h5>
+          <h5 class="title"><h:outputText value="#{clientCtrl.getClientAssociateAsUser(${request.remoteUser})}"></h:outputText>   Mon compte</h5>
 
           <!-- Your details -->
           <div class="address">

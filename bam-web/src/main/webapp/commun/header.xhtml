@@ -48,22 +48,17 @@
 						</span>
 
 						<ui:fragment rendered="${!empty request.remoteUser}">
-							<!-- Login and Register link -->
-							<span class="lr"><h:outputText
-									value="Bienvenue ${request.remoteUser}" /> / <a
-								href="../j_spring_security_logout" role="button"
-								data-toggle="modal">Se déconnecter</a>
-								<h:link value="Se déconnecter" outcome="/login.xhtml?logout">
-								    <f:param name="logout" value="#{login.logout()}" />
-								</h:link></span>
+							<!-- Login and Register link -->							
+							<span class="lr"><h:outputText value="Bienvenue ${request.remoteUser}" /> /</span>
+							<h:form>
+							<h:commandLink action="#{login.logout}" value="Se deconnecter"></h:commandLink>
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" />
+							</h:form>
 						</ui:fragment>
-
 						<ui:fragment rendered="${empty request.remoteUser}">
 							<!-- Login and Register link -->
-							<span class="lr"><a href="#login" role="button"
-								data-toggle="modal">Connexion</a> / <a href="#register"
+							<span class="lr"><a href="login.xhtml" >Connexion</a> / <a href="#register"
 								role="button" data-toggle="modal">Enregistrement</a></span>
 						</ui:fragment>
 					</div>
@@ -198,8 +193,7 @@
 					</div>
 					<div class="modal-footer">
 						<p>
-							Vous avez un compte? <a href="register.xhtml">S'enregistrer</a>
-							ici.
+							Vous n'avez pas de compte? <a href="register.xhtml">S'enregistrer</a>
 						</p>
 					</div>
 				</div>
