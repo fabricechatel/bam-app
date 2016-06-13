@@ -24,7 +24,7 @@ public class ArticleDaoTest {
 		
 		List<Article> lesArticles = articleDao.findAll();
 		for(Article art : lesArticles)
-			System.out.println(art.getRefarticle());
+			System.out.println(art.getRefarticle() + " " + art.getIdArticle());
 		
 		Assert.assertNotNull(lesArticles);
 	}

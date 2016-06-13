@@ -1,6 +1,7 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -28,6 +29,9 @@ public class Fiche implements Serializable {
 	@Column(length=256)
 	private String image;
 
+	@Column(name="NOM")
+	private String nom;
+	
 	@Column(name="IS_PUBLISHED")
 	private byte isPublished;
 
@@ -85,4 +89,36 @@ public class Fiche implements Serializable {
 		this.reffiche = reffiche;
 	}
 
+	public Fiche(int idFiche, String description, int idArticle, String image,
+			byte isPublished, String reffiche) {
+		super();
+		this.idFiche = idFiche;
+		this.description = description;
+		this.idArticle = idArticle;
+		this.image = image;
+		this.isPublished = isPublished;
+		this.reffiche = reffiche;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Fiche(int idFiche, String description, int idArticle, String image,
+			String nom, byte isPublished, String reffiche) {
+		super();
+		this.idFiche = idFiche;
+		this.description = description;
+		this.idArticle = idArticle;
+		this.image = image;
+		this.nom = nom;
+		this.isPublished = isPublished;
+		this.reffiche = reffiche;
+	}
+
+	
 }
