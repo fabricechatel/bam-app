@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
   <!ENTITY % xhtml-symbol
     PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
@@ -9,9 +9,9 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
-                
+
+
 <ui:define name="content-to-include">
-	<!-- Page content starts -->
 
 <!-- Page content starts -->
 
@@ -41,71 +41,67 @@
                   <div class="formy well">
                      <h4 class="title">Register for New Account</h4>
                                   <div class="form">
-                                      <!-- Register form (not working)-->
-                                      <form class="form-horizontal">
-                                          <!-- Name -->
+                                      <!-- Register form -->
+                                      <h:form class="form-horizontal" id="formRegistration2">
+                                        <h:panelGroup id="reg">
+                                         <!-- Name -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3" for="name1">Name</label>
+                                            <label class="control-label col-md-3" for="nom">Nom</label>
                                             <div class="col-md-6">
-                                              <input type="text" class="form-control" id="name1" />
-                                            </div>
-                                          </div>   
-                                          <!-- Email -->
-                                          <div class="form-group">
-                                            <label class="control-label col-md-3" for="email1">Email</label>
-                                            <div class="col-md-6">
-                                              <input type="text" class="form-control" id="email1" />
+                                              <h:inputText value="#{clientCtrl.clientACreer.nom }" styleClass="form-control" id="nom" required="true" requiredMessage="Entrez le nom"/>
                                             </div>
                                           </div>
-                                          <!-- Select box -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3">Drop Down</label>
-                                            <div class="col-md-6">                               
-                                                <select class="form-control">
-                                                <option>&nbsp;</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                </select>  
-                                            </div>
-                                          </div>                                           
-                                          <!-- Username -->
-                                          <div class="form-group">
-                                            <label class="control-label col-md-3" for="username2">Username</label>
-                                            <div class="col-md-6">
-                                              <input type="text" class="form-control" id="username2" />
-                                            </div>
-                                          </div>
-                                          <!-- Password -->
-                                          <div class="form-group">
-                                            <label class="control-label col-md-3" for="password2">Password</label>
-                                            <div class="col-md-6">
-                                              <input type="password" class="form-control" id="password2" />
-                                            </div>
-                                          </div>
-                                          <!-- Checkbox -->
-                                          <div class="form-group">
-                                             <div class="col-md-9 col-md-offset-3">
-                                                <label class="checkbox-inline">
-                                                   <input type="checkbox" id="inlineCheckbox3" value="agree" /> Agree with Terms and Conditions
-                                                </label>
-                                             </div>
-                                          </div> 
-                                          
-                                          <!-- Buttons -->
-                                          <div class="form-actions">
-                                             <!-- Buttons -->
-											 <div class="col-md-9 col-md-offset-3">
-												<button type="submit" class="btn btn-default">Register</button>
-												<button type="reset" class="btn btn-default">Reset</button>
-											</div>
-                                          </div>
-                                      </form>
+								            <label class="control-label col-md-3" for="prenom">Prénom</label>
+								            <div class="col-md-6">
+									          <h:inputText  value="#{clientCtrl.clientACreer.prenom }" class="form-control" id="prenom" required="true" requiredMessage="Entrez le pr�nom"/>
+								            </div>
+							              </div>   
+							              <!-- Email -->
+							              <div class="form-group">
+								            <label class="control-label col-md-3" for="email">Email</label>
+								            <div class="col-md-6">
+									          <h:inputText type="text" value="#{clientCtrl.clientACreer.email }" class="form-control" id="email" required="true" requiredMessage="Entrez le mail"/>
+								            </div>
+							              </div>
+							              <!-- Username -->
+							              <div class="form-group">
+								            <label class="control-label col-md-3" for="login">Login</label>
+								            <div class="col-md-6">
+									          <h:inputText type="text" value="#{clientCtrl.utilisateurACreer.login }" class="form-control" id="login" required="true" requiredMessage="Entrez le pseudo" />
+								            </div>
+						 	              </div>
+							              <!-- Password -->
+							              <div class="form-group">
+								            <label class="control-label col-md-3" for="mdp">Mot de passe</label>
+								            <div class="col-md-6">
+									          <h:inputText type="password" value="#{clientCtrl.utilisateurACreer.mdp }" class="form-control" id="mdp" required="true" requiredMessage="Entrez le mot de passe"/>
+								            </div>
+							              </div>
+							              <!-- Checkbox -->
+							              <div class="form-group">
+								            <div class="col-md-6 col-md-offset-3">
+									           <label class="checkbox inline">
+									              <h:selectBooleanCheckbox value="#{clientCtrl.agree}" required="true" requiredMessage="Il faut accepter"/> Accepter les conditions d'utilisation
+									           </label>
+								            </div>
+							              </div>                              
+							              <!-- Buttons -->
+							              <div class="form-group">
+								            <!-- Buttons -->
+								            <div class="col-md-6 col-md-offset-3" >
+									             <h:commandButton value="Valider" type="submit" action="#{clientCtrl.saveClientEtUtilisateur }" />&#160;&#160;&#160;&#160;&#160;
+									             <h:commandButton value="Reset" type="reset" />
+								            </div>
+							              </div>
+							              <div style="text-align: center;">
+							                   <strong><h:outputText style="color: green;" value="#{clientCtrl.messageAjoutClient }"></h:outputText></strong>
+							              </div>
+							            </h:panelGroup>
+                                      </h:form>
 									  <div class="clearfix"></div>
 									  <hr />
-										<p>Already have an Account? <a href="login.xhtml">Login</a></p>
+										<p>Vous avez déjà un compte? <a href="login.xhtml">Connectez </a>ici</p>
                                     </div> 
                                   </div>
 

@@ -55,9 +55,8 @@
 
 							<ui:fragment rendered="${empty request.remoteUser}">
 								<!-- Login and Register link -->
-								<span class="lr"><a href="#login" role="button"
-									data-toggle="modal">Connexion</a> / <a href="#register"
-									role="button" data-toggle="modal">Enregistrement</a></span>
+								<span class="lr"><a href="#login" role="button"	data-toggle="modal">Connexion</a> / 
+								                 <a href="#modalRegister" role="button" data-toggle="modal">Enregistrement</a></span>
 							</ui:fragment>
 						</div>
 
@@ -141,16 +140,14 @@
 								class="form-horizontal">
 								<!-- Username -->
 								<div class="form-group">
-									<label class="control-label col-md-3" for="username">Nom
-										d'utilisateur</label>
+									<label class="control-label col-md-3" for="username">Nom d'utilisateur</label>
 									<div class="col-md-9">
 										<input type="text" class="form-control" id="username" />
 									</div>
 								</div>
 								<!-- Password -->
 								<div class="form-group">
-									<label class="control-label col-md-3" for="password">Mot
-										de passe</label>
+									<label class="control-label col-md-3" for="password">Mot de passe</label>
 									<div class="col-md-9">
 										<input type="password" class="form-control" id="password" />
 									</div>
@@ -177,8 +174,7 @@
 									</div>
 								</div>
 								
-								<input type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}" />
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 								<div class="form-group">
 									<div class="col-md-9 col-md-offset-3">
@@ -203,85 +199,87 @@
 
 		<!-- Register Modal starts -->
 
-		<div id="register" class="modal fade">
+		<div id="modalRegister" class="modal fade" >
 			<div class="modal-dialog">
+		      <h:form class="form-horizontal" id="formRegistration">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">×</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h4>S'enregistrer</h4>
 					</div>
 					<div class="modal-body">
 						<div class="form">
-							<form class="form-horizontal">
-								<div class="form-group">
-									<label class="control-label col-md-3">Civilité</label>
-									<div class="col-md-9">
-										<select class="form-control">
-											<option>&nbsp;</option>
-											<option>M.</option>
-											<option>Mme.</option>
-										</select>
-									</div>
+						  <h:panelGroup id="reg">
+							<div class="form-group">
+								<label class="control-label col-md-3" for="civilite">Civilité</label>
+								<h:selectOneRadio value="#{clientCtrl.clientACreer.civilite }" id="civilite">
+   	                                <f:selectItem itemValue="M" itemLabel="M" />
+   	                                <f:selectItem itemValue="Mme" itemLabel="Mme" />
+                                </h:selectOneRadio>
+							</div>
+							<!-- Name -->
+							<div class="form-group">
+								<label class="control-label col-md-3" for="nom">Nom</label>
+								<div class="col-md-6">
+									<h:inputText value="#{clientCtrl.clientACreer.nom }" styleClass="form-control" id="nom" required="true" requiredMessage="Entrez le nom"/>
 								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3" for="name">Nom</label>
-									<div class="col-md-9">
-										<input type="text" class="form-control" id="name" />
-									</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3" for="prenom">Prénom</label>
+								<div class="col-md-6">
+									<h:inputText  value="#{clientCtrl.clientACreer.prenom }" class="form-control" id="prenom" required="true" requiredMessage="Entrez le prénom"/>
 								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3" for="name">Prénom</label>
-									<div class="col-md-9">
-										<input type="text" class="form-control" id="name" />
-									</div>
+							</div>
+							<!-- Email -->
+							<div class="form-group">
+								<label class="control-label col-md-3" for="email">Email</label>
+								<div class="col-md-6">
+									<h:inputText type="text" value="#{clientCtrl.clientACreer.email }" class="form-control" id="email" required="true" requiredMessage="Entrez le mail"/>
 								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3" for="email">Email</label>
-									<div class="col-md-9">
-										<input type="text" class="form-control" id="email" />
-									</div>
+							</div>
+							<!-- Username -->
+							<div class="form-group">
+								<label class="control-label col-md-3" for="login">Login</label>
+								<div class="col-md-6">
+									<h:inputText type="text" value="#{clientCtrl.utilisateurACreer.login }" class="form-control" id="login" required="true" requiredMessage="Entrez le pseudo" />
 								</div>
-
-								<div class="form-group">
-									<label class="control-label col-md-3" for="username">login</label>
-									<div class="col-md-9">
-										<input type="text" class="form-control" id="username" />
-									</div>
+							</div>
+							<!-- Password -->
+							<div class="form-group">
+								<label class="control-label col-md-3" for="mdp">Mot de passe</label>
+								<div class="col-md-6">
+									<h:inputText type="password" value="#{clientCtrl.utilisateurACreer.mdp }" class="form-control" id="mdp" required="true" requiredMessage="Entrez le mot de passe"/>
 								</div>
-								<div class="form-group">
-									<label class="control-label col-md-3" for="password">mot
-										de passe</label>
-									<div class="col-md-9">
-										<input type="password" class="form-control" id="password" />
-									</div>
+							</div>
+							<!-- Checkbox -->
+							<div class="form-group">
+								<div class="col-md-9 col-md-offset-3">
+									<label class="checkbox inline">
+									  <h:selectBooleanCheckbox value="#{clientCtrl.agree}" required="true" requiredMessage="Il faut accepter"/> Accepter les conditions d'utilisation
+									</label>
 								</div>
-								<div class="form-group">
-									<div class="col-md-9 col-md-offset-3">
-										<div class="checkbox inline">
-											<label> <input type="checkbox" id="inlineCheckbox2"
-												value="agree" /> accepter les conditions d'utilisation
-											</label>
-										</div>
-									</div>
+							</div>
+							<!-- Buttons -->
+							<div class="form-group">
+								<!-- Buttons -->
+								<div class="col-md-9 col-md-offset-3" >
+									<h:commandButton value="Valider" type="submit" action="#{clientCtrl.saveClientEtUtilisateur }" />&#160;&#160;&#160;&#160;&#160;
+									<h:commandButton value="Reset" type="reset" />
 								</div>
-
-								<div class="form-group">
-									<div class="col-md-9 col-md-offset-3">
-										<button type="submit" class="btn btn-default">valider</button>
-										<button type="reset" class="btn btn-default">reinitialiser</button>
-									</div>
-								</div>
-							</form>
-						</div>
+							</div>
+							<div style="text-align: center;">
+							   <strong><h:outputText style="color: green;" value="#{clientCtrl.messageAjoutClient }"></h:outputText></strong>
+							</div>
+						</h:panelGroup>
+					  </div>
 					</div>
 					<div class="modal-footer">
 						<p>
-							Vous avez déjà un compte? <a href="login.xhtml">S'enregistrer</a>
-							ici.
+							Vous avez déjà un compte? <a href="login.xhtml">Connectez </a>ici.
 						</p>
 					</div>
 				</div>
+			  </h:form>
 			</div>
 		</div>
 
