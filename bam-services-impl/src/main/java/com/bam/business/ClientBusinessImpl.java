@@ -15,29 +15,52 @@ import com.bam.entity.Client;
 public class ClientBusinessImpl implements ClientBusiness {
 
 	@Autowired
-	ClientDao daoClient;
+	ClientDao daoClient;	
 	
-	public void setDao(ClientDao dao) {
-		this.daoClient = dao;
+	@Autowired
+	AdresseDao daoAdresse;
+	
+	public void setDao(ClientDao daoClient) {
+		this.daoClient = daoClient;
 	}
 	
 	@Override
-	public void sauvegarderClient(Client entity) {
-		daoClient.save(entity);		
+	public void sauvegarderClient(Client client) {
+		daoClient.save(client);		
+	}
+	
+	@Override
+	public Client modifierClient(Client client) {
+		return daoClient.update(client);
 	}
 
 	@Override
-	public void effacerClient(Client entity) {
-		daoClient.delete(entity);
+	public void effacerClient(Client client) {
+		daoClient.delete(client);
 	}
 
 	@Override
-	public Client getClientById(int entityID) {
-		return daoClient.find(entityID);
+	public Client getClientById(int clientID) {
+		return daoClient.find(clientID);
 	}
 
 	@Override
-	public List<Client> findAll() {
-		return daoClient.findAll();
+	public void sauvegarderAdresse(Adresse adresse) {
+		daoAdresse.save(adresse);
+	}
+
+	@Override
+	public Adresse modifierAdresse(Adresse adresse) {
+		return daoAdresse.update(adresse);
+	}
+
+	@Override
+	public void effacerAdresse(Adresse adresse) {
+		daoAdresse.delete(adresse);
+	}
+
+	@Override
+	public Adresse getAdresseById(int adresseID) {
+		return daoAdresse.find(adresseID);
 	}
 }
