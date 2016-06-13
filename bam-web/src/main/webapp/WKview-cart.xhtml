@@ -80,7 +80,7 @@
 						
 						<f:facet name="header">Quantité</f:facet>
 						<h:panelGroup layout="block" class="input-group">
-							<input class="form-control" id="quantite" type="text" value="#{item.quantitepanier}"   />
+							<h:inputText class="form-control" id="quantite" type="text" value="#{item.quantitepanier}"   />
 							<span class="input-group-btn">
 								<h:commandLink class="btn btn-default icon-refresh" type="button" action="#{panierCtrl.updateLien(item)}" />
 								<h:commandLink class="btn btn-danger icon-remove" type="button"  action="#{panierCtrl.deleteLien(item)}" />     
