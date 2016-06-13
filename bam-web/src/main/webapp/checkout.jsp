@@ -54,7 +54,7 @@
           <h4 class="title"><i class="icon-shopping-cart"></i> Payer ses courses</h4>
 
           <!-- Sub title -->
-          <h5 class="title">Expédition &amp; Détails de facturation</h5>
+          <h5 class="title">Expï¿½dition &amp; Dï¿½tails de facturation</h5>
           <!-- Address and Shipping details form -->
             <div class="form form-small">
                                       <!-- Register form (not working)-->
@@ -75,7 +75,7 @@
                                           </div>
                                           <!-- Telephone -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3" for="telephone">Téléphone</label>
+                                            <label class="control-label col-md-3" for="telephone">Tï¿½lï¿½phone</label>
                                             <div class="col-md-6">
                                               <input type="text" class="form-control" id="telephone">
                                             </div>
@@ -337,7 +337,7 @@
 <!--                                           </div>   -->
                                           <!-- State -->
                                           <div class="form-group">
-                                            <label class="control-label col-md-3" for="city">Département</label>
+                                            <label class="control-label col-md-3" for="city">Dï¿½partement</label>
                                             <div class="col-md-6">
                                               <input type="text" class="form-control" id="state">
                                             </div>
@@ -358,13 +358,13 @@
 
       <!-- Payment details section -->
         <!-- Title -->
-          <h5 class="title">Détails de paiement</h5>
+          <h5 class="title">Dï¿½tails de paiement</h5>
 
           <!-- Radio buttons to select payment type -->
 
           <label class="radio-inline">
             <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>
-            Carte de crédit
+            Carte de crï¿½dit
           </label>
           <label class="radio-inline">
             <input type="radio" name="optionsRadios" id="optionsRadios2" value="2">
@@ -376,7 +376,7 @@
           </label>
           <label class="radio-inline">
             <input type="radio" name="optionsRadios" id="optionsRadios4" value="4">
-            Paiement en liquide à la livraison
+            Paiement en liquide ï¿½ la livraison
           </label>          
           <label class="radio-inline">
             <input type="radio" name="optionsRadios" id="optionsRadios5" value="5">

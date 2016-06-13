@@ -1,7 +1,6 @@
 package com.bam.business;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
@@ -20,7 +19,6 @@ import com.bam.entity.Panier;
 public class PanierBusinessImpl implements PanierBusiness {
 
 	@Autowired
-//	CRUD<Panier> dao;
 	PanierDao dao;
 	
 	@Autowired
@@ -31,53 +29,70 @@ public class PanierBusinessImpl implements PanierBusiness {
 		this.dao = dao;
 	}
 	
-	@Override
-	public void sauvegarderPanier(Panier entity) {
-		dao.save(entity);		
+	public void setLienDao(LiensPanierArticleDao lienDao) {
+		this.lienDao = lienDao;
 	}
 
-	@Override
-	public void effacerPanier(Panier entity) {
-		dao.delete(entity);
+	
+	@Transactional
+	public void sauvegarderPanier(Panier entity) {
+		for(LiensPanierArticle l: entity.getLiensPanierArticles())
+			lienDao.update(l);
 	}
 
 	@Transactional
-	public Panier getPanierById(int entityID) {
-		Panier panier = dao.find(entityID);
+	public void effacerPanier(Panier entity) {
+		for(LiensPanierArticle l: entity.getLiensPanierArticles())
+			lienDao.delete(l);
+	}
+
+	@Transactional
+	public Panier getPanierById(int idPanier) {
+		Panier panier = dao.find(idPanier);
 		Hibernate.initialize(panier.getLiensPanierArticles());
 		return panier;
 	}
 	
+		
 	@Transactional
 	public Set<Article> getPanierArticles(int entityID){
 		Set<LiensPanierArticle> liens = getPanierById(entityID).getLiensPanierArticles();
-		
 		Set<Article> articles= new HashSet<Article>();
 		
 		for(LiensPanierArticle l:liens ) {
-			//Hibernate.initialize(l.getArticle());
+			
 			articles.add(l.getArticle());
 		}
 		
 		return articles;
 	}
 
-	@Override
-	public List<Panier> findAll() {
-		for(Panier panier : dao.findAll()){
-			System.out.println(panier.toString());
-		}
-		return dao.findAll();
-	}
 
 	@Transactional
-	public Set<LiensPanierArticle> getLiensPanierArticles(int panierID) {	
-		return getPanierById(panierID).getLiensPanierArticles();
+	public Set<LiensPanierArticle> getLiensPanierArticles(Panier panier) {	
+		//Hibernate.initialize(l.getArticle());
+		return getPanierById(panier.getIdpanier()).getLiensPanierArticles();
 	}
 	
 	@Transactional
-	public void updateQuantiteLienPanierArticle(int lienID, int quantite){
-		lienDao.find(lienID).setQuantitepanier(quantite);
+	public void updateLienPanierArticle(LiensPanierArticle lien){
+		lienDao.update(lien);
 	}
+
+	@Transactional
+	public void deleteLienPanierArticle(LiensPanierArticle lien) {
+		lienDao.delete(lien);
+	}
+
+	@Transactional
+	public Set<LiensPanierArticle> getLiensPanierArticlesValides(Panier panier) {
+		Set<LiensPanierArticle> liens = getPanierById(panier.getIdpanier()).getLiensPanierArticles();
+		for (LiensPanierArticle l :liens) if (l.getQuantitepanier()==0)liens.remove(l);
+		return liens;
+	}
+
+
+
+
 	
 }

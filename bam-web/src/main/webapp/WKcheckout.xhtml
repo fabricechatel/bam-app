@@ -52,48 +52,39 @@
       <h:panelGroup layout="block" class="col-md-12">
 
 <!--         Title with number of items in shopping kart -->
-          <h3 class="title"><i class="icon-shopping-cart"></i> Items in your cart [<span class="color"><h:outputText value="#{panierCtrl.liens.size()}" /></span>]</h3>
+          <h3 class="title"><i class="icon-shopping-cart"></i> Articles dans votre panier [<span class="color"><h:outputText value="#{panierCtrl.liens.size()}" /></span>]</h3>
             <br />
 		
 			
 			<h:form>
-				<h:dataTable value="#{panierCtrl.liens}" var="item" 
-								styleClass="table table-striped tcart">
+				<h:dataTable 	value="#{panierCtrl.liensValides}" 
+								var="item" 
+								styleClass="table tcart">
 					<!-- Index -->
-					
 					<h:column>
 						<f:facet name="header">#</f:facet>
 						<h:outputText value="#{item.id}" />
 					</h:column>
+					
 					<!-- Product  name -->
 					<h:column>
-						<f:facet name="header">nom</f:facet>
+						<f:facet name="header">Nom</f:facet>
 						<h:outputText value="#{item.article.libelle}" />
 					</h:column>
+					
 					<!-- Product image -->
 					<h:column>
-						<f:facet name="header">image</f:facet>
+						<f:facet name="header">Image</f:facet>
 						<a href="WKsingle-item.xhtml"><img src="img/photos/2.png" alt="" /></a>
 					</h:column>
+					
 					<!-- Quantity with refresh and remove button -->
 					<h:column class="item-input">
-						
 						<f:facet name="header">Quantité</f:facet>
-						<h:panelGroup layout="block" class="input-group">
-							<input class="form-control" id="quantite" type="text" value="#{item.quantitepanier}"   />
-							<span class="input-group-btn">
-								<h:commandLink class="btn btn-default icon-refresh" type="button" action="#{panierCtrl.updateLien(item)}" />
-								<h:commandLink class="btn btn-danger icon-remove" type="button"  action="#{panierCtrl.deleteLien(item)}" />     
-							</span>
-						</h:panelGroup>
-						
-					</h:column>
-					<!-- Unit price -->				
-					<h:column>
-						<f:facet name="header">Prix Unitaire</f:facet>
-						<h:outputText value="#{item.article.prix}" />
+						<h:outputText id="quantite" value="#{item.quantitepanier}"   />
 						<f:facet name="footer">Total</f:facet>
 					</h:column>
+			
 					<!-- Total cost -->
 					<h:column>
 						<f:facet name="header">Prix Total</f:facet>
@@ -111,7 +102,7 @@
                 <h:panelGroup layout="block" class="col-md-4 col-md-offset-8">
                   <h:panelGroup layout="block" class="pull-right">
                     <a href="index.jsp" class="btn btn-default">Continue Shopping</a>
-                    <a href="checkout.xhtml" class="btn btn-danger">CheckOut</a>
+                    <a href="WKcheckout.xhtml" class="btn btn-danger">CheckOut</a>
                   </h:panelGroup>
                 </h:panelGroup>
               </h:panelGroup>

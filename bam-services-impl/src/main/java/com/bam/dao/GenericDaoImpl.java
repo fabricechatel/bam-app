@@ -32,12 +32,14 @@ public abstract class GenericDaoImpl<T,ID extends Serializable> implements Gener
 		
 		@Override
 		public void save(T entity) {
+			System.out.println("save");
 			em.persist(entity);
 			em.flush();		
 		}
 
 		@Override
 		public void delete(T entity) { 
+			System.out.println("delete"+entity.toString());
 			T toRemoved = em.merge(entity);
 			em.remove(toRemoved);		
 		}

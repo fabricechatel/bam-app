@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bam.dao.PanierDao;
 import com.bam.entity.Article;
+import com.bam.entity.LiensPanierArticle;
 import com.bam.entity.Panier;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,7 +23,7 @@ public class PanierDaoTest {
 	@Test
 	public void test(){		
 		Panier panier = panierDao.find(0);
-		for(Article a: panier.getArticles())System.out.println(a.getRefarticle());
+		for(LiensPanierArticle a: panier.getLiensPanierArticles())System.out.println(a.getArticle().getLibelle());
 		
 		Assert.assertNotNull(panier);
 	}
