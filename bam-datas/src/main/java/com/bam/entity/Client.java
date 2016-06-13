@@ -39,7 +39,7 @@ public class Client implements Serializable {
 	private boolean enabled;
 
 	//bi-directional many-to-many association to Adresse
-	@ManyToMany(mappedBy="clients", cascade=CascadeType.PERSIST)
+	@ManyToMany(mappedBy="clients", cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	private Set<Adresse> adresses = new HashSet<>(0);
 
 	//bi-directional many-to-many association to Article
@@ -117,6 +117,13 @@ public class Client implements Serializable {
 
 	public void setAdresses(Set<Adresse> adresses) {
 		this.adresses = adresses;
+	}
+	
+	public Adresse getFirstAdresse(){
+		if (! adresses.isEmpty() ) {
+			return adresses.iterator().next();
+		}
+		return null;
 	}
 
 	public Set<Article> getArticles() {

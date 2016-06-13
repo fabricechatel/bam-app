@@ -38,24 +38,23 @@
 <!-- Main content -->
       <div class="col-md-9 col-sm-9">
 
-          <h5 class="title"><h:outputText value="#{clientCtrl.getClientAssociateAsUser(${request.remoteUser})}"></h:outputText>   Mon compte</h5>
+          <h5 class="title"> Mon compte</h5>
 
           <!-- Your details -->
           <div class="address">
             <address>
               <!-- Your name -->
-              <strong>La Boîte à Musique</strong><br />
+              <strong><h:outputText value="#{clientCtrl.client.nom} #{clientCtrl.client.prenom}" /></strong><br />
               <!-- Address -->
-              3, Rue Danton<br />
-              92440, Malakoff<br />
-
+              <h:outputText value="#{clientCtrl.client.firstAdresse.numero}, #{clientCtrl.client.firstAdresse.voie}" /><br />
+              <h:outputText value="#{clientCtrl.client.firstAdresse.codePostal}, #{clientCtrl.client.firstAdresse.ville}" /><br />
               <!-- Phone number -->
               <abbr title="Phone">P:</abbr> (+33) 77 77 777<br />
-              <a href="mailto:#">bam@company.com</a>
+              <a href="mailto:#"><h:outputText value="#{clientCtrl.client.email}"></h:outputText></a>
             </address>
           </div>
 
-          <h5 class="title">Historique des achats</h5>
+          <h5 class="title">Historique des commandes</h5>
 
             <table class="table table-striped tcart">
               <thead>
@@ -99,8 +98,6 @@
     </div>
   </div>
 </div>
-
-
 	<!-- Page content ends -->
     </ui:define>
 </ui:composition>

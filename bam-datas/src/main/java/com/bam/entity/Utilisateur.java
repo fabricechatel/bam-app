@@ -157,4 +157,12 @@ public class Utilisateur implements Serializable {
 		return utilisateurRole;
 	}
 
+	@Override
+	public String toString() {
+		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", login="
+				+ login + ", mdp=" + mdp + ", isEnabled=" + isEnabled + "]";
+	}
+	
+	
+
 }

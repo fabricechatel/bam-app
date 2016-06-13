@@ -36,47 +36,47 @@ public class LoginController implements Serializable {
 		return message;
 	}
 
-	@RequestMapping(value = { "/", "/home" })
-	public String getUserDefault() {
-		return "home";
-	}
-
-	@RequestMapping("/login")
-	public ModelAndView getLoginForm(@ModelAttribute Utilisateur users,
-			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-
-		message = "";
-		if (error != null) {
-			message = "Incorrect username or password !";
-		} else if (logout != null) {
-			message = "Logout successful !";
-		}
-		return new ModelAndView("login", "message", message);
-	}
-
-	@RequestMapping("/admin**")
-	public String getAdminProfile() {
-		return "admin";
-	}
-
-	@RequestMapping("/user**")
-	public String getUserProfile() {
-		return "user";
-	}
-
-	@RequestMapping("/403")
-	public ModelAndView getAccessDenied() {
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String username = "";
-		if (!(auth instanceof AnonymousAuthenticationToken)) {
-			UserDetails userDetail = (UserDetails) auth.getPrincipal();
-			username = userDetail.getUsername();
-		}
-
-		return new ModelAndView("403", "username", username);
-	}
+//	@RequestMapping(value = { "/", "/home" })
+//	public String getUserDefault() {
+//		return "home";
+//	}
+//
+//	@RequestMapping("/login")
+//	public ModelAndView getLoginForm(@ModelAttribute Utilisateur users,
+//			@RequestParam(value = "error", required = false) String error,
+//			@RequestParam(value = "logout", required = false) String logout) {
+//
+//		message = "";
+//		if (error != null) {
+//			message = "Incorrect username or password !";
+//		} else if (logout != null) {
+//			message = "Logout successful !";
+//		}
+//		return new ModelAndView("login", "message", message);
+//	}
+//
+//	@RequestMapping("/admin**")
+//	public String getAdminProfile() {
+//		return "admin";
+//	}
+//
+//	@RequestMapping("/user**")
+//	public String getUserProfile() {
+//		return "user";
+//	}
+//
+//	@RequestMapping("/403")
+//	public ModelAndView getAccessDenied() {
+//		Authentication auth = SecurityContextHolder.getContext()
+//				.getAuthentication();
+//		String username = "";
+//		if (!(auth instanceof AnonymousAuthenticationToken)) {
+//			UserDetails userDetail = (UserDetails) auth.getPrincipal();
+//			username = userDetail.getUsername();
+//		}
+//
+//		return new ModelAndView("403", "username", username);
+//	}
 	
 	public String logout(){
 		HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
