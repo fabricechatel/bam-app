@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
+  <!ENTITY % xhtml-symbol
+    PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-symbol.ent">
+  %xhtml-symbol;
+]>
+<ui:composition template="/commun/template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+                
+<ui:define name="content-to-include">
+	<!-- Page content starts -->
+
+
+<!-- Cart starts -->
+
+<div class="cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <!-- Title with number of items in shopping kart -->
+          <h3 class="title"><i class="icon-shopping-cart"></i> article(s) dans le panier [<span class="color">5</span>]</h3>
+            <br />
+
+            <!-- Table -->
+              <table class="table table-striped tcart">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>image</th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- Index -->
+                    <td>1</td>
+                    <!-- Product  name -->
+                    <td><a href="single-item.xhtml">HTC One</a></td>
+                    <!-- Product image -->
+                    <td><a href="single-item.xhtml"><img src="img/photos/2.png" alt="" /></a></td>
+                    <!-- Quantity with refresh and remove button -->
+                    <td class="item-input">
+						<div class="input-group">
+							<input class="form-control" type="text" value="2" />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
+								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+							</span>
+						</div>
+                    </td>
+                    <!-- Unit price -->
+                    <td>$150</td>
+                    <!-- Total cost -->
+                    <td>$300</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><a href="single-item.xhtml">Sony Xperia</a></td>
+                    <td><a href="single-item.xhtml"><img src="img/photos/3.png" alt="" /></a></td>
+                    <td class="item-input">
+                      <div class="input-group">
+							<input class="form-control" type="text" value="2" />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
+								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+							</span>
+						</div>
+                    </td>
+                    <td>$150</td>
+                    <td>$150</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><a href="single-item.xhtml">Nokia Asha</a></td>
+                    <td><a href="single-item.xhtml"><img src="img/photos/4.png" alt="" /></a></td>
+                    <td class="item-input">
+                      <div class="input-group">
+							<input class="form-control" type="text" value="2" />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
+								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+							</span>
+						</div>              
+                    </td>
+                    <td>$250</td>
+                    <td>$250</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><a href="single-item.xhtml">Samsung Galaxy Pro</a></td>
+                    <td><a href="single-item.xhtml"><img src="img/photos/5.png" alt="" /></a></td>
+                    <td class="item-input">
+                      <div class="input-group">
+							<input class="form-control" type="text" value="2" />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
+								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+							</span>
+						</div>
+                    </td>
+                    <td>$450</td>
+                    <td>$450</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><a href="single-item.xhtml">Micromax Funbook</a></td>
+                    <td><a href="single-item.xhtml"><img src="img/photos/6.png" alt="" /></a></td>
+                    <td class="item-input">
+						<div class="input-group">
+							<input class="form-control" type="text" value="2" />
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
+								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+							</span>
+						</div>
+                      
+                    </td>
+                    <td>$150</td>
+                    <td>$300</td>
+                  </tr>                                    
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Total</th>
+                    <th>$2405</th>
+                  </tr>
+                </tbody>
+              </table>
+
+
+              <form class="form-inline">
+              <!-- Discount Coupen -->
+                <h5 class="title">coupon de réduction</h5>
+                <div class="form-group">
+					<input type="email" class="form-control" id="" placeholder="Discount Coupon" />
+				</div>
+			  
+				<button type="submit" class="btn btn-default">appliquer</button>
+                <br />
+                <br />
+                <!-- Gift coupen -->
+                <h5 class="title">coupon cadeau</h5>
+                <div class="form-group">
+					<input type="email" class="form-control" id="" placeholder="Gift Coupon" />
+				</div>
+			  
+				<button type="submit" class="btn btn-default">appliquer</button>           
+              </form>  
+               
+               <!-- Button s-->
+              <div class="row">
+                <div class="col-md-4 col-md-offset-8">
+                  <div class="pull-right">
+                    <a href="index.xhtml" class="btn btn-default">continuer ses courses</a>
+                    <a href="checkout.xhtml" class="btn btn-danger">Vérifier panier</a>
+                  </div>
+                </div>
+              </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+	<!-- Page content ends -->
+    </ui:define>
+</ui:composition>
