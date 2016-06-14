@@ -25,7 +25,7 @@ public class PanierCtrlTest {
 	@Test
 	public void test(){		
 		
-		for(Article a: panierCtrl.getPanierArticles(0)) System.out.println(a);
+//		for(Article a: panierCtrl.getPanierArticles(0)) System.out.println(a);
 		
 		System.out.println("==================================================");
 		
@@ -35,7 +35,7 @@ public class PanierCtrlTest {
 		Client client = new Client();
 		client.setPrenom("Hans");
 		client.setNom("Dooh");
-		client.getPaniers().add(panier);
+//		client.getPaniers().add(panier);
 		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
