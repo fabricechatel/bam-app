@@ -1,8 +1,9 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -21,8 +22,8 @@ public class Panier implements Serializable {
 	private String refinternaute;
 
 	//bi-directional many-to-one association to LiensPanierArticle
-	@OneToMany(mappedBy="panier")
-	private Set<LiensPanierArticle> liensPanierArticles;
+	@OneToMany(mappedBy="panier",fetch=FetchType.EAGER)
+	private List<LiensPanierArticle> liensPanierArticles;
 
 	//bi-directional many-to-one association to Client
 	@ManyToOne
@@ -48,11 +49,11 @@ public class Panier implements Serializable {
 		this.refinternaute = refinternaute;
 	}
 
-	public Set<LiensPanierArticle> getLiensPanierArticles() {
+	public List<LiensPanierArticle> getLiensPanierArticles() {
 		return this.liensPanierArticles;
 	}
 
-	public void setLiensPanierArticles(Set<LiensPanierArticle> liensPanierArticles) {
+	public void setLiensPanierArticles(List<LiensPanierArticle> liensPanierArticles) {
 		this.liensPanierArticles = liensPanierArticles;
 	}
 
@@ -68,6 +69,13 @@ public class Panier implements Serializable {
 		liensPanierArticle.setPanier(null);
 
 		return liensPanierArticle;
+	}
+
+	@Override
+	public String toString() {
+		return "Panier [idpanier=" + idpanier + ", refinternaute="
+				+ refinternaute + ", liensPanierArticles="
+				+ liensPanierArticles + ", client=" + client + "]";
 	}
 
 	public Client getClient() {

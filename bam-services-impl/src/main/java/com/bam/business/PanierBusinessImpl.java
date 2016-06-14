@@ -1,6 +1,7 @@
 package com.bam.business;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
@@ -56,7 +57,7 @@ public class PanierBusinessImpl implements PanierBusiness {
 		
 	@Transactional
 	public Set<Article> getPanierArticles(int entityID){
-		Set<LiensPanierArticle> liens = getPanierById(entityID).getLiensPanierArticles();
+		List<LiensPanierArticle> liens = getPanierById(entityID).getLiensPanierArticles();
 		Set<Article> articles= new HashSet<Article>();
 		
 		for(LiensPanierArticle l:liens ) {
@@ -69,7 +70,7 @@ public class PanierBusinessImpl implements PanierBusiness {
 
 
 	@Transactional
-	public Set<LiensPanierArticle> getLiensPanierArticles(Panier panier) {	
+	public List<LiensPanierArticle> getLiensPanierArticles(Panier panier) {	
 		//Hibernate.initialize(l.getArticle());
 		return getPanierById(panier.getIdpanier()).getLiensPanierArticles();
 	}
@@ -85,8 +86,8 @@ public class PanierBusinessImpl implements PanierBusiness {
 	}
 
 	@Transactional
-	public Set<LiensPanierArticle> getLiensPanierArticlesValides(Panier panier) {
-		Set<LiensPanierArticle> liens = getPanierById(panier.getIdpanier()).getLiensPanierArticles();
+	public List<LiensPanierArticle> getLiensPanierArticlesValides(Panier panier) {
+		List<LiensPanierArticle> liens = getPanierById(panier.getIdpanier()).getLiensPanierArticles();
 		for (LiensPanierArticle l :liens) if (l.getQuantitepanier()==0)liens.remove(l);
 		return liens;
 	}

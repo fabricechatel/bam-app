@@ -18,8 +18,14 @@ public class LiensPanierArticle implements Serializable {
 
 	@EmbeddedId
 	private LiensPanierArticlePK id;
-
+	
+	@Column(name="QUANTITEPANIER",updatable=true)
 	private int quantitepanier;
+
+	@Override
+	public String toString() {
+		return "LiensPanierArticle [id=" + id + ", quantitepanier="	+ quantitepanier + ", article=" + article + "]";
+	}
 
 	//bi-directional many-to-one association to Article
 	@ManyToOne(fetch=FetchType.EAGER)
