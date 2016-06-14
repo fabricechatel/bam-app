@@ -1,8 +1,9 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -10,25 +11,24 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="panier")
 @NamedQuery(name="Panier.findAll", query="SELECT p FROM Panier p")
 public class Panier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idpanier;
 
-	@Column(name="ID_CLIENT")
-	private int idClient;
-
-	@Column(nullable=false, length=64)
 	private String refinternaute;
 
-	//bi-directional many-to-many association to Article
-	@ManyToMany(mappedBy="paniers")
-	private Set<Article> articles;
+	//bi-directional many-to-one association to LiensPanierArticle
+	@OneToMany(mappedBy="panier",fetch=FetchType.EAGER)
+	private List<LiensPanierArticle> liensPanierArticles;
+
+	//bi-directional many-to-one association to Client
+	@ManyToOne
+	@JoinColumn(name="ID_CLIENT")
+	private Client client;
 
 	public Panier() {
 	}
@@ -41,14 +41,6 @@ public class Panier implements Serializable {
 		this.idpanier = idpanier;
 	}
 
-	public int getIdClient() {
-		return this.idClient;
-	}
-
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
-
 	public String getRefinternaute() {
 		return this.refinternaute;
 	}
@@ -57,12 +49,41 @@ public class Panier implements Serializable {
 		this.refinternaute = refinternaute;
 	}
 
-	public Set<Article> getArticles() {
-		return this.articles;
+	public List<LiensPanierArticle> getLiensPanierArticles() {
+		return this.liensPanierArticles;
 	}
 
-	public void setArticles(Set<Article> articles) {
-		this.articles = articles;
+	public void setLiensPanierArticles(List<LiensPanierArticle> liensPanierArticles) {
+		this.liensPanierArticles = liensPanierArticles;
+	}
+
+	public LiensPanierArticle addLiensPanierArticle(LiensPanierArticle liensPanierArticle) {
+		getLiensPanierArticles().add(liensPanierArticle);
+		liensPanierArticle.setPanier(this);
+
+		return liensPanierArticle;
+	}
+
+	public LiensPanierArticle removeLiensPanierArticle(LiensPanierArticle liensPanierArticle) {
+		getLiensPanierArticles().remove(liensPanierArticle);
+		liensPanierArticle.setPanier(null);
+
+		return liensPanierArticle;
+	}
+
+	@Override
+	public String toString() {
+		return "Panier [idpanier=" + idpanier + ", refinternaute="
+				+ refinternaute + ", liensPanierArticles="
+				+ liensPanierArticles + ", client=" + client + "]";
+	}
+
+	public Client getClient() {
+		return this.client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 }

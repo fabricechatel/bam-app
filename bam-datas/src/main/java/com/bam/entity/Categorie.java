@@ -10,43 +10,28 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="categorie")
 @NamedQuery(name="Categorie.findAll", query="SELECT c FROM Categorie c")
 public class Categorie implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_CATEGORIE", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_CATEGORIE")
 	private int idCategorie;
 
-	@Column(nullable=false)
+	private byte active;
+
 	private int idparent;
 
+	@Column(name="LIBELLE_CATEGORIE")
+	private String libelleCategorie;
+
 	//bi-directional many-to-many association to Article
-	@ManyToMany
-	@JoinTable(
-		name="liens_categorie_article"
-		, joinColumns={
-			@JoinColumn(name="ID_CATEGORIE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_ARTICLE", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="categories")
 	private Set<Article> articles;
 
 	//bi-directional many-to-many association to Caracteristique
-	@ManyToMany
-	@JoinTable(
-		name="liens_specs_categorie"
-		, joinColumns={
-			@JoinColumn(name="ID_CATEGORIE", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_CARACTERISTIQUE", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="categories")
 	private Set<Caracteristique> caracteristiques;
 
 	public Categorie() {
@@ -60,12 +45,28 @@ public class Categorie implements Serializable {
 		this.idCategorie = idCategorie;
 	}
 
+	public byte getActive() {
+		return this.active;
+	}
+
+	public void setActive(byte active) {
+		this.active = active;
+	}
+
 	public int getIdparent() {
 		return this.idparent;
 	}
 
 	public void setIdparent(int idparent) {
 		this.idparent = idparent;
+	}
+
+	public String getLibelleCategorie() {
+		return this.libelleCategorie;
+	}
+
+	public void setLibelleCategorie(String libelleCategorie) {
+		this.libelleCategorie = libelleCategorie;
 	}
 
 	public Set<Article> getArticles() {

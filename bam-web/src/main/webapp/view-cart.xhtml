@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
   <!ENTITY % xhtml-symbol
     PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
@@ -6,171 +6,91 @@
   %xhtml-symbol;
 ]>
 <ui:composition template="/commun/template.xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
-                
-<ui:define name="content-to-include">
-	<!-- Page content starts -->
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-
+	<ui:define name="content-to-include">
 <!-- Cart starts -->
+ 
+<h:panelGroup layout="block" class="cart">
+  <h:panelGroup layout="block" class="container">
+    <h:panelGroup layout="block" class="row">
+      <h:panelGroup layout="block" class="col-md-12">
 
-<div class="cart">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-
-        <!-- Title with number of items in shopping kart -->
-          <h3 class="title"><i class="icon-shopping-cart"></i> article(s) dans le panier [<span class="color">5</span>]</h3>
+<!--         Title with number of items in shopping kart -->
+          <h3 class="title"><i class="icon-shopping-cart"></i> Articles dans votre panier [<span class="color"><h:outputText value="#{panierCtrl.listePanier.size()}" /></span>]</h3>
             <br />
-
-            <!-- Table -->
-              <table class="table table-striped tcart">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>image</th>
-                    <th>Quantité</th>
-                    <th>Prix unitaire</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <!-- Index -->
-                    <td>1</td>
-                    <!-- Product  name -->
-                    <td><a href="single-item.xhtml">HTC One</a></td>
-                    <!-- Product image -->
-                    <td><a href="single-item.xhtml"><img src="img/photos/2.png" alt="" /></a></td>
-                    <!-- Quantity with refresh and remove button -->
-                    <td class="item-input">
-						<div class="input-group">
-							<input class="form-control" type="text" value="2" />
+		
+			
+			<h:form>
+				<h:dataTable 	value="#{panierCtrl.listePanier}" 
+								var="item" 
+								styleClass="table table-striped tcart">
+					<!-- Index -->
+					
+					<h:column>
+						<f:facet name="header">#</f:facet>
+<!-- 						<h:outputText value="#{item.id}" /> -->
+						<h:outputText value="#{panierCtrl.listePanier.indexOf(item) + 1}" />
+					</h:column>
+					<!-- Product  name -->
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
+						<h:outputText value="#{item.article.libelle}" />
+					</h:column>
+					<!-- Product image -->
+					<h:column>
+						<f:facet name="header">Image</f:facet>
+						<a href="WKsingle-item.xhtml"><img src="img/photos/2.png" alt="" /></a>
+					</h:column>
+					
+					<!-- Quantity with refresh and remove button -->
+					<h:column class="item-input">
+						
+						<f:facet name="header">Quantité</f:facet>
+						<h:panelGroup layout="block" class="input-group">
+							<h:inputText class="form-control" id="quantite" type="text" value="#{item.quantitepanier}" required="true" />
 							<span class="input-group-btn">
-								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
-								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
+								<h:commandLink class="btn btn-default icon-refresh" type="button" action="#{panierCtrl.updateLien(item)}" />
+								<h:commandLink class="btn btn-danger icon-remove" type="button"  action="#{panierCtrl.deleteLien(item)}" />     
 							</span>
-						</div>
-                    </td>
-                    <!-- Unit price -->
-                    <td>$150</td>
-                    <!-- Total cost -->
-                    <td>$300</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><a href="single-item.xhtml">Sony Xperia</a></td>
-                    <td><a href="single-item.xhtml"><img src="img/photos/3.png" alt="" /></a></td>
-                    <td class="item-input">
-                      <div class="input-group">
-							<input class="form-control" type="text" value="2" />
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
-								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
-							</span>
-						</div>
-                    </td>
-                    <td>$150</td>
-                    <td>$150</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><a href="single-item.xhtml">Nokia Asha</a></td>
-                    <td><a href="single-item.xhtml"><img src="img/photos/4.png" alt="" /></a></td>
-                    <td class="item-input">
-                      <div class="input-group">
-							<input class="form-control" type="text" value="2" />
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
-								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
-							</span>
-						</div>              
-                    </td>
-                    <td>$250</td>
-                    <td>$250</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><a href="single-item.xhtml">Samsung Galaxy Pro</a></td>
-                    <td><a href="single-item.xhtml"><img src="img/photos/5.png" alt="" /></a></td>
-                    <td class="item-input">
-                      <div class="input-group">
-							<input class="form-control" type="text" value="2" />
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
-								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
-							</span>
-						</div>
-                    </td>
-                    <td>$450</td>
-                    <td>$450</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td><a href="single-item.xhtml">Micromax Funbook</a></td>
-                    <td><a href="single-item.xhtml"><img src="img/photos/6.png" alt="" /></a></td>
-                    <td class="item-input">
-						<div class="input-group">
-							<input class="form-control" type="text" value="2" />
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button"><i class="icon-refresh"></i></button>
-								<button class="btn btn-danger" type="button"><i class="icon-remove"></i></button>     
-							</span>
-						</div>
-                      
-                    </td>
-                    <td>$150</td>
-                    <td>$300</td>
-                  </tr>                                    
-                  <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Total</th>
-                    <th>$2405</th>
-                  </tr>
-                </tbody>
-              </table>
-
-
-              <form class="form-inline">
-              <!-- Discount Coupen -->
-                <h5 class="title">coupon de réduction</h5>
-                <div class="form-group">
-					<input type="email" class="form-control" id="" placeholder="Discount Coupon" />
-				</div>
-			  
-				<button type="submit" class="btn btn-default">appliquer</button>
-                <br />
-                <br />
-                <!-- Gift coupen -->
-                <h5 class="title">coupon cadeau</h5>
-                <div class="form-group">
-					<input type="email" class="form-control" id="" placeholder="Gift Coupon" />
-				</div>
-			  
-				<button type="submit" class="btn btn-default">appliquer</button>           
-              </form>  
+						</h:panelGroup>
+						
+					</h:column>
+					<!-- Unit price -->				
+					<h:column>
+						<f:facet name="header">Prix Unitaire</f:facet>
+						<h:outputText value="#{item.article.prix}" />
+						<f:facet name="footer">Total</f:facet>
+					</h:column>
+					<!-- Total cost -->
+					<h:column>
+						<f:facet name="header">Prix Total</f:facet>
+						<h:outputText id="prixCummule" value="#{item.prixCummule}" />
+						<f:facet name="footer"><h:outputText id="prixtotal" value="#{panierCtrl.prixTotalPanier}" /></f:facet>
+					</h:column>	
+									
+				
+				</h:dataTable>
+				
+				</h:form> 
                
                <!-- Button s-->
-              <div class="row">
-                <div class="col-md-4 col-md-offset-8">
-                  <div class="pull-right">
-                    <a href="index.xhtml" class="btn btn-default">continuer ses courses</a>
-                    <a href="checkout.xhtml" class="btn btn-danger">Vérifier panier</a>
-                  </div>
-                </div>
-              </div>
+              <h:panelGroup layout="block" class="row">
+                <h:panelGroup layout="block" class="col-md-4 col-md-offset-8">
+                  <h:panelGroup layout="block" class="pull-right">
+                    <a href="index.jsp" class="btn btn-default">Continuer vos achats</a>
+                    <a href="checkout.xhtml" class="btn btn-danger">Valider</a>
+                  </h:panelGroup>
+                </h:panelGroup>
+              </h:panelGroup>
 
-      </div>
-    </div>
-  </div>
-</div>
+      </h:panelGroup>
+    </h:panelGroup>
+  </h:panelGroup>
+</h:panelGroup>
 
-	<!-- Page content ends -->
-    </ui:define>
+<!-- Cart ends -->
+	</ui:define>
 </ui:composition>

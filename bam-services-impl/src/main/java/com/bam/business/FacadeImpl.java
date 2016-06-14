@@ -15,6 +15,9 @@ public class FacadeImpl implements Facade {
 	@Autowired
 	UtilisateurBusiness utilisateurBusiness;
 	
+	@Autowired
+	PanierBusiness panierBusiness;
+	
 	@Override
 	public ClientBusiness getClientBusiness() {
 		return clientBusiness;
@@ -24,5 +27,8 @@ public class FacadeImpl implements Facade {
 	public UtilisateurBusiness getUtilisateurBusiness() {
 		return utilisateurBusiness;
 	}
-
+	@Override
+	public PanierBusiness getPanierBusiness() {
+		return panierBusiness;
+	}
 }

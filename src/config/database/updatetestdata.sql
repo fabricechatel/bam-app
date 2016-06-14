@@ -1,0 +1,21 @@
+use bamdb;
+
+update ARTICLE
+set LIBELLE = CONCAT("ARTICLE", ID_ARTICLE),
+ REFARTICLE = CONCAT("REF_ARTICLE", ID_ARTICLE);
+
+update LIBELLE_CATEGORIE
+set LIBELLE_CATEGORIE = CONCAT("P_", IDPARENT, "_CATEGORIE_", ID_CATEGORIE);
+
+update Client set
+NOM = CONCAT("NOM_",ID_CLIENT),
+PRENOM = CONCAT("PRENOM_",ID_CLIENT),
+EMAIL= CONCAT("NOM_",ID_CLIENT,".PRENOM_",ID_CLIENT,"@afcepf.fr"),
+CIVILITE=ACTIF%2;
+
+update Client set
+CIVILITE="M" where CIVILITE="1";
+update Client set
+CIVILITE="F" where CIVILITE="0";
+
+update panier set ID_CLIENT = 17 where ID_CLIENT = 4;

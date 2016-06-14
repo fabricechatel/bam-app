@@ -10,17 +10,17 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="caracteristique")
 @NamedQuery(name="Caracteristique.findAll", query="SELECT c FROM Caracteristique c")
 public class Caracteristique implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_CARACTERISTIQUE", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID_CARACTERISTIQUE")
 	private int idCaracteristique;
 
-	@Column(nullable=false, length=128)
+	private String attribut;
+
 	private String valeur;
 
 	//bi-directional many-to-many association to Article
@@ -28,16 +28,25 @@ public class Caracteristique implements Serializable {
 	@JoinTable(
 		name="liens_specs_article"
 		, joinColumns={
-			@JoinColumn(name="ID_CARACTERISTIQUE", nullable=false)
+			@JoinColumn(name="ID_CARACTERISTIQUE")
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="ID_ARTICLE", nullable=false)
+			@JoinColumn(name="ID_ARTICLE")
 			}
 		)
 	private Set<Article> articles;
 
 	//bi-directional many-to-many association to Categorie
-	@ManyToMany(mappedBy="caracteristiques")
+	@ManyToMany
+	@JoinTable(
+		name="liens_specs_categorie"
+		, joinColumns={
+			@JoinColumn(name="ID_CARACTERISTIQUE")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="ID_CATEGORIE")
+			}
+		)
 	private Set<Categorie> categories;
 
 	public Caracteristique() {
@@ -49,6 +58,14 @@ public class Caracteristique implements Serializable {
 
 	public void setIdCaracteristique(int idCaracteristique) {
 		this.idCaracteristique = idCaracteristique;
+	}
+
+	public String getAttribut() {
+		return this.attribut;
+	}
+
+	public void setAttribut(String attribut) {
+		this.attribut = attribut;
 	}
 
 	public String getValeur() {
