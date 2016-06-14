@@ -1,49 +1,16 @@
-<h:html lang="en"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
+  <!ENTITY % xhtml-symbol
+    PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-symbol.ent">
+  %xhtml-symbol;
+]>
+<ui:composition template="/commun/template.xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-	
-<h:head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta charset="utf-8"/>
-  <!-- Title and other stuffs -->
-  <title>View Cart - MacKart</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content=""/>
-  <meta name="keywords" content=""/>
-  <meta name="author" content=""/>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-  <link href='htth://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'/>
-
-  <!-- Stylesheets -->
-  <link href="style/bootstrap.css" rel="stylesheet"/>
-  <!-- Pretty Photo -->
-  <link href="style/prettyPhoto.css" rel="stylesheet"/>
-  <!-- Sidebar nav -->
-  <link href="style/sidebar-nav.css" rel="stylesheet"/>
-  <!-- Flex slider -->
-  <link href="style/flexslider.css" rel="stylesheet"/>
-  <!-- Font awesome icon -->
-  <link rel="stylesheet" href="style/font-awesome.css"/> 
-  <!-- Main stylesheet -->
-  <link href="style/style.css" rel="stylesheet"/>
-  <!-- Stylesheet for Color -->
-  <link href="style/red.css" rel="stylesheet"/>
-  
-  
-  <!-- HTML5 Support for IE -->
-  <!--[if lt IE 9]>
-  <script src="js/html5shim.js"></script>
-  <![endif]-->
-
-  <!-- Favicon -->
-  <h:link rel="shortcut icon" href="img/favicon/favicon.png"/>
-</h:head>
-
-<h:body>
-
+	<ui:define name="content-to-include">
 <!-- Cart starts -->
 
 <h:panelGroup layout="block" class="cart">
@@ -80,7 +47,7 @@
 					
 					<!-- Quantity  -->
 					<h:column class="item-input">
-						<f:facet name="header">Quantité</f:facet>
+						<f:facet name="header">Quantit�</f:facet>
 						<h:outputText id="quantite" value="#{item.quantitepanier}"   />
 						<f:facet name="footer">Total</f:facet>
 					</h:column>
@@ -114,22 +81,5 @@
 
 <!-- Cart ends -->
 
-
-
-
-<!-- Scroll to top -->
-<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
-
-<!-- JS -->
-<script src="js/jquery.js"></script> <!-- jQuery -->
-<script src="js/bootstrap.js"></script> <!-- Bootstrap -->
-<script src="js/jquery.prettyPhoto.js"></script> <!-- Pretty Photo -->
-<script src="js/filter.js"></script> <!-- Filter for support page -->
-
-<script src="js/jquery.flexslider-min.js"></script> <!-- Flex slider -->
-<script src="js/nav.js"></script> <!-- Sidebar navigation -->
-<script src="js/jquery.carouFredSel-6.1.0-packed.js"></script> <!-- Carousel for recent posts -->
-<script src="js/custom.js"></script> <!-- Custom codes -->
-
-</h:body>
-</h:html>
+	</ui:define>
+</ui:composition>
