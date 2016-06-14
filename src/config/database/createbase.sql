@@ -1,7 +1,4 @@
-﻿/*==============================================================*/
-/* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de cr�ation :  10/06/2016 15:14:21                      */
-/*==============================================================*/
+drop schema bamdb;
 
 create schema if not exists bamdb;
 
@@ -321,8 +318,9 @@ create table UTILISATEUR
 /*==============================================================*/
 create table UTILISATEUR_ROLES
 (
+   IDUTILISATEURROLE    int not null,
    NOMROLE              varchar(64) not null,
    ID_UTILISATEUR       int not null,
-   ENABLED              bool,
-   primary key (NOMROLE, ID_UTILISATEUR)
+   ENABLED              bool not null,
+   primary key (IDUTILISATEURROLE)
 );

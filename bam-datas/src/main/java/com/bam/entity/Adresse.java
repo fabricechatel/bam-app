@@ -1,7 +1,10 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -43,7 +46,7 @@ public class Adresse implements Serializable {
 			@JoinColumn(name="ID_CLIENT", nullable=false)
 			}
 		)
-	private Set<Client> clients;
+	private Set<Client> clients = new HashSet<>(0);
 
 	//bi-directional many-to-many association to Commande
 	@ManyToMany

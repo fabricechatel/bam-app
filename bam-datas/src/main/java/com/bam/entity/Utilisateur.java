@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -27,10 +28,21 @@ public class Utilisateur implements Serializable {
 
 	@Column(nullable=false, length=64)
 	private String mdp;
+	
+	@Column(name="ACTIF", nullable=false)
+	private boolean isEnabled;
 
 	//bi-directional one-to-one association to Client
 	@OneToOne(mappedBy="utilisateur")
 	private Client client;
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnable(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
 
 	//bi-directional many-to-one association to Message
 	@OneToMany(mappedBy="sender")
@@ -40,10 +52,9 @@ public class Utilisateur implements Serializable {
 	@OneToMany(mappedBy="receiver")
 	private Set<Message> messagesReceived;
 
-	//bi-directional many-to-one association to Role
-	@ManyToOne
-	@JoinColumn(name="ID_ROLE")
-	private Role role;
+	//bi-directional many-to-one association to UtilisateurRole
+	@OneToMany(mappedBy="utilisateur", fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private Set<UtilisateurRole> utilisateurRoles = new HashSet<>(0);
 
 	public Utilisateur() {
 	}
@@ -124,12 +135,34 @@ public class Utilisateur implements Serializable {
 		return messagesReceived;
 	}
 
-	public Role getRole() {
-		return this.role;
+	public Set<UtilisateurRole> getUtilisateurRoles() {
+		return this.utilisateurRoles;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setUtilisateurRoles(Set<UtilisateurRole> utilisateurRoles) {
+		this.utilisateurRoles = utilisateurRoles;
 	}
+
+	public UtilisateurRole addUtilisateurRole(UtilisateurRole utilisateurRole) {
+		getUtilisateurRoles().add(utilisateurRole);
+		utilisateurRole.setUtilisateur(this);
+
+		return utilisateurRole;
+	}
+
+	public UtilisateurRole removeUtilisateurRole(UtilisateurRole utilisateurRole) {
+		getUtilisateurRoles().remove(utilisateurRole);
+		utilisateurRole.setUtilisateur(null);
+
+		return utilisateurRole;
+	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", login="
+				+ login + ", mdp=" + mdp + ", isEnabled=" + isEnabled + "]";
+	}
+	
+	
 
 }

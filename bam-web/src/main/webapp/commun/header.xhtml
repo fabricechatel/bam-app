@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
+  <!ENTITY % xhtml-symbol
+    PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-symbol.ent">
+  %xhtml-symbol;
+]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+
+		<!-- Header starts -->
+		<header>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-4">
+					<!-- Logo. Use class "color" to add color to the text. -->
+					<div class="logo">
+						<h1>
+							<a href="#">Boite <span class="color bold">à Musique</span></a>
+						</h1>
+						<p class="meta">musique-instruments-spectacles</p>
+					</div>
+				</div>
+
+				<div class="col-md-5 col-md-offset-3">
+
+					<!-- Search form -->
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<input type="email" class="form-control" id="search"
+								placeholder="Rechercher" />
+						</div>
+
+						<button type="submit" class="btn btn-default">Rechercher</button>
+					</form>
+
+					<div class="hlinks">
+						<span> <!-- item details with price --> <a href="#cart"
+							role="button" data-toggle="modal">3 articles dans votre <i
+								class="icon-shopping-cart"></i></a> -<span class="bold">$25</span>
+
+						</span>
+
+						<ui:fragment rendered="${!empty request.remoteUser}">
+							<!-- Login and Register link -->							
+							<span class="lr"><h:outputText value="Bienvenue ${request.remoteUser}" /> /</span>
+							<h:form>
+							<h:commandLink action="#{login.logout}" value="Se deconnecter"></h:commandLink>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+							</h:form>
+						</ui:fragment>
+						<ui:fragment rendered="${empty request.remoteUser}">
+							<!-- Login and Register link -->
+							<span class="lr"><a href="login.xhtml" >Connexion</a> / <a href="#register"
+								role="button" data-toggle="modal">Enregistrement</a></span>
+						</ui:fragment>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		</header>
+		<!-- Header ends -->
+
+
+
+		<!-- Cart, Login and Register form (Modal) -->
+
+		<!-- Cart Modal starts - DEBUT DU PANIER -->
+		<div id="cart" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4>panier</h4>
+					</div>
+					<div class="modal-body">
+
+						<table class="table table-striped tcart">
+							<thead>
+								<tr>
+									<th>Nom</th>
+									<th>Quantité</th>
+									<th>prix</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="single-item.xhtml">HTC One</a></td>
+									<td>2</td>
+									<td>$250</td>
+								</tr>
+								<tr>
+									<td><a href="single-item.xhtml">Apple iPhone</a></td>
+									<td>1</td>
+									<td>$502</td>
+								</tr>
+								<tr>
+									<td><a href="single-item.xhtml">Galaxy Note</a></td>
+									<td>4</td>
+									<td>$1303</td>
+								</tr>
+								<tr>
+									<th></th>
+									<th>Total</th>
+									<th>$2405</th>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+					<div class="modal-footer">
+						<a href="index.xhtml" class="btn">Continuer ses achats</a> <a
+							href="checkout.xhtml" class="btn btn-danger">paiement</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Cart modal ends -->
+
+		<!-- Login Modal starts -->
+		<div id="login" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4>Login</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form">
+							<form action="../j_spring_security_check" method="post"
+								class="form-horizontal">
+								<!-- Username -->
+								<div class="form-group">
+									<label class="control-label col-md-3" for="username">Nom
+										d'utilisateur</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" id="username" />
+									</div>
+								</div>
+								<!-- Password -->
+								<div class="form-group">
+									<label class="control-label col-md-3" for="password">Mot
+										de passe</label>
+									<div class="col-md-9">
+										<input type="password" class="form-control" id="password" />
+									</div>
+								</div>
+								<div class="form-group">
+									<ui:fragment rendered="${!empty param['error']}">
+										<div class="message">
+											<h:outputText value="#{login.message}" />
+										</div>
+									</ui:fragment>
+									<ui:fragment rendered="${empty param['error']}">
+										<div class="message">
+											<h:outputText value="#{login.message}" />
+										</div>
+									</ui:fragment>
+								</div>
+								<div class="form-group">
+									<div class="col-md-9 col-md-offset-3">
+										<div class="checkbox inline">
+											<label> <input type="checkbox" id="inlineCheckbox1"
+												value="agree" />Rester connecte
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-md-9 col-md-offset-3">
+										<button type="submit" class="btn btn-default">Se
+											connecter</button>
+										<button type="reset" class="btn btn-default">Effacer</button>
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<p>
+							Vous n'avez pas de compte? <a href="register.xhtml">S'enregistrer</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Login modal ends -->
+
+		<!-- Register Modal starts -->
+
+		<div id="register" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×</button>
+						<h4>S'enregistrer</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label class="control-label col-md-3">Civilité</label>
+									<div class="col-md-9">
+										<select class="form-control">
+											<option>&nbsp;</option>
+											<option>M.</option>
+											<option>Mme.</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" for="name">Nom</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" id="name" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" for="name">Prénom</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" id="name" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" for="email">Email</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" id="email" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label col-md-3" for="username">login</label>
+									<div class="col-md-9">
+										<input type="text" class="form-control" id="username" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3" for="password">mot
+										de passe</label>
+									<div class="col-md-9">
+										<input type="password" class="form-control" id="password" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-9 col-md-offset-3">
+										<div class="checkbox inline">
+											<label> <input type="checkbox" id="inlineCheckbox2"
+												value="agree" /> accepter les conditions d'utilisation
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-md-9 col-md-offset-3">
+										<button type="submit" class="btn btn-default">valider</button>
+										<button type="reset" class="btn btn-default">reinitialiser</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<p>
+							Vous avez déjà un compte? <a href="login.xhtml">S'enregistrer</a>
+							ici.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Register modal ends -->
+
+		<!-- Navigation -->
+		<div class="navbar bs-docs-nav" role="banner">
+
+			<div class="container">
+				<div class="navbar-header">
+					<button class="navbar-toggle" type="button" data-toggle="collapse"
+						data-target=".bs-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+
+				</div>
+				<nav class="collapse navbar-collapse bs-navbar-collapse"
+					role="navigation">
+				<ul class="nav navbar-nav">
+					<li><a href="index.xhtml"><i class="icon-home"></i></a></li>
+					<ui:fragment rendered="${!empty request.remoteUser}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">Mon compte <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="myaccount.xhtml">Compte</a></li>
+								<li><a href="view-cart.xhtml">panier</a></li>
+								<li><a href="checkout.xhtml">Paiement</a></li>
+								<li><a href="order-history.xhtml">Historiques</a></li>
+								<li><a href="edit-profile.xhtml">modifier profil</a></li>
+							</ul></li>
+					</ui:fragment>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Tutoriels <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="blog.xhtml">Accès aux tutos</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Instruments <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">vents</a></li>
+							<li><a href="items.xhtml">Cuivres</a></li>
+							<li><a href="items.xhtml">Bois</a></li>
+							<li><a href="items.xhtml">Cordes</a></li>
+							<li><a href="items.xhtml">Numérique/Digital</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="items.xhtml"
+						class="dropdown-toggle" data-toggle="dropdown">CD/DVD <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">CD/DVD</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="items.xhtml"
+						class="dropdown-toggle" data-toggle="dropdown">Mp3 <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">Télécharger</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="items.xhtml"
+						class="dropdown-toggle" data-toggle="dropdown">Logiciels <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="items.xhtml">Télécharger</a></li>
+						</ul></li>
+				</ul>
+				</nav>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>
