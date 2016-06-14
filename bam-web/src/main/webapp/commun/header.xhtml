@@ -83,41 +83,40 @@
 							aria-hidden="true">×</button>
 						<h4>panier</h4>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body">		
+					
+					<h:dataTable 	value="#{panierCtrl.listePanier}" 
+								var="item" 
+								styleClass="table table-striped tcart">
+					<!-- Index -->
+					
 
-						<table class="table table-striped tcart">
-							<thead>
-								<tr>
-									<th>Nom</th>
-									<th>Quantité</th>
-									<th>prix</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td><a href="single-item.xhtml">HTC One</a></td>
-									<td>2</td>
-									<td>$250</td>
-								</tr>
-								<tr>
-									<td><a href="single-item.xhtml">Apple iPhone</a></td>
-									<td>1</td>
-									<td>$502</td>
-								</tr>
-								<tr>
-									<td><a href="single-item.xhtml">Galaxy Note</a></td>
-									<td>4</td>
-									<td>$1303</td>
-								</tr>
-								<tr>
-									<th></th>
-									<th>Total</th>
-									<th>$2405</th>
-								</tr>
-							</tbody>
-						</table>
-
+					<!-- Product  name -->
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
+						<h:outputText value="#{item.article.libelle}" />
+					</h:column>
+					
+					<!-- Quantity  -->
+					<h:column class="item-input">
+						<f:facet name="header">Quantit�</f:facet>
+						<h:outputText id="quantite" value="#{item.quantitepanier}"   />
+						<f:facet name="footer">Total</f:facet>
+					</h:column>
+			
+					<!-- Total cost -->
+					<h:column>
+						<f:facet name="header">Prix Total</f:facet>
+						<h:outputText id="prixCummule" value="#{item.prixCummule}" />
+						<f:facet name="footer"><h:outputText id="prixtotal" value="#{panierCtrl.prixTotalPanier}" /></f:facet>
+					</h:column>	
+									
+				
+				</h:dataTable>
+					
 					</div>
+					
+					
 					<div class="modal-footer">
 						<a href="index.xhtml" class="btn">Continuer ses achats</a> <a
 							href="checkout.xhtml" class="btn btn-danger">paiement</a>
