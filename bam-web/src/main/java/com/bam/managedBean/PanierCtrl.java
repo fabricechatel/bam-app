@@ -10,14 +10,18 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.bam.business.Facade;
+import com.bam.entity.Client;
 import com.bam.entity.LiensPanierArticle;
 import com.bam.entity.Panier;
+import com.bam.entity.Utilisateur;
 
 
 @ManagedBean(name="panierCtrl")
@@ -27,12 +31,41 @@ public class PanierCtrl implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ManagedProperty(value = "#{facadeImpl}")
-	Facade facade;
-
-	List<LiensPanierArticle> listePanier;
+	private Facade facade;
+	private Client client;
+	private List<LiensPanierArticle> listePanier;
 	@PostConstruct
 	public void init() {
+		
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		if ((request.getRemoteUser() != null) && (client == null)){
+			client = new Client();
+			if (facade != null) {
+				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
+				if ((u != null) && (u.getClient() != null)){
+					client = u.getClient();
+				}
+			}
+		}
+		
+		
 		listePanier = new ArrayList<>(getPanier().getLiensPanierArticles());
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Facade getFacade() {
+		return facade;
+	}
+	
+	public void setFacade(Facade facade) {
+		this.facade = facade;
 	}
 	
 	public Panier getPanier() {		
@@ -74,10 +107,6 @@ public class PanierCtrl implements Serializable {
 		init();
 	}
 	
-	public void setFacade(Facade facade) {
-		this.facade = facade;
-	}
-
 	public void updatePanier(){
 		Panier p = getPanier();
 		System.out.println("CTRL++++++++++++++++++++=====>>"+ p);
@@ -93,20 +122,8 @@ public class PanierCtrl implements Serializable {
 	}
 
 
-	
-	
-//	//sort by order no
-//		public String sortByLiensPanierArticleId() {
-//		    
-//		   Collections.sort(orderArrayList, new Comparator<LiensPanierArticle>() {
-//
-//			@Override
-//			public int compare(LiensPanierArticle o1, LiensPanierArticle o2) {
-//						
-//				return  o1.getId().compareTo(o2.getId();
-//						
-//			}
-//		   });	
-//		}
+	public Panier getPanierByClientId(int idClient){
+		facade.getPanierBusiness().getPanierByClientId(idClient)
+	}
 	
 }

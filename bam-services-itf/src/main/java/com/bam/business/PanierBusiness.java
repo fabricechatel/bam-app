@@ -13,5 +13,6 @@ public interface PanierBusiness {
 	public void deleteLienPanierArticle(LiensPanierArticle lien);
 	public void updateLienPanierArticle(LiensPanierArticle lien);
 	public List<LiensPanierArticle> getLiensPanierArticlesValides(Panier panier);
+	public Panier getPanierByClientId(int idClient);
 	
 }
