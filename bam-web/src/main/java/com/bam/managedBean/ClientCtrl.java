@@ -20,8 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 //import javax.inject.Inject;
@@ -30,18 +37,16 @@ import org.springframework.stereotype.Component;
 
 
 
+
+
+
+
 import com.bam.business.Facade;
+import com.bam.business.LoginServiceImpl;
 import com.bam.entity.Adresse;
 import com.bam.entity.Client;
 import com.bam.entity.Utilisateur;
 import com.bam.entity.UtilisateurRole;
-
-
-//@Named
-
-
-//@ManagedBean(name="clientCtrl")
-//@RequestScoped
 
 @ManagedBean(name="clientCtrl")
 @Scope("request")
@@ -52,6 +57,9 @@ public class ClientCtrl implements Serializable {
 
 	@ManagedProperty(value="#{facadeImpl}")
 	private Facade facade;
+	
+//	@ManagedProperty(value="#{loginServiceImpl}")
+//	private UserDetailsService login;
 	
 	private Client clientACreer = new Client();
 	private Utilisateur utilisateurACreer = new Utilisateur();
@@ -82,7 +90,6 @@ public class ClientCtrl implements Serializable {
 	}
 	
 	public void init(){
-		System.out.println(facade);
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		if ((request.getRemoteUser() != null) && (client == null)){
 			client = new Client();
@@ -92,6 +99,8 @@ public class ClientCtrl implements Serializable {
 					client = u.getClient();
 				}
 			}
+		} else {
+//			((LoginServiceImpl) login).autologinAnonymous();
 		}
 	}
 	
@@ -192,4 +201,3 @@ public class ClientCtrl implements Serializable {
 		}
 	}
 }
-;

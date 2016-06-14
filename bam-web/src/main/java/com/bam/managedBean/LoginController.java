@@ -79,8 +79,8 @@ public class LoginController implements Serializable {
 //	}
 	
 	public String logout(){
-		HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-		
+//		HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+	
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		HttpServletResponse response = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
 

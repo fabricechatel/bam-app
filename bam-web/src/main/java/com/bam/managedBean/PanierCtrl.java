@@ -123,7 +123,7 @@ public class PanierCtrl implements Serializable {
 
 
 	public Panier getPanierByClientId(int idClient){
-		facade.getPanierBusiness().getPanierByClientId(idClient)
+		return facade.getPanierBusiness().getPanierByClientId(idClient);
 	}
 	
 }

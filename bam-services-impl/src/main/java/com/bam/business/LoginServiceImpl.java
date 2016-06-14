@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.authentication.*;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import com.bam.dao.UtilisateurDao;
@@ -24,6 +29,12 @@ public class LoginServiceImpl implements UserDetailsService {
 	@Autowired
 	private UtilisateurDao utilisateurDao;
 
+	public void autologinAnonymous(){
+		UserDetails user = loadUserByUsername("anonymous");
+        Authentication auth = new UsernamePasswordAuthenticationToken(user, "anonymous", user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(auth);
+	}
+	
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
