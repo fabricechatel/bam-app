@@ -25,4 +25,25 @@ public class UtilisateurBusinessImpl implements UtilisateurBusiness {
 		}
 		return false;
 	}
+	
+	@Override
+	public void sauvegarderUtilisateur(Utilisateur user) {
+		utilisateurDao.save(user);		
+	}
+
+	@Override
+	public Utilisateur modifierUtilisateur(Utilisateur user) {
+		return utilisateurDao.update(user);
+	}
+
+	@Override
+	public void effacerUtilisateur(Utilisateur user) {
+		utilisateurDao.delete(user);
+		
+	}
+
+	@Override
+	public Utilisateur getUtilisateurById(int userID) {
+		return utilisateurDao.find(userID);
+	}
 }

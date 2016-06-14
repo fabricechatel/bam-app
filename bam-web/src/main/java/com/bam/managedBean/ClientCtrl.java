@@ -2,6 +2,8 @@ package com.bam.managedBean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -24,7 +28,10 @@ import org.springframework.stereotype.Component;
 //import javax.inject.Named;
 
 
+
+
 import com.bam.business.Facade;
+import com.bam.entity.Adresse;
 import com.bam.entity.Client;
 import com.bam.entity.Utilisateur;
 import com.bam.entity.UtilisateurRole;
@@ -36,15 +43,14 @@ import com.bam.entity.UtilisateurRole;
 //@ManagedBean(name="clientCtrl")
 //@RequestScoped
 
-@Component("clientCtrl")
+@ManagedBean(name="clientCtrl")
 @Scope("request")
 public class ClientCtrl implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Client client;
 
-//	@ManagedProperty(value="#{facade}")
-	@Autowired
+	@ManagedProperty(value="#{facadeImpl}")
 	private Facade facade;
 	
 	private Client clientACreer = new Client();
@@ -76,8 +82,9 @@ public class ClientCtrl implements Serializable {
 	}
 	
 	public void init(){
+		System.out.println(facade);
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		if ((request.getRemoteUser() != null) && (client == null) ){
+		if ((request.getRemoteUser() != null) && (client == null)){
 			client = new Client();
 			if (facade != null) {
 				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
@@ -145,6 +152,7 @@ public class ClientCtrl implements Serializable {
 	}
 	
 	public void saveClientEtUtilisateur() {
+		System.out.println("par ici");
 		if (agree == true) {
 			utilisateurDejaExiste = facade.getUtilisateurBusiness().findByUserName(utilisateurACreer.getLogin());
 			if (utilisateurDejaExiste == null) {
@@ -158,13 +166,14 @@ public class ClientCtrl implements Serializable {
 				facade.getUtilisateurBusiness().sauvegarderUtilisateur(utilisateurACreer);
 				clientACreer.setUtilisateur(utilisateurACreer);
 				clientACreer.setEnabled(true);
-
-				Client c = facade.getClientBusiness().sauvegarderClient(clientACreer);
-				if (c != null) {
+                System.out.println("util--------------"+utilisateurACreer);
+				facade.getClientBusiness().sauvegarderClient(clientACreer);
+				System.out.println("cli---------------"+clientACreer);
+				if (clientACreer.getIdClient() != 0) {
 					messageAjoutClient = "Client bien ajouté";
 				}
 			}
-		} 
+		}
 	}
 	
 	public void updateClientEtUtilisateur() {
