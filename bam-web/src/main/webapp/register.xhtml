@@ -8,13 +8,14 @@
 <ui:composition template="/commun/template.xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:sec="http://www.springframework.org/security/tags">
 
 
 <ui:define name="content-to-include">
 
 <!-- Page content starts -->
-
+<sec:authorize access="isAuthenticated()">
 <div class="content">
   <div class="container">
     <div class="row">
@@ -109,7 +110,7 @@
     </div>
   </div>
 </div>
-
+</sec:authorize>
 	<!-- Page content ends -->
     </ui:define>
 </ui:composition>

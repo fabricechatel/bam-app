@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
@@ -41,12 +42,13 @@ import org.springframework.stereotype.Component;
 
 
 
+
 import com.bam.business.Facade;
-import com.bam.business.LoginServiceImpl;
 import com.bam.entity.Adresse;
 import com.bam.entity.Client;
 import com.bam.entity.Utilisateur;
 import com.bam.entity.UtilisateurRole;
+import com.bam.security.LoginServiceImpl;
 
 @ManagedBean(name="clientCtrl")
 @Scope("request")
@@ -100,7 +102,12 @@ public class ClientCtrl implements Serializable {
 				}
 			}
 		} else {
-//			((LoginServiceImpl) login).autologinAnonymous();
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        if (auth.isAuthenticated()) {
+	            System.out.println("auth.isAuthenticated() : " + auth.getName() + " " + auth.getAuthorities().toString()); 
+	        } else {
+	        	System.out.println("auth.isAuthenticated() not ");
+	        }
 		}
 	}
 	

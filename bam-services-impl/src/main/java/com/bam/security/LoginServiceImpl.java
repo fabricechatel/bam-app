@@ -1,4 +1,4 @@
-package com.bam.business;
+package com.bam.security;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -32,6 +32,7 @@ public class LoginServiceImpl implements UserDetailsService {
 	public void autologinAnonymous(){
 		UserDetails user = loadUserByUsername("anonymous");
         Authentication auth = new UsernamePasswordAuthenticationToken(user, "anonymous", user.getAuthorities());
+        
         SecurityContextHolder.getContext().setAuthentication(auth);
 	}
 	
