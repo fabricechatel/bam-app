@@ -6,111 +6,152 @@
   %xhtml-symbol;
 ]>
 <ui:composition template="/commun/template.xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:sec="http://www.springframework.org/security/tags">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/tags">
 
 
-<ui:define name="content-to-include">
+	<ui:define name="content-to-include">
 
-<!-- Page content starts -->
-<sec:authorize access="isAuthenticated()">
-<div class="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <!-- Some content -->
-                  <h3 class="title">Register Today <span class="color">!!!</span></h3>
-                  <h4 >Morbi tincidunt posuere turpis eu laoreet</h4>
-                  <p>Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
-                  <h5>Maecenas hendrerit neque id</h5>
-				  <div class="lists">
-                  <ul>
-                    <li>Etiam adipiscing posuere justo, nec iaculis justo dictum non</li>
-                    <li>Cras tincidunt mi non arcu hendrerit eleifend</li>
-                    <li>Aenean ullamcorper justo tincidunt justo aliquet et lobortis diam faucibus</li>
-                    <li>Maecenas hendrerit neque id ante dictum mattis</li>
-                    <li>Vivamus non neque lacus, et cursus tortor</li>
-                  </ul>
-				  </div>
-                  <p>Nullam in est urna. In vitae adipiscing enim. In ut nulla est. Nullam in est urna. In vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non convallis dolor faucibus eget. In ut nulla est. </p>
+		<!-- Page content starts -->
+<!-- 		<sec:authorize access="isAuthenticated()"> -->
+			<div class="content">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<!-- Some content -->
+							<h3 class="title">
+								Register Today <span class="color">!!!</span>
+							</h3>
+							<h4>Morbi tincidunt posuere turpis eu laoreet</h4>
+							<p>Nullam in est urna. In vitae adipiscing enim. Curabitur
+								rhoncus condimentum lorem, non convallis dolor faucibus eget. In
+								vitae adipiscing enim. Curabitur rhoncus condimentum lorem, non
+								convallis dolor faucibus eget. In ut nulla est.</p>
+							<h5>Maecenas hendrerit neque id</h5>
+							<div class="lists">
+								<ul>
+									<li>Etiam adipiscing posuere justo, nec iaculis justo
+										dictum non</li>
+									<li>Cras tincidunt mi non arcu hendrerit eleifend</li>
+									<li>Aenean ullamcorper justo tincidunt justo aliquet et
+										lobortis diam faucibus</li>
+									<li>Maecenas hendrerit neque id ante dictum mattis</li>
+									<li>Vivamus non neque lacus, et cursus tortor</li>
+								</ul>
+							</div>
+							<p>Nullam in est urna. In vitae adipiscing enim. In ut nulla
+								est. Nullam in est urna. In vitae adipiscing enim. Curabitur
+								rhoncus condimentum lorem, non convallis dolor faucibus eget. In
+								ut nulla est.</p>
 
-                </div>
+						</div>
 
-                <div class="col-md-6">
-                  <div class="formy well">
-                     <h4 class="title">Register for New Account</h4>
-                                  <div class="form">
-                                      <!-- Register form -->
-                                      <h:form class="form-horizontal" id="formRegistration2">
-                                        <h:panelGroup id="reg">
-                                         <!-- Name -->
-                                          <div class="form-group">
-                                            <label class="control-label col-md-3" for="nom">Nom</label>
-                                            <div class="col-md-6">
-                                              <h:inputText value="#{clientCtrl.clientACreer.nom }" styleClass="form-control" id="nom" required="true" requiredMessage="Entrez le nom"/>
-                                            </div>
-                                          </div>
-                                          <div class="form-group">
-								            <label class="control-label col-md-3" for="prenom">Prénom</label>
-								            <div class="col-md-6">
-									          <h:inputText  value="#{clientCtrl.clientACreer.prenom }" class="form-control" id="prenom" required="true" requiredMessage="Entrez le pr�nom"/>
-								            </div>
-							              </div>   
-							              <!-- Email -->
-							              <div class="form-group">
-								            <label class="control-label col-md-3" for="email">Email</label>
-								            <div class="col-md-6">
-									          <h:inputText type="text" value="#{clientCtrl.clientACreer.email }" class="form-control" id="email" required="true" requiredMessage="Entrez le mail"/>
-								            </div>
-							              </div>
-							              <!-- Username -->
-							              <div class="form-group">
-								            <label class="control-label col-md-3" for="login">Login</label>
-								            <div class="col-md-6">
-									          <h:inputText type="text" value="#{clientCtrl.utilisateurACreer.login }" class="form-control" id="login" required="true" requiredMessage="Entrez le pseudo" />
-								            </div>
-						 	              </div>
-							              <!-- Password -->
-							              <div class="form-group">
-								            <label class="control-label col-md-3" for="mdp">Mot de passe</label>
-								            <div class="col-md-6">
-									          <h:inputText type="password" value="#{clientCtrl.utilisateurACreer.mdp }" class="form-control" id="mdp" required="true" requiredMessage="Entrez le mot de passe"/>
-								            </div>
-							              </div>
-							              <!-- Checkbox -->
-							              <div class="form-group">
-								            <div class="col-md-6 col-md-offset-3">
-									           <label class="checkbox inline">
-									              <h:selectBooleanCheckbox value="#{clientCtrl.agree}" required="true" requiredMessage="Il faut accepter"/> Accepter les conditions d'utilisation
-									           </label>
-								            </div>
-							              </div>                              
-							              <!-- Buttons -->
-							              <div class="form-group">
-								            <!-- Buttons -->
-								            <div class="col-md-6 col-md-offset-3" >
-									             <h:commandButton value="Valider" type="submit" action="#{clientCtrl.saveClientEtUtilisateur }" />&#160;&#160;&#160;&#160;&#160;
-									             <h:commandButton value="Reset" type="reset" />
-								            </div>
-							              </div>
-							              <div style="text-align: center;">
-							                   <strong><h:outputText style="color: green;" value="#{clientCtrl.messageAjoutClient }"></h:outputText></strong>
-							              </div>
-							            </h:panelGroup>
-                                      </h:form>
-									  <div class="clearfix"></div>
-									  <hr />
-										<p>Vous avez déjà un compte? <a href="login.xhtml">Connectez </a>ici</p>
-                                    </div> 
-                                  </div>
+						<div class="col-md-6">
+							<div class="formy well">
+								<h4 class="title">Register for New Account</h4>
+								<div class="form">
+									<!-- Register form -->
+									<h:form class="form-horizontal" id="formRegistration2">
+										<h:panelGroup id="reg">
+											<div class="form-group">
+												<label class="control-label col-md-3" for="civilite">Civilité</label>
+												<h:selectOneRadio
+													value="#{clientCtrl.clientACreer.civilite }" id="civilite">
+													<f:selectItem itemValue="M" itemLabel="M" />
+													<f:selectItem itemValue="Mme" itemLabel="Mme" />
+												</h:selectOneRadio>
+											</div>
+											<!-- Name -->
+											<div class="form-group">
+												<label class="control-label col-md-3" for="nom">Nom</label>
+												<div class="col-md-6">
+													<h:inputText value="#{clientCtrl.clientACreer.nom }"
+														styleClass="form-control" id="nom" required="true"
+														requiredMessage="Entrez le nom" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-md-3" for="prenom">Prénom</label>
+												<div class="col-md-6">
+													<h:inputText value="#{clientCtrl.clientACreer.prenom }"
+														class="form-control" id="prenom" required="true"
+														requiredMessage="Entrez le pr�nom" />
+												</div>
+											</div>
+											<!-- Email -->
+											<div class="form-group">
+												<label class="control-label col-md-3" for="email">Email</label>
+												<div class="col-md-6">
+													<h:inputText type="text"
+														value="#{clientCtrl.clientACreer.email }"
+														class="form-control" id="email" required="true"
+														requiredMessage="Entrez le mail" />
+												</div>
+											</div>
+											<!-- Username -->
+											<div class="form-group">
+												<label class="control-label col-md-3" for="login">Login</label>
+												<div class="col-md-6">
+													<h:inputText type="text"
+														value="#{clientCtrl.utilisateurACreer.login }"
+														class="form-control" id="login" required="true"
+														requiredMessage="Entrez le pseudo" />
+												</div>
+											</div>
+											<!-- Password -->
+											<div class="form-group">
+												<label class="control-label col-md-3" for="mdp">Mot
+													de passe</label>
+												<div class="col-md-6">
+													<h:inputText type="password"
+														value="#{clientCtrl.utilisateurACreer.mdp }"
+														class="form-control" id="mdp" required="true"
+														requiredMessage="Entrez le mot de passe" />
+												</div>
+											</div>
+											<!-- Checkbox -->
+											<div class="form-group">
+												<div class="col-md-6 col-md-offset-3">
+													<label class="checkbox inline"> <h:selectBooleanCheckbox
+															value="#{clientCtrl.agree}" required="true"
+															requiredMessage="Il faut accepter" /> Accepter les
+														conditions d'utilisation
+													</label>
+												</div>
+											</div>
+											<!-- Buttons -->
+											<div class="form-group">
+												<!-- Buttons -->
+												<div class="col-md-6 col-md-offset-3">
+													<h:commandButton value="Valider" type="submit"
+														action="#{clientCtrl.saveClientEtUtilisateur }" />
+													<h:commandButton value="Reset" type="reset" />
+													<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+												</div>
+											</div>
+											<div style="text-align: center;">
+												<strong><h:outputText style="color: green;"
+														value="#{clientCtrl.messageAjoutClient }"></h:outputText></strong>
+											</div>
+										</h:panelGroup>
+									</h:form>
+									<div class="clearfix"></div>
+									<hr />
+									<p>
+										Vous avez déjà un compte? <a href="login.xhtml">Connectez
+										</a>ici
+									</p>
+								</div>
+							</div>
 
-                </div>
-    </div>
-  </div>
-</div>
-</sec:authorize>
-	<!-- Page content ends -->
-    </ui:define>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- 		</sec:authorize> -->
+		<!-- Page content ends -->
+	</ui:define>
 </ui:composition>

@@ -37,8 +37,7 @@ public class PanierBusinessImpl implements PanierBusiness {
 	
 	@Transactional
 	public void sauvegarderPanier(Panier entity) {
-		for(LiensPanierArticle l: entity.getLiensPanierArticles())
-			lienDao.update(l);
+		dao.save(entity);
 	}
 
 	@Transactional
@@ -94,12 +93,6 @@ public class PanierBusinessImpl implements PanierBusiness {
 
 	@Override
 	public Panier getPanierByClientId(int idClient) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getPanierByClientId(idClient);
 	}
-
-
-
-
-	
 }

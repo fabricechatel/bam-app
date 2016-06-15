@@ -28,7 +28,19 @@ import com.bam.entity.Utilisateur;
 public class LoginController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String message;
+	private String logout;
 	
+	
+	public String getLogout() {
+		System.out.println("getLogout " + logout);
+		return logout;
+	}
+
+	public void setLogout(String logout) {
+		System.out.println("setLogout " + logout);
+		this.logout = logout;
+	}
+
 	@Autowired
 	Facade facade;
 
@@ -78,7 +90,7 @@ public class LoginController implements Serializable {
 //		return new ModelAndView("403", "username", username);
 //	}
 	
-	public String logout(){
+	public void logout(){
 //		HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 	
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -88,6 +100,7 @@ public class LoginController implements Serializable {
 	    if (auth != null){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-        return "login";
+//        return "login";
     }
+	
 }

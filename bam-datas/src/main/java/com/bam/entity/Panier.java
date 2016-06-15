@@ -3,6 +3,7 @@ package com.bam.entity;
 import java.io.Serializable;
 
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class Panier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idpanier;
 
 	private String refinternaute;
@@ -26,11 +27,17 @@ public class Panier implements Serializable {
 	private List<LiensPanierArticle> liensPanierArticles;
 
 	//bi-directional many-to-one association to Client
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="ID_CLIENT")
 	private Client client;
 
 	public Panier() {
+	}
+	
+	public Panier(String refinternaute, Client client) {
+		super();
+		this.refinternaute = refinternaute;
+		this.client = client;
 	}
 
 	public int getIdpanier() {

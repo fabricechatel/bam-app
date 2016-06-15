@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
@@ -43,9 +44,11 @@ import org.springframework.stereotype.Component;
 
 
 
+
 import com.bam.business.Facade;
 import com.bam.entity.Adresse;
 import com.bam.entity.Client;
+import com.bam.entity.Panier;
 import com.bam.entity.Utilisateur;
 import com.bam.entity.UtilisateurRole;
 import com.bam.security.LoginServiceImpl;
@@ -93,22 +96,32 @@ public class ClientCtrl implements Serializable {
 	
 	public void init(){
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		if ((request.getRemoteUser() != null) && (client == null)){
+		if (request.getRemoteUser() != null){
 			client = new Client();
 			if (facade != null) {
 				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
 				if ((u != null) && (u.getClient() != null)){
 					client = u.getClient();
+					Panier panier = facade.getPanierBusiness().getPanierByClientId(client.getIdClient());
+					System.out.println(panier);
+					if (panier == null){
+						facade.getPanierBusiness().sauvegarderPanier(new Panier(request.getSession().getId(), client));
+					}
 				}
 			}
-		} else {
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        if (auth.isAuthenticated()) {
-	            System.out.println("auth.isAuthenticated() : " + auth.getName() + " " + auth.getAuthorities().toString()); 
-	        } else {
-	        	System.out.println("auth.isAuthenticated() not ");
-	        }
-		}
+		} 
+//		else {
+//			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//	        if (auth.isAuthenticated()) {  
+//	            System.out.println("auth.isAuthenticated() : " + auth.getName() + " " + auth.getAuthorities().toString()); 
+//	        } else {
+//	        	System.out.println("auth.isAuthenticated() not ");
+//	        }
+//		}
+	}
+	
+	public void setcookies(){
+		System.out.println("par ici les cookies");
 	}
 	
 	public Client getClientACreer() {
