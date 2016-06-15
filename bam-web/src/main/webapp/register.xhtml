@@ -70,6 +70,7 @@
 													styleClass="form-control" id="nom" required="true"
 													requiredMessage="Entrez le nom" >
 												<f:validateLength minimum="3" maximum="15"/>
+												<f:validateRegex pattern="[a-zA-Z]+"/>
 												</h:inputText>
 												<h:message for="nom"/>
 											</div>
@@ -81,6 +82,7 @@
 													class="form-control" id="prenom" required="true"
 													requiredMessage="Entrez le prénom" >
 												<f:validateLength minimum="3" maximum="15"/>
+												<f:validateRegex pattern="[a-zA-Z]+"/>
 												</h:inputText>
 												<h:message for="prenom"/>
 											</div>
@@ -122,7 +124,7 @@
 													value="#{clientCtrl.password }"
 													class="form-control" id="mdp1" required="true"
 													requiredMessage="Entrez un mot de passe" />
-												<h:message for="mdp"/>
+												<h:message for="mdp1"/>
 											</div>
 										</div>
 										<div class="form-group required">
@@ -133,7 +135,7 @@
 													value="#{clientCtrl.passwordConfirm }"
 													class="form-control" id="mdp2" required="true"
 													requiredMessage="Entrez un mot de passe" />
-												<h:message for="mdp"/>
+												<h:message for="mdp2"/>
 											</div>
 										</div>
 										<!-- Checkbox -->
@@ -171,7 +173,6 @@
 								</p>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
