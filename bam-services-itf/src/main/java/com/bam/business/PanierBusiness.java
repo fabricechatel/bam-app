@@ -1,6 +1,7 @@
 package com.bam.business;
 
 import java.util.List;
+
 import com.bam.entity.LiensPanierArticle;
 import com.bam.entity.Panier;
 
@@ -14,5 +15,7 @@ public interface PanierBusiness {
 	public void updateLienPanierArticle(LiensPanierArticle lien);
 	public List<LiensPanierArticle> getLiensPanierArticlesValides(Panier panier);
 	public Panier getPanierByClientId(int idClient);
+	public Panier getPanierByCookie(String cookie);
+	public void creerPanier(String ref);
 	
 }

@@ -13,10 +13,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import com.bam.business.Facade;
 import com.bam.entity.Client;
 import com.bam.entity.LiensPanierArticle;
@@ -31,46 +27,69 @@ public class PanierCtrl implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@ManagedProperty(value = "#{facadeImpl}")
-	private Facade facade;
-	private Client client;
-	private List<LiensPanierArticle> listePanier;
+	Facade facade;
+	Client client;
+	private String cookie;
+	List<LiensPanierArticle> listePanier;
+	private String idSession;
+	Panier panier;
+	
+
+
 	@PostConstruct
 	public void init() {
+		
+		//client.setIdClient(3);  ///// test
 		
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		if ((request.getRemoteUser() != null) && (client == null)){
 			client = new Client();
+			
 			if (facade != null) {
 				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
+				System.out.println("Utilisateur ---------------->"+u);
 				if ((u != null) && (u.getClient() != null)){
 					client = u.getClient();
+					client.setIdClient(3);  ///// test
+					System.out.println("Client ---------------->"+client);
+					panier = facade.getPanierBusiness().getPanierByClientId(client.getIdClient());
 				}
+			}
+		} else {
+		
+		
+			idSession=request.getSession().getId();
+			System.out.println("Session ###########################> "+idSession);
+			
+			if(cookie==null) {
+				createPanier(idSession);		
+				this.setCookie(idSession);
+				panier = facade.getPanierBusiness().getPanierByCookie(this.getCookie());
 			}
 		}
 		
 		
+		
 		listePanier = new ArrayList<>(getPanier().getLiensPanierArticles());
+		
 	}
 	
-	public Client getClient() {
-		return client;
+	public String getCookie() {
+		return cookie;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setCookie(String cookie) {
+		this.cookie = cookie;
 	}
 
-	public Facade getFacade() {
-		return facade;
+	public Panier getPanier() {	
+		return panier;
 	}
-	
-	public void setFacade(Facade facade) {
-		this.facade = facade;
+
+	public void setPanier(Panier panier) {
+		this.panier = panier;
 	}
-	
-	public Panier getPanier() {		
-		return facade.getPanierBusiness().getPanierById(1);
-	}
+
 
 	public List<LiensPanierArticle> getLiens() {
 		//return  facade.getPanierBusiness().getLiensPanierArticles(getPanier());
@@ -107,6 +126,10 @@ public class PanierCtrl implements Serializable {
 		init();
 	}
 	
+	public void setFacade(Facade facade) {
+		this.facade = facade;
+	}
+
 	public void updatePanier(){
 		Panier p = getPanier();
 		System.out.println("CTRL++++++++++++++++++++=====>>"+ p);
@@ -121,9 +144,15 @@ public class PanierCtrl implements Serializable {
 		this.listePanier = listePanier;
 	}
 
-
-	public Panier getPanierByClientId(int idClient){
-		facade.getPanierBusiness().getPanierByClientId(idClient)
+	public void createPanier(String ref){
+		facade.getPanierBusiness().creerPanier(ref);
 	}
+	
+	
+//    public List getCookies() {
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        Map cookieMap = context.getExternalContext().getRequestCookieMap();
+//        return new ArrayList(cookieMap.values());
+//    }
 	
 }

@@ -92,6 +92,26 @@ public class PanierBusinessImpl implements PanierBusiness {
 		return liens;
 	}
 
+	@Transactional
+	public Panier getPanierByClientId(int idClient) {
+		
+		return dao.getPanierByClientId(idClient);
+	}
+
+	@Transactional
+	public Panier getPanierByCookie(String cookie) {
+		
+		return dao.getPanierByCookie(cookie);
+	}
+
+	@Transactional
+	public void creerPanier(String ref) {
+			Panier panier = new Panier();
+			panier.setClient(null);
+			panier.setRefinternaute(ref);
+			dao.save(panier);
+	}
+
 
 
 
