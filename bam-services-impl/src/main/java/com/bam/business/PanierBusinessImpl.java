@@ -92,6 +92,12 @@ public class PanierBusinessImpl implements PanierBusiness {
 		return liens;
 	}
 
+	@Override
+	public Panier getPanierByClientId(int idClient) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
