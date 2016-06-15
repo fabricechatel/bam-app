@@ -6,6 +6,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.Test;
 
+import com.bam.business.Facade;
+import com.bam.business.FicheBusiness;
 import com.bam.dao.FicheDao;
 import com.bam.entity.Fiche;
 
@@ -14,12 +16,14 @@ import com.bam.entity.Fiche;
 public class FicheDaoTest {
 
 	@Autowired
-	FicheDao ficheDao;
+	Facade facade;
 	
 	@Test
 	public void Test() {
 		
-		Fiche maFiche = ficheDao.findByIdArticle(1);
+		//Fiche maFiche = ficheDao.findByIdArticle(1);
+		//Fiche maFiche = ficheDao.RechercherFicheParIdArticle(1);
+		Fiche maFiche = facade.getFicheBusiness().RechercherFicheParIdArticle(1);
 		System.out.println(maFiche.getImage());
 	}
 }

@@ -3,10 +3,12 @@ package com.bam.business;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bam.dao.FicheDao;
 import com.bam.entity.Fiche;
 
+@Service
 public class FicheBusinessImpl implements FicheBusiness{
 
 	@Autowired

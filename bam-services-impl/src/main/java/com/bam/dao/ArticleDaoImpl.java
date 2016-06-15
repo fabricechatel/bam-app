@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.bam.entity.Article;
+import com.bam.entity.Commentaire;
 
 @Component("articletDao")
 public class ArticleDaoImpl extends GenericDaoImpl<Article, Integer> implements ArticleDao{
@@ -19,6 +20,14 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article, Integer> implements 
 		
 		List<Article> lesArticles = query.getResultList();
 		return lesArticles;
+	}
+
+	@Override
+	public List<Commentaire> lesCommentairesDUnArticle(int id_art) {
+		Query query = em.createQuery("SELECT c FROM Commentaire c WHERE c.article.idArticle = ?").setParameter(1, id_art);
+		
+		List<Commentaire> lesCommentaires = query.getResultList();
+		return lesCommentaires;
 	}
 
 }

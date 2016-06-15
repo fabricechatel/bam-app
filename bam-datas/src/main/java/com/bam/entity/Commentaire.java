@@ -27,6 +27,9 @@ public class Commentaire implements Serializable {
 	@Column(precision=10)
 	private BigDecimal note;
 
+	@Column(name="AVIS")
+	private String avis;
+	
 	//bi-directional many-to-one association to Article
 	@ManyToOne
 	@JoinColumn(name="ID_ARTICLE", nullable=false)
@@ -80,4 +83,13 @@ public class Commentaire implements Serializable {
 		this.client = client;
 	}
 
+	public String getAvis() {
+		return avis;
+	}
+
+	public void setAvis(String avis) {
+		this.avis = avis;
+	}
+
+	
 }

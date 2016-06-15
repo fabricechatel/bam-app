@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bam.dao.ArticleDao;
 import com.bam.entity.Article;
+import com.bam.entity.Commentaire;
 
 @Service
 public class ArticleBusinessImpl implements ArticleBusiness{
@@ -36,6 +37,12 @@ public class ArticleBusinessImpl implements ArticleBusiness{
 	public List<Article> LesArticles() {
 		// TODO Auto-generated method stub
 		return articleDao.findAll();
+	}
+
+	@Override
+	public List<Commentaire> lesCommentairesDUnArticle(int id_art) {
+		// TODO Auto-generated method stub
+		return articleDao.lesCommentairesDUnArticle(id_art);
 	}
 
 }

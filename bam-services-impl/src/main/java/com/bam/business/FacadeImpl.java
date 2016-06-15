@@ -15,6 +15,15 @@ public class FacadeImpl implements Facade {
 	@Autowired
 	ArticleBusiness articleBusiness;
 	
+	@Autowired
+	FicheBusiness ficheBusiness;
+	
+	@Autowired
+	CategorieBusiness categorieBusiness;
+	
+	@Autowired
+	CaracteristiqueBusiness caracteristiqueBusiness;
+	
 	@Override
 	public ClientBusiness getClientBusiness() {
 		return clientBusiness;
@@ -25,4 +34,22 @@ public class FacadeImpl implements Facade {
 		return articleBusiness;
 	}
 
+	@Override
+	public FicheBusiness getFicheBusiness() {
+		return ficheBusiness;
+	}
+
+	@Override
+	public CategorieBusiness categorieBusiness() {
+		// TODO Auto-generated method stub
+		return categorieBusiness;
+	}
+
+	@Override
+	public CaracteristiqueBusiness caracteristiqueBusiness() {
+		// TODO Auto-generated method stub
+		return caracteristiqueBusiness;
+	}
+
+	
 }

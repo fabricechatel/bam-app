@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
+  <!ENTITY % xhtml-symbol
+    PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-symbol.ent">
+  %xhtml-symbol;
+]>
+<ui:composition template="/commun/template.xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="content-to-include">
+		<!-- Page content starts -->
+
+		<!-- Items -->
+
+		<div class="items">
+			<div class="container">
+				<div class="row">
+
+					<!-- Sidebar -->
+					<div class="col-md-4 col-sm-4 hidden-xs">
+						<h5 class="title">pages</h5>
+						<!-- Sidebar navigation -->
+						<nav>
+						<ul id="nav">
+							<!-- Main menu. Use the class "has_sub" to "li" tag if it has submenu. -->
+							<li><a href="index.xhtml">Accueil</a></li>
+						</ul>
+						</nav>
+						<br />
+						<!-- Sidebar items (featured items)-->
+
+						<div class="sidebar-items">
+
+							<h5 class="title">Autres articles</h5>
+
+							<h:form>
+								<ui:repeat var="o" value="#{ArticleCtrl.listerLesNouveautes2()}"
+									varStatus="status">
+
+									<div class="sitem">
+										<!-- Don't forget the class "onethree-left" and "onethree-right" -->
+										<div class="onethree-left">
+											<!-- Image -->
+											<a href="single-item.xhtml"><img
+												src="#{ArticleCtrl.GetFicheByIdArticle(o.idArticle).image}"
+												alt="#{o.libelle}" /></a>
+										</div>
+										<div class="onethree-right">
+											<!-- Title -->
+											<h:commandLink action="#{ArticleCtrl.setArticleOnClick(o)}"
+												value="#{o.libelle}" />
+											<!-- Para -->
+											<p style="max-height: 50px; overflow: hidden;">#{ArticleCtrl.GetFicheByIdArticle(o.idArticle).description}</p>
+											<!-- Price -->
+											<p class="bold">#{o.prix} &euro;</p>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+
+								</ui:repeat>
+							</h:form>
+						</div>
+
+					</div>
+
+					<!-- Main content -->
+
+					<div class="col-md-8 col-sm-8">
+
+						<!-- Breadcrumbs -->
+						<ul class="breadcrumb">
+							<li><a href="index.xhtml">Accueil</a> <span class="divider">/</span></li>
+							<li><a href="items.xhtml">Article</a> <span class="divider">/</span></li>
+							<li class="active">Details</li>
+						</ul>
+
+						<!-- Product details -->
+
+						<div class="product-main">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+
+									<!-- Image. Flex slider -->
+									<div class="product-slider">
+										<div class="product-image-slider flexslider">
+											<ul class="slides">
+												<!-- Each slide should be enclosed inside li tag. -->
+
+												<!-- Slide #1 -->
+												<li>
+													<!-- Image --> <img
+													src="#{ArticleCtrl.GetFicheByIdArticle(DescCtrl.article.idArticle).image}"
+													alt="#{ArticleCtrl.GetFicheByIdArticle(DescCtrl.article.idArticle).nom}"
+													style="max-width: 300px;" />
+												</li>
+
+												<!-- Slide #2 -->
+												<!-- 												<li><img src="img/photos/1-2.png" alt="" /></li> -->
+
+												<!-- 												<li><img src="img/photos/1-3.png" alt="" /></li> -->
+
+												<!-- 												<li><img src="img/photos/1-4.png" alt="" /></li> -->
+
+												<!-- 												<li><img src="img/photos/1-5.png" alt="" /></li> -->
+
+											</ul>
+										</div>
+									</div>
+
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<!-- Title -->
+									<h4 class="title">#{DescCtrl.article.libelle}</h4>
+									<h5>Prix : #{DescCtrl.article.prix} &euro;</h5>
+									<p>Frais de livraison : gratuit</p>
+									<p>disponibilité : En Stock</p>
+									<!-- Dropdown menu -->
+									<!-- 									<div class="form-group"> -->
+									<!-- 										<select class="form-control"> -->
+									<!-- 											<option>Couleur</option> -->
+									<!-- 											<option>noir</option> -->
+									<!-- 											<option>ivoire</option> -->
+									<!-- 											<option>Rouge</option> -->
+									<!-- 											<option>bleu</option> -->
+									<!-- 										</select> -->
+									<!-- 									</div> -->
+
+									<!-- Quantity and add to cart button -->
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="input-group">
+												<input type="text" class="form-control input-sm" value="1" />
+												<span class="input-group-btn">
+													<button class="btn btn-default btn-sm" type="button">
+														+ panier</button>
+												</span>
+											</div>
+										</div>
+									</div>
+
+									<!-- Add to wish list -->
+									<a href="wish-list.xhtml">+ ajouter à la liste de souhaits</a>
+
+
+								</div>
+							</div>
+						</div>
+
+						<br />
+
+						<!-- Description, specs and review -->
+
+						<ul class="nav nav-tabs">
+							<!-- Use uniqe name for "href" in below anchor tags -->
+							<li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+							<li><a href="#tab2" data-toggle="tab">Specs</a></li>
+							<li><a href="#tab3" data-toggle="tab">Commentaires</a></li>
+						</ul>
+
+						<!-- Tab Content -->
+						<div class="tab-content">
+							<!-- Description -->
+							<div class="tab-pane active" id="tab1">
+								<h5>#{DescCtrl.article.libelle}</h5>
+								<p>#{ArticleCtrl.GetFicheByIdArticle(DescCtrl.article.idArticle).description}</p>
+								<h6>Catégories</h6>
+								<ul>
+									<ui:repeat var="oo"
+										value="#{ArticleCtrl.GetCategoriesParIdArticle(DescCtrl.article.idArticle)}"
+										varStatus="status">
+
+										<li>#{oo.libelleCategorie}</li>
+
+									</ui:repeat>
+								</ul>
+							</div>
+
+							<!-- Sepcs -->
+							<div class="tab-pane" id="tab2">
+
+								<h5 class="title">Spécificités</h5>
+								<table class="table table-striped tcart">
+									<tbody>
+										<ui:repeat var="b"
+											value="#{ArticleCtrl.GetCaracteristiquesParIdArticle(DescCtrl.article.idArticle)}"
+											varStatus="status">
+
+											<tr>
+												<td><strong>#{b.libelle}</strong></td>
+												<td>#{b.valeur}</td>
+											</tr>
+
+										</ui:repeat>
+									</tbody>
+								</table>
+
+							</div>
+
+							<!-- Review -->
+							<div class="tab-pane" id="tab3">
+								<h5>Commentaires</h5>
+								<ui:repeat var="comm"
+									value="#{ArticleCtrl.GetLesCommentairesDUnArticle(DescCtrl.article.idArticle)}"
+									varStatus="status">
+
+									<div class="item-review">
+										<h5>
+											#{comm.client.prenom} <span class="color"> #{comm.note}/5</span>
+										</h5>
+										<p class="rmeta">#{comm.date}</p>
+										<p>#{comm.avis}</p>
+									</div>
+
+									<hr />
+
+								</ui:repeat>
+
+								<h5 class="title">Poster un commentaire</h5>
+
+								<div class="form form-small">
+
+									<!-- Review form (not working)-->
+									<form class="form-horizontal">
+										<!-- Name -->
+										<div class="form-group">
+											<label class="control-label col-md-3" for="name2">Votre nom</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control" id="name2" />
+											</div>
+										</div>
+										<!-- Select box -->
+										<div class="form-group">
+											<label class="control-label col-md-3">Note</label>
+											<div class="col-md-6">
+												<select class="form-control">
+													<option>&nbsp;</option>
+													<option>1</option>
+													<option>2</option>
+													<option>3</option>
+													<option>4</option>
+													<option>5</option>
+												</select>
+											</div>
+										</div>
+
+										<!-- Review -->
+										<div class="form-group">
+											<label class="control-label col-md-3" for="name">Votre avis</label>
+											<div class="col-md-6">
+												<textarea class="form-control"></textarea>
+											</div>
+										</div>
+										<!-- Buttons -->
+										<div class="form-group">
+											<!-- Buttons -->
+											<div class="col-md-6 col-md-offset-3">
+												<button type="submit" class="btn btn-default">Poster</button>
+												<button type="reset" class="btn btn-default">Annuler</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+		<!-- Page content ends -->
+	</ui:define>
+</ui:composition>

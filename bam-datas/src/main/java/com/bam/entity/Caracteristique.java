@@ -1,7 +1,9 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Set;
 
 
@@ -23,6 +25,9 @@ public class Caracteristique implements Serializable {
 	@Column(nullable=false, length=128)
 	private String valeur;
 
+	@Column(name="ATTRIBUT")
+	private String libelle;
+	
 	//bi-directional many-to-many association to Article
 	@ManyToMany
 	@JoinTable(
@@ -75,4 +80,38 @@ public class Caracteristique implements Serializable {
 		this.categories = categories;
 	}
 
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public Caracteristique(int idCaracteristique, String valeur,
+			String libelle, Set<Article> articles, Set<Categorie> categories) {
+		super();
+		this.idCaracteristique = idCaracteristique;
+		this.valeur = valeur;
+		this.libelle = libelle;
+		this.articles = articles;
+		this.categories = categories;
+	}
+
+	public Caracteristique(String valeur, String libelle,
+			Set<Categorie> categories) {
+		super();
+		this.valeur = valeur;
+		this.libelle = libelle;
+		this.categories = categories;
+	}
+
+	public Caracteristique(int idCaracteristique, String valeur, String libelle) {
+		super();
+		this.idCaracteristique = idCaracteristique;
+		this.valeur = valeur;
+		this.libelle = libelle;
+	}
+
+	
 }
