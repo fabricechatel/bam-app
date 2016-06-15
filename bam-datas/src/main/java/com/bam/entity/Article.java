@@ -69,8 +69,8 @@ public class Article implements Serializable {
 	private LigneCommande ligneCommande;
 
 	//bi-directional many-to-many association to Promotion
-	@ManyToMany(mappedBy="articles")
-	private Set<Promotion> promotions;
+//	@ManyToMany(mappedBy="articles")
+//	private Set<Promotion> promotions;
 
 	public Article() {
 	}
@@ -169,13 +169,13 @@ public class Article implements Serializable {
 		this.ligneCommande = ligneCommande;
 	}
 
-	public Set<Promotion> getPromotions() {
-		return this.promotions;
-	}
-
-	public void setPromotions(Set<Promotion> promotions) {
-		this.promotions = promotions;
-	}
+//	public Set<Promotion> getPromotions() {
+//		return this.promotions;
+//	}
+//
+//	public void setPromotions(Set<Promotion> promotions) {
+//		this.promotions = promotions;
+//	}
 
 	public String getLibelle() {
 		return libelle;
@@ -189,7 +189,7 @@ public class Article implements Serializable {
 			int quantite, String refarticle, Set<Panier> paniers,
 			Set<Caracteristique> caracteristiques, Set<Categorie> categories,
 			Set<Client> clients, Set<Commentaire> commentaires,
-			LigneCommande ligneCommande, Set<Promotion> promotions) {
+			LigneCommande ligneCommande /*, Set<Promotion> promotions */ ) {
 		super();
 		this.idArticle = idArticle;
 		this.libelle = libelle;
@@ -202,7 +202,7 @@ public class Article implements Serializable {
 		this.clients = clients;
 		this.commentaires = commentaires;
 		this.ligneCommande = ligneCommande;
-		this.promotions = promotions;
+//		this.promotions = promotions;
 	}
 
 	public Article(int idArticle, String libelle, BigDecimal prix,

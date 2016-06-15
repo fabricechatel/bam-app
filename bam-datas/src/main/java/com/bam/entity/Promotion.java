@@ -26,8 +26,8 @@ public class Promotion implements Serializable {
 	private int pourcentage;
 
 	//bi-directional many-to-many association to Article
-	@ManyToMany(mappedBy="promotions")
-	private Set<Article> articles;
+//	@ManyToMany(mappedBy="promotions")
+//	private Set<Article> articles;
 
 	public Promotion() {
 	}
@@ -64,12 +64,12 @@ public class Promotion implements Serializable {
 		this.pourcentage = pourcentage;
 	}
 
-	public Set<Article> getArticles() {
-		return this.articles;
-	}
-
-	public void setArticles(Set<Article> articles) {
-		this.articles = articles;
-	}
+//	public Set<Article> getArticles() {
+//		return this.articles;
+//	}
+//
+//	public void setArticles(Set<Article> articles) {
+//		this.articles = articles;
+//	}
 
 }
