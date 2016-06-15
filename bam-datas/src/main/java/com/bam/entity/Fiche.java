@@ -1,6 +1,7 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -9,30 +10,33 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="fiche")
 @NamedQuery(name="Fiche.findAll", query="SELECT f FROM Fiche f")
 public class Fiche implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID_FICHE")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_FICHE", unique=true, nullable=false)
 	private int idFiche;
 
+	@Column(nullable=false, length=1024)
 	private String description;
 
+	@Column(name="ID_ARTICLE", nullable=false)
+	private int idArticle;
+
+	@Column(length=256)
 	private String image;
 
+	@Column(name="NOM")
+	private String nom;
+	
 	@Column(name="IS_PUBLISHED")
 	private byte isPublished;
 
-	private String nom;
-
+	@Column(length=32)
 	private String reffiche;
-
-	//bi-directional many-to-one association to Article
-	@ManyToOne
-	@JoinColumn(name="ID_ARTICLE")
-	private Article article;
 
 	public Fiche() {
 	}
@@ -53,6 +57,14 @@ public class Fiche implements Serializable {
 		this.description = description;
 	}
 
+	public int getIdArticle() {
+		return this.idArticle;
+	}
+
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
+	}
+
 	public String getImage() {
 		return this.image;
 	}
@@ -69,14 +81,6 @@ public class Fiche implements Serializable {
 		this.isPublished = isPublished;
 	}
 
-	public String getNom() {
-		return this.nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
 	public String getReffiche() {
 		return this.reffiche;
 	}
@@ -85,12 +89,36 @@ public class Fiche implements Serializable {
 		this.reffiche = reffiche;
 	}
 
-	public Article getArticle() {
-		return this.article;
+	public Fiche(int idFiche, String description, int idArticle, String image,
+			byte isPublished, String reffiche) {
+		super();
+		this.idFiche = idFiche;
+		this.description = description;
+		this.idArticle = idArticle;
+		this.image = image;
+		this.isPublished = isPublished;
+		this.reffiche = reffiche;
 	}
 
-	public void setArticle(Article article) {
-		this.article = article;
+	public String getNom() {
+		return nom;
 	}
 
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Fiche(int idFiche, String description, int idArticle, String image,
+			String nom, byte isPublished, String reffiche) {
+		super();
+		this.idFiche = idFiche;
+		this.description = description;
+		this.idArticle = idArticle;
+		this.image = image;
+		this.nom = nom;
+		this.isPublished = isPublished;
+		this.reffiche = reffiche;
+	}
+
+	
 }

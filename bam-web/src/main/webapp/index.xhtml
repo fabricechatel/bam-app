@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
   <!ENTITY % xhtml-symbol
     PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
@@ -6,312 +6,329 @@
   %xhtml-symbol;
 ]>
 <ui:composition template="/commun/template.xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
-                
-<ui:define name="content-to-include">
-	<!-- Page content starts -->
-	
-	<!-- Flex Slider starts -->
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-	<div class="container flex-main">
-		<div class="row">
-			<div class="col-md-12">
+	<ui:define name="content-to-include">
+		<!-- Page content starts -->
 
-				<div class="flex-image flexslider">
-					<ul class="slides">
-						<!-- Each slide should be enclosed inside li tag. -->
+		<!-- Flex Slider starts -->
 
-						<!-- Slide #1 -->
-						<li>
-							<!-- Image --> <img src="img/photos/slider1.jpg" alt="" /> <!-- Caption -->
-							<div class="flex-caption">
-								<!-- Title -->
-								<h3>
-									Levi's T-Shirt - <span class="color">Just $49</span>
-								</h3>
-								<!-- Para -->
-								<p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet
-									ornare dignissim. Donec aliquet convallis tortor, et placerat
-									quam posuere posuere. Morbi tincidunt posuere turpis eu
-									laoreet.</p>
-								<div class="button">
-									<a href="single-item.xhtml">Buy Now</a>
-								</div>
-							</div>
-						</li>
-
-						<!-- Slide #2 -->
-						<li><img src="img/photos/slider2.jpg" alt="" />
-							<div class="flex-caption">
-								<!-- Title -->
-								<h3>
-									Denim Jeans - <span class="color">Just $149</span>
-								</h3>
-								<!-- Para -->
-								<p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet
-									ornare dignissim. Donec aliquet convallis tortor, et placerat
-									quam posuere posuere. Morbi tincidunt posuere turpis eu
-									laoreet.</p>
-								<div class="button">
-									<a href="single-item.xhtml">Buy Now</a>
-								</div>
-							</div></li>
-
-						<li><img src="img/photos/slider3.jpg" alt="" />
-							<div class="flex-caption">
-								<!-- Title -->
-								<h3>
-									Polo Shirts - <span class="color">Just $79</span>
-								</h3>
-								<!-- Para -->
-								<p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet
-									ornare dignissim. Donec aliquet convallis tortor, et placerat
-									quam posuere posuere. Morbi tincidunt posuere turpis eu
-									laoreet.</p>
-								<div class="button">
-									<a href="single-item.xhtml">Buy Now</a>
-								</div>
-							</div></li>
-
-						<li><img src="img/photos/slider4.jpg" alt="" />
-							<div class="flex-caption">
-								<!-- Title -->
-								<h3>
-									Raymonds Suitings - <span class="color">Just $449</span>
-								</h3>
-								<!-- Para -->
-								<p>Ut commodo ullamcorper risus nec mattis. Fusce imperdiet
-									ornare dignissim. Donec aliquet convallis tortor, et placerat
-									quam posuere posuere. Morbi tincidunt posuere turpis eu
-									laoreet.</p>
-								<div class="button">
-									<a href="single-item.xhtml">Buy Now</a>
-								</div>
-							</div></li>
-
-					</ul>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- Flex slider ends -->
-
-	<!-- Promo box starts -->
-
-	<div class="promo">
-		<div class="container">
-			<div class="row">
-
-				<!-- Red color promo box -->
-				<div class="col-md-4">
-					<!-- rcolor =  Red color -->
-					<div class="pbox rcolor">
-						<div class="pcol-left">
-							<!-- Image -->
-							<a href="items.xhtml"><img src="img/photos/play-button.png" alt="" /></a>
-						</div>
-						<div class="pcol-right">
-							<!-- Title -->
-							<p class="pmed">
-								<a href="items.xhtml">Musique</a>
-							</p>
-							<!-- Para -->
-							<p class="psmall">
-								<a href="items.xhtml">AccÃ©dez Ã  une sÃ©lection de musique en tÃ©lÃ©chargement payant 
-								ou disponible en CD et/ou DVD.      </a>
-							</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-
-
-				<!-- Blue color promo box -->
-				<div class="col-md-4">
-					<!-- bcolor =  Blue color -->
-					<div class="pbox bcolor">
-						<div class="pcol-left">
-							<a href="items.xhtml"><img src="img/photos/piano.png" alt="" /></a>
-						</div>
-						<div class="pcol-right">
-							<p class="pmed">
-								<a href="items.xhtml">Instruments</a>
-							</p>
-							<p class="psmall">
-								<a href="items.xhtml">Quel instruments allez vous apprendre Ã  jouer aujoud'hui?
-								AccÃ©dez Ã  notre liste d'instruments.</a>
-							</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-
-				<!-- Green color promo box -->
-				<div class="col-md-4">
-					<!-- gcolor =  Green Color -->
-					<div class="pbox gcolor">
-						<div class="pcol-left">
-							<a href="items.xhtml"><img src="img/photos/theatre.png" alt="" /></a>
-						</div>
-						<div class="pcol-right">
-							<p class="pmed">
-								<a href="items.xhtml">Spectacles</a>
-							</p>
-							<p class="psmall">
-								<a href="items.xhtml">Et si vous viviez votre musique en live?
-								Commandez votre place de spectacle ici sans plus tarder!
-								</a>
-							</p>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- Promo box ends -->
-
-
-	
-
-	<!-- Recent items carousel starts -->
-
-	<div class="recent-posts">
-		<div class="container">
+		<div class="container flex-main">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="bor"></div>
-					<h4 class="title">A la une</h4>
-					<div class="carousel_nav pull-right">
-						<!-- Navigation -->
-						<a class="prev" id="car_prev" href="#"><i
-							class="icon-chevron-left"></i></a> <a class="next" id="car_next"
-							href="#"><i class="icon-chevron-right"></i></a>
+
+					<div class="flex-image flexslider">
+						<ul class="slides">
+							<!-- Each slide should be enclosed inside li tag. -->
+
+							<!-- Slide #1 -->
+							<li>
+								<!-- Image --> <img src="img/photos/gospel_slider.jpg" alt="" />
+								<!-- Caption -->
+								<div class="flex-caption">
+									<!-- Title -->
+									<h3>
+										Gospel pout 100 voix <span class="color">à partir de
+											35&euro;</span>
+									</h3>
+									<!-- Para -->
+									<p>Le groupe de gospel qui secoue la planete se produit
+										bientot à Paris. Qualifies pour la finale de la version
+										anglais d'incroyable talent, ils n'ont plus besoin de prouver
+										a quel point ils peuvent vous faire voyager.</p>
+									<div class="button">
+										<a href="single-item.xhtml">Acheter</a>
+									</div>
+								</div>
+							</li>
+
+							<!-- Slide #2 -->
+							<li><img src="img/photos/mozart_slider.jpg" alt="mozart" />
+								<div class="flex-caption">
+									<!-- Title -->
+									<h3>
+										Mozart l'opéra Rock <span class="color">à partir de
+											35&euro;</span>
+									</h3>
+									<!-- Para -->
+									<p>La version la plus moderne des concerto de Mozart. De
+										Paris à NewYork en passant par Tokyo, tout le monde s'arrache
+										les places. C'est par ici que ça se passe!</p>
+									<div class="button">
+										<a href="single-item.xhtml">Acheter</a>
+									</div>
+								</div></li>
+
+							<li><img src="img/photos/rieu_slider.jpg" alt="Rieu" />
+								<div class="flex-caption">
+									<!-- Title -->
+									<h3>
+										André Rieu, le retour <span class="color">à partir de
+											140&euro;</span>
+									</h3>
+									<!-- Para -->
+									<p>Après une tournée mondiale franche de succès, André Rieu
+										fait son retour sur les scènes parisiennes. Ne manquez pas ce
+										virtuose de notre époque!</p>
+									<div class="button">
+										<a href="single-item.xhtml">Acheter</a>
+									</div>
+								</div></li>
+						</ul>
 					</div>
-					<div class="clearfix"></div>
-					<ul class="rps-carousel">
-						<!-- Recent items #1 -->
-						<!-- Each item should be enclosed inside "li"  tag. -->
-						<li>
-							<div class="rp-item">
-								<div class="rp-image">
-									<!-- Image -->
-									<a href="single-item.xhtml"><img src="img/photos/2.png"
-										alt="" /></a>
-								</div>
-								<div class="rp-details">
-									<!-- Title and para -->
-									<h5>
-										<a href="single-item.xhtml">HTC One V <span
-											class="price pull-right">$225</span></a>
-									</h5>
-									<div class="clearfix"></div>
-									<!-- Description -->
-									<p>Travel far away to a space station.</p>
-								</div>
-							</div>
-						</li>
-						<!-- Recent items #2 -->
-						<li>
-							<div class="rp-item">
-								<div class="rp-image">
-									<a href="single-item.xhtml"><img src="img/photos/3.png"
-										alt="" /></a>
-								</div>
-								<div class="rp-details">
-									<!-- Title and para -->
-									<h5>
-										<a href="single-item.xhtml">Sony Xperia Pro <span
-											class="price pull-right">$525</span></a>
-									</h5>
-									<div class="clearfix"></div>
-									<p>Travel far away to a space station.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="rp-item">
-								<div class="rp-image">
-									<a href="single-item.xhtml"><img src="img/photos/4.png"
-										alt="" /></a>
-								</div>
-								<div class="rp-details">
-									<!-- Title and para -->
-									<h5>
-										<a href="single-item.xhtml">Samsung Pop <span
-											class="price pull-right">$255</span></a>
-									</h5>
-									<div class="clearfix"></div>
-									<p>Travel far away to a space station.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="rp-item">
-								<div class="rp-image">
-									<a href="single-item.xhtml"><img src="img/photos/5.png"
-										alt="" /></a>
-								</div>
-								<div class="rp-details">
-									<!-- Title and para -->
-									<h5>
-										<a href="single-item.xhtml">Motorola Droid <span
-											class="price pull-right">$325</span></a>
-									</h5>
-									<div class="clearfix"></div>
-									<p>Travel far away to a space station.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="rp-item">
-								<div class="rp-image">
-									<a href="single-item.xhtml"><img src="img/photos/6.png"
-										alt="" /></a>
-								</div>
-								<div class="rp-details">
-									<!-- Title and para -->
-									<h5>
-										<a href="single-item.xhtml">Blackberry Force <span
-											class="price pull-right">$125</span></a>
-									</h5>
-									<div class="clearfix"></div>
-									<p>Travel far away to a space station.</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="rp-item">
-								<div class="rp-image">
-									<a href="single-item.xhtml"><img src="img/photos/7.png"
-										alt="" /></a>
-								</div>
-								<div class="rp-details">
-									<!-- Title and para -->
-									<h5>
-										<a href="single-item.xhtml">Pantech One <span
-											class="price pull-right">$253</span></a>
-									</h5>
-									<div class="clearfix"></div>
-									<p>Travel far away to a space station.</p>
-								</div>
-							</div>
-						</li>
-					</ul>
+
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Recent Posts ends -->
+		<!-- Flex slider ends -->
+
+		<!-- Promo box starts -->
+
+		<div class="promo">
+			<div class="container">
+				<div class="row">
+
+					<!-- Red color promo box -->
+					<div class="col-md-4">
+						<!-- rcolor =  Red color -->
+						<div class="pbox rcolor">
+							<div class="pcol-left">
+								<!-- Image -->
+								<a href="items.xhtml"><img src="img/photos/play-button.png"
+									alt="" /></a>
+							</div>
+							<div class="pcol-right">
+								<!-- Title -->
+								<p class="pmed">
+									<a href="items.xhtml">Musique</a>
+								</p>
+								<!-- Para -->
+								<p class="psmall">
+									<a href="items.xhtml">accédez à  une sélection de musique
+										en téléchargement payant ou disponible en CD et/ou DVD. </a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
 
 
-	<!-- Page content ends -->
-    </ui:define>
+					<!-- Blue color promo box -->
+					<div class="col-md-4">
+						<!-- bcolor =  Blue color -->
+						<div class="pbox bcolor">
+							<div class="pcol-left">
+								<a href="items.xhtml"><img src="img/photos/piano.png" alt="" /></a>
+							</div>
+							<div class="pcol-right">
+								<p class="pmed">
+									<a href="items.xhtml">Instruments</a>
+								</p>
+								<p class="psmall">
+									<a href="items.xhtml">Quel instruments allez vous apprendre
+										à  jouer aujoud'hui? Accédez à  notre liste d'instruments.</a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+
+					<!-- Green color promo box -->
+					<div class="col-md-4">
+						<!-- gcolor =  Green Color -->
+						<div class="pbox gcolor">
+							<div class="pcol-left">
+								<a href="items.xhtml"><img src="img/photos/theatre.png"
+									alt="" /></a>
+							</div>
+							<div class="pcol-right">
+								<p class="pmed">
+									<a href="items.xhtml">Spectacles</a>
+								</p>
+								<p class="psmall">
+									<a href="items.xhtml">Et si vous viviez votre musique en
+										live? Commandez votre place de spectacle ici sans plus tarder!
+									</a>
+								</p>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Promo box ends -->
+
+
+
+
+		<!-- Recent items carousel starts -->
+<h:form>
+		<div class="recent-posts">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="bor"></div>
+						<h4 class="title">A la une</h4>
+						<div class="carousel_nav pull-right">
+							<!-- Navigation -->
+							<a class="prev" id="car_prev" href="#"><i
+								class="icon-chevron-left"></i></a> <a class="next" id="car_next"
+								href="#"><i class="icon-chevron-right"></i></a>
+						</div>
+						<div class="clearfix"></div>
+						<ul class="rps-carousel">
+							<!-- Recent items #1 -->
+							<!-- Each item should be enclosed inside "li"  tag. -->
+							<ui:repeat var="o" value="#{ArticleCtrl.listerLesNouveautes()}"
+								varStatus="status">
+
+								<li>
+									<div class="rp-item">
+										<div class="rp-image">
+											<!-- Image -->
+											<h:commandLink action="#{ArticleCtrl.setArticleOnClick(o)}">
+											<img
+												src="#{ArticleCtrl.GetFicheByIdArticle(o.idArticle).image}"
+												alt="#{o.libelle}" style="max-width: 100%; "/></h:commandLink>
+										</div>
+										<div class="rp-details">
+											<!-- Title and para -->
+											<h5>
+												<a href="single-item.xhtml"> #{o.libelle}<span
+													class="price pull-right">#{o.prix} &euro;</span>
+												</a>
+											</h5>
+											<div class="clearfix" style="height: 40%;"></div>
+											<!-- Description -->
+											<p>#{ArticleCtrl.GetFicheByIdArticle(o.idArticle).description}</p>
+										</div>
+									</div>
+								</li>
+
+							</ui:repeat>
+							
+							<!-- 							<li> -->
+							<!-- 								<div class="rp-item"> -->
+							<!-- 									<div class="rp-image"> -->
+							<!-- 										Image -->
+							<!-- 										<a href="single-item.xhtml"><img src="img/photos/2.png" -->
+							<!-- 											alt="" /></a> -->
+							<!-- 									</div> -->
+							<!-- 									<div class="rp-details"> -->
+							<!-- 										Title and para -->
+							<!-- 										<h5> -->
+							<!-- 											<a href="single-item.xhtml">HTC One V -->
+							<!-- 												#{ArticleCtrl.listerLesArticles()}<span -->
+							<!-- 												class="price pull-right">$225</span> -->
+							<!-- 											</a> -->
+							<!-- 										</h5> -->
+							<!-- 										<div class="clearfix"></div> -->
+							<!-- 										Description -->
+							<!-- 										<p>Travel far away to a space station.</p> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+							<!-- 							</li> -->
+							<!-- 							Recent items #2 -->
+							<!-- 							<li> -->
+							<!-- 								<div class="rp-item"> -->
+							<!-- 									<div class="rp-image"> -->
+							<!-- 										<a href="single-item.xhtml"><img src="img/photos/3.png" -->
+							<!-- 											alt="" /></a> -->
+							<!-- 									</div> -->
+							<!-- 									<div class="rp-details"> -->
+							<!-- 										Title and para -->
+							<!-- 										<h5> -->
+							<!-- 											<a href="single-item.xhtml">Sony Xperia Pro <span -->
+							<!-- 												class="price pull-right">$525</span></a> -->
+							<!-- 										</h5> -->
+							<!-- 										<div class="clearfix"></div> -->
+							<!-- 										<p>Travel far away to a space station.</p> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+							<!-- 							</li> -->
+							<!-- 							<li> -->
+							<!-- 								<div class="rp-item"> -->
+							<!-- 									<div class="rp-image"> -->
+							<!-- 										<a href="single-item.xhtml"><img src="img/photos/4.png" -->
+							<!-- 											alt="" /></a> -->
+							<!-- 									</div> -->
+							<!-- 									<div class="rp-details"> -->
+							<!-- 										Title and para -->
+							<!-- 										<h5> -->
+							<!-- 											<a href="single-item.xhtml">Samsung Pop <span -->
+							<!-- 												class="price pull-right">$255</span></a> -->
+							<!-- 										</h5> -->
+							<!-- 										<div class="clearfix"></div> -->
+							<!-- 										<p>Travel far away to a space station.</p> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+							<!-- 							</li> -->
+							<!-- 							<li> -->
+							<!-- 								<div class="rp-item"> -->
+							<!-- 									<div class="rp-image"> -->
+							<!-- 										<a href="single-item.xhtml"><img src="img/photos/5.png" -->
+							<!-- 											alt="" /></a> -->
+							<!-- 									</div> -->
+							<!-- 									<div class="rp-details"> -->
+							<!-- 										Title and para -->
+							<!-- 										<h5> -->
+							<!-- 											<a href="single-item.xhtml">Motorola Droid <span -->
+							<!-- 												class="price pull-right">$325</span></a> -->
+							<!-- 										</h5> -->
+							<!-- 										<div class="clearfix"></div> -->
+							<!-- 										<p>Travel far away to a space station.</p> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+							<!-- 							</li> -->
+							<!-- 							<li> -->
+							<!-- 								<div class="rp-item"> -->
+							<!-- 									<div class="rp-image"> -->
+							<!-- 										<a href="single-item.xhtml"><img src="img/photos/6.png" -->
+							<!-- 											alt="" /></a> -->
+							<!-- 									</div> -->
+							<!-- 									<div class="rp-details"> -->
+							<!-- 										Title and para -->
+							<!-- 										<h5> -->
+							<!-- 											<a href="single-item.xhtml">Blackberry Force <span -->
+							<!-- 												class="price pull-right">$125</span></a> -->
+							<!-- 										</h5> -->
+							<!-- 										<div class="clearfix"></div> -->
+							<!-- 										<p>Travel far away to a space station.</p> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+							<!-- 							</li> -->
+							<!-- 							<li> -->
+							<!-- 								<div class="rp-item"> -->
+							<!-- 									<div class="rp-image"> -->
+							<!-- 										<a href="single-item.xhtml"><img src="img/photos/7.png" -->
+							<!-- 											alt="" /></a> -->
+							<!-- 									</div> -->
+							<!-- 									<div class="rp-details"> -->
+							<!-- 										Title and para -->
+							<!-- 										<h5> -->
+							<!-- 											<a href="single-item.xhtml">Pantech One <span -->
+							<!-- 												class="price pull-right">$253</span></a> -->
+							<!-- 										</h5> -->
+							<!-- 										<div class="clearfix"></div> -->
+							<!-- 										<p>Travel far away to a space station.</p> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+							<!-- 							</li> -->
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+</h:form>
+							<!-- Recent Posts ends -->
+
+
+							<!-- Page content ends -->
+	</ui:define>
 </ui:composition>

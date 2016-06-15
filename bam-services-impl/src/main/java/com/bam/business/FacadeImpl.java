@@ -13,10 +13,16 @@ public class FacadeImpl implements Facade {
 	ClientBusiness clientBusiness;
 	
 	@Autowired
-	UtilisateurBusiness utilisateurBusiness;
+	ArticleBusiness articleBusiness;
 	
 	@Autowired
-	PanierBusiness panierBusiness;
+	FicheBusiness ficheBusiness;
+	
+	@Autowired
+	CategorieBusiness categorieBusiness;
+	
+	@Autowired
+	CaracteristiqueBusiness caracteristiqueBusiness;
 	
 	@Override
 	public ClientBusiness getClientBusiness() {
@@ -31,4 +37,28 @@ public class FacadeImpl implements Facade {
 	public PanierBusiness getPanierBusiness() {
 		return panierBusiness;
 	}
+
+	@Override
+	public ArticleBusiness getArticleBusiness() {
+		return articleBusiness;
+	}
+	
+	@Override
+	public FicheBusiness getFicheBusiness() {
+		return ficheBusiness;
+	}
+
+	@Override
+	public CategorieBusiness categorieBusiness() {
+		// TODO Auto-generated method stub
+		return categorieBusiness;
+	}
+
+	@Override
+	public CaracteristiqueBusiness caracteristiqueBusiness() {
+		// TODO Auto-generated method stub
+		return caracteristiqueBusiness;
+	}
+
+	
 }

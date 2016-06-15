@@ -11,30 +11,33 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="commentaire")
 @NamedQuery(name="Commentaire.findAll", query="SELECT c FROM Commentaire c")
 public class Commentaire implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID_COMMENTAIRE")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_COMMENTAIRE", unique=true, nullable=false)
 	private int idCommentaire;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
+	@Column(precision=10)
 	private BigDecimal note;
 
-	private byte visible;
-
+	@Column(name="AVIS")
+	private String avis;
+	
 	//bi-directional many-to-one association to Article
 	@ManyToOne
-	@JoinColumn(name="ID_ARTICLE")
+	@JoinColumn(name="ID_ARTICLE", nullable=false)
 	private Article article;
 
 	//bi-directional many-to-one association to Client
 	@ManyToOne
-	@JoinColumn(name="ID_CLIENT")
+	@JoinColumn(name="ID_CLIENT", nullable=false)
 	private Client client;
 
 	public Commentaire() {
@@ -64,14 +67,6 @@ public class Commentaire implements Serializable {
 		this.note = note;
 	}
 
-	public byte getVisible() {
-		return this.visible;
-	}
-
-	public void setVisible(byte visible) {
-		this.visible = visible;
-	}
-
 	public Article getArticle() {
 		return this.article;
 	}
@@ -88,4 +83,13 @@ public class Commentaire implements Serializable {
 		this.client = client;
 	}
 
+	public String getAvis() {
+		return avis;
+	}
+
+	public void setAvis(String avis) {
+		this.avis = avis;
+	}
+
+	
 }

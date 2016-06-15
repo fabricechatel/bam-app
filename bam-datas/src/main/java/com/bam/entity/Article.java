@@ -1,7 +1,9 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -11,91 +13,64 @@ import java.util.Set;
  * 
  */
 @Entity
+@Table(name="article")
 @NamedQuery(name="Article.findAll", query="SELECT a FROM Article a")
 public class Article implements Serializable {
-
-	@Override
-	public String toString() {
-		return "Article [idArticle=" + idArticle + ", libelle=" + libelle
-				+ ", prix=" + prix + ", refarticle=" + refarticle
-				+ ", visible=" + visible + "]";
-	}
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="ID_ARTICLE")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_ARTICLE", unique=true, nullable=false)
 	private int idArticle;
 
+	@Column(name="LIBELLE")
 	private String libelle;
-
+	
+	@Column(nullable=false, precision=10)
 	private BigDecimal prix;
 
-	private int quantitestock;
+	@Column(nullable=false)
+	private int quantite;
 
+	@Column(nullable=false, length=64)
 	private String refarticle;
 
-	private byte visible;
-
-	//bi-directional many-to-many association to Categorie
+	//bi-directional many-to-many association to Panier
 	@ManyToMany
 	@JoinTable(
-		name="liens_categorie_article"
+		name="liens_panier_article"
 		, joinColumns={
-			@JoinColumn(name="ID_ARTICLE")
+			@JoinColumn(name="ID_ARTICLE", nullable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="ID_CATEGORIE")
+			@JoinColumn(name="IDPANIER", nullable=false)
 			}
 		)
+	private Set<Panier> paniers;
+
+	//bi-directional many-to-many association to Caracteristique
+	@ManyToMany(mappedBy="articles", fetch = FetchType.EAGER)
+	private Set<Caracteristique> caracteristiques;
+
+	//bi-directional many-to-many association to Categorie
+	@ManyToMany(mappedBy="articles", fetch = FetchType.EAGER)
 	private Set<Categorie> categories;
 
 	//bi-directional many-to-many association to Client
-	@ManyToMany
-	@JoinTable(
-		name="liste_de_souhaits"
-		, joinColumns={
-			@JoinColumn(name="ID_ARTICLE")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_CLIENT")
-			}
-		)
-	private Set<Client> clients;
-
-	//bi-directional many-to-many association to Promotion
-	@ManyToMany
-	@JoinTable(
-		name="liens_promotions_articles"
-		, joinColumns={
-			@JoinColumn(name="ID_ARTICLE")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="ID_PROMOTION")
-			}
-		)
-	private Set<Promotion> promotions;
-
-	//bi-directional many-to-many association to Caracteristique
 	@ManyToMany(mappedBy="articles")
-	private Set<Caracteristique> caracteristiques;
+	private Set<Client> clients;
 
 	//bi-directional many-to-one association to Commentaire
 	@OneToMany(mappedBy="article")
 	private Set<Commentaire> commentaires;
 
-	//bi-directional many-to-one association to Fiche
-	@OneToMany(mappedBy="article")
-	private Set<Fiche> fiches;
+	//bi-directional one-to-one association to LigneCommande
+	@OneToOne(mappedBy="article")
+	private LigneCommande ligneCommande;
 
-	//bi-directional many-to-one association to LiensPanierArticle
-	@OneToMany(mappedBy="article")
-	private Set<LiensPanierArticle> liensPanierArticles;
-
-	//bi-directional many-to-one association to LigneCommande
-	@OneToMany(mappedBy="article")
-	private Set<LigneCommande> ligneCommandes;
+	//bi-directional many-to-many association to Promotion
+	@ManyToMany(mappedBy="articles")
+	private Set<Promotion> promotions;
 
 	public Article() {
 	}
@@ -108,14 +83,6 @@ public class Article implements Serializable {
 		this.idArticle = idArticle;
 	}
 
-	public String getLibelle() {
-		return this.libelle;
-	}
-
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-
 	public BigDecimal getPrix() {
 		return this.prix;
 	}
@@ -124,12 +91,12 @@ public class Article implements Serializable {
 		this.prix = prix;
 	}
 
-	public int getQuantitestock() {
-		return this.quantitestock;
+	public int getQuantite() {
+		return this.quantite;
 	}
 
-	public void setQuantitestock(int quantitestock) {
-		this.quantitestock = quantitestock;
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 
 	public String getRefarticle() {
@@ -140,12 +107,20 @@ public class Article implements Serializable {
 		this.refarticle = refarticle;
 	}
 
-	public byte getVisible() {
-		return this.visible;
+	public Set<Panier> getPaniers() {
+		return this.paniers;
 	}
 
-	public void setVisible(byte visible) {
-		this.visible = visible;
+	public void setPaniers(Set<Panier> paniers) {
+		this.paniers = paniers;
+	}
+
+	public Set<Caracteristique> getCaracteristiques() {
+		return this.caracteristiques;
+	}
+
+	public void setCaracteristiques(Set<Caracteristique> caracteristiques) {
+		this.caracteristiques = caracteristiques;
 	}
 
 	public Set<Categorie> getCategories() {
@@ -162,22 +137,6 @@ public class Article implements Serializable {
 
 	public void setClients(Set<Client> clients) {
 		this.clients = clients;
-	}
-
-	public Set<Promotion> getPromotions() {
-		return this.promotions;
-	}
-
-	public void setPromotions(Set<Promotion> promotions) {
-		this.promotions = promotions;
-	}
-
-	public Set<Caracteristique> getCaracteristiques() {
-		return this.caracteristiques;
-	}
-
-	public void setCaracteristiques(Set<Caracteristique> caracteristiques) {
-		this.caracteristiques = caracteristiques;
 	}
 
 	public Set<Commentaire> getCommentaires() {
@@ -202,70 +161,59 @@ public class Article implements Serializable {
 		return commentaire;
 	}
 
-	public Set<Fiche> getFiches() {
-		return this.fiches;
+	public LigneCommande getLigneCommande() {
+		return this.ligneCommande;
 	}
 
-	public void setFiches(Set<Fiche> fiches) {
-		this.fiches = fiches;
+	public void setLigneCommande(LigneCommande ligneCommande) {
+		this.ligneCommande = ligneCommande;
 	}
 
-	public Fiche addFich(Fiche fich) {
-		getFiches().add(fich);
-		fich.setArticle(this);
-
-		return fich;
+	public Set<Promotion> getPromotions() {
+		return this.promotions;
 	}
 
-	public Fiche removeFich(Fiche fich) {
-		getFiches().remove(fich);
-		fich.setArticle(null);
-
-		return fich;
+	public void setPromotions(Set<Promotion> promotions) {
+		this.promotions = promotions;
 	}
 
-	public Set<LiensPanierArticle> getLiensPanierArticles() {
-		return this.liensPanierArticles;
+	public String getLibelle() {
+		return libelle;
 	}
 
-	public void setLiensPanierArticles(Set<LiensPanierArticle> liensPanierArticles) {
-		this.liensPanierArticles = liensPanierArticles;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 
-	public LiensPanierArticle addLiensPanierArticle(LiensPanierArticle liensPanierArticle) {
-		getLiensPanierArticles().add(liensPanierArticle);
-		liensPanierArticle.setArticle(this);
-
-		return liensPanierArticle;
+	public Article(int idArticle, String libelle, BigDecimal prix,
+			int quantite, String refarticle, Set<Panier> paniers,
+			Set<Caracteristique> caracteristiques, Set<Categorie> categories,
+			Set<Client> clients, Set<Commentaire> commentaires,
+			LigneCommande ligneCommande, Set<Promotion> promotions) {
+		super();
+		this.idArticle = idArticle;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.refarticle = refarticle;
+		this.paniers = paniers;
+		this.caracteristiques = caracteristiques;
+		this.categories = categories;
+		this.clients = clients;
+		this.commentaires = commentaires;
+		this.ligneCommande = ligneCommande;
+		this.promotions = promotions;
 	}
 
-	public LiensPanierArticle removeLiensPanierArticle(LiensPanierArticle liensPanierArticle) {
-		getLiensPanierArticles().remove(liensPanierArticle);
-		liensPanierArticle.setArticle(null);
-
-		return liensPanierArticle;
+	public Article(int idArticle, String libelle, BigDecimal prix,
+			int quantite, String refarticle) {
+		super();
+		this.idArticle = idArticle;
+		this.libelle = libelle;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.refarticle = refarticle;
 	}
 
-	public Set<LigneCommande> getLigneCommandes() {
-		return this.ligneCommandes;
-	}
-
-	public void setLigneCommandes(Set<LigneCommande> ligneCommandes) {
-		this.ligneCommandes = ligneCommandes;
-	}
-
-	public LigneCommande addLigneCommande(LigneCommande ligneCommande) {
-		getLigneCommandes().add(ligneCommande);
-		ligneCommande.setArticle(this);
-
-		return ligneCommande;
-	}
-
-	public LigneCommande removeLigneCommande(LigneCommande ligneCommande) {
-		getLigneCommandes().remove(ligneCommande);
-		ligneCommande.setArticle(null);
-
-		return ligneCommande;
-	}
-
+	
 }
