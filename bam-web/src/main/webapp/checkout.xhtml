@@ -6,80 +6,131 @@
   %xhtml-symbol;
 ]>
 <ui:composition template="/commun/template.xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+                
+<ui:define name="content-to-include">
+	<!-- Page content starts -->
+<!-- Checkout starts -->
 
-	<ui:define name="content-to-include">
-<!-- Cart starts -->
+<div class="checkout">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
 
-<h:panelGroup layout="block" class="cart">
-  <h:panelGroup layout="block" class="container">
-    <h:panelGroup layout="block" class="row">
-      <h:panelGroup layout="block" class="col-md-12">
+        <!-- Checkout page title -->
+          <h4 class="title"><i class="icon-shopping-cart"></i> Payer ses courses</h4>
 
-<!--         Title with number of items in shopping kart -->
-          <h3 class="title"><i class="icon-shopping-cart"></i> Articles dans votre panier [<span class="color"><h:outputText value="#{panierCtrl.liens.size()}" /></span>]</h3>
-            <br />
-		
-			
-		
-				<h:dataTable 	value="#{panierCtrl.listePanier}" 
-								var="item" 
-								styleClass="table table-striped tcart">
-					<!-- Index -->
-					
-					<h:column>
-						<f:facet name="header">#</f:facet>
-<!-- 						<h:outputText value="#{item.id}" /> -->
-						<h:outputText value="#{panierCtrl.listePanier.indexOf(item) + 1}" />
-					</h:column>
-					<!-- Product  name -->
-					<h:column>
-						<f:facet name="header">Nom</f:facet>
-						<h:outputText value="#{item.article.libelle}" />
-					</h:column>
-					<!-- Product image -->
-					<h:column>
-						<f:facet name="header">Image</f:facet>
-						<a href="WKsingle-item.xhtml"><img src="img/photos/2.png" alt="" /></a>
-					</h:column>
-					
-					<!-- Quantity  -->
-					<h:column class="item-input">
-						<f:facet name="header">Quantit�</f:facet>
-						<h:outputText id="quantite" value="#{item.quantitepanier}"   />
-						<f:facet name="footer">Total</f:facet>
-					</h:column>
-			
-					<!-- Total cost -->
-					<h:column>
-						<f:facet name="header">Prix Total</f:facet>
-						<h:outputText id="prixCummule" value="#{item.prixCummule}" />
-						<f:facet name="footer"><h:outputText id="prixtotal" value="#{panierCtrl.prixTotalPanier}" /></f:facet>
-					</h:column>	
-									
-				
-				</h:dataTable>
-				
-	 
-               
-               <!-- Button s-->
-              <h:panelGroup layout="block" class="row">
-                <h:panelGroup layout="block" class="col-md-4 col-md-offset-8">
-                  <h:panelGroup layout="block" class="pull-right">
-                    <a href="index.jsp" class="btn btn-default">Continuer vos achats</a>
-                    <a href="WKcheckout.xhtml" class="btn btn-danger">Commander</a>
-                  </h:panelGroup>
-                </h:panelGroup>
-              </h:panelGroup>
+          <!-- Sub title -->
+          <h5 class="title">Expédition &amp; Détails de facturation</h5>
+          <!-- Address and Shipping details form -->
+            <div class="form form-small">
+                    <!-- Register form -->
+                    <h:form class="form-horizontal" id="formCheckout1">
+                        <!-- Name -->
+						<div class="form-group">
+							<label class="control-label col-md-3" for="civilite">Civilité</label>
+							<div class="col-md-6">
+								<h:outputText value="#{clientCtrl.client.civilite }" styleClass="form-control" id="civilite"/>  
+							</div>
+						</div>                         
+						<div class="form-group">
+							<label class="control-label col-md-3" for="nom">Nom</label>
+							<div class="col-md-6">
+								<h:outputText value="#{clientCtrl.client.nom }" styleClass="form-control" id="nom"/>  
+							</div>
+						</div>  
+						<div class="form-group">
+							<label class="control-label col-md-3" for="prenom">Prénom</label>
+							<div class="col-md-6">
+								<h:outputText  value="#{clientCtrl.client.prenom }" class="form-control" id="prenom"/>
+							</div>
+						</div>					
+						<!-- Email -->
+						<div class="form-group">
+							<label class="control-label col-md-3" for="email">Email</label>
+							<div class="col-md-6">
+								<h:outputText  value="#{clientCtrl.client.email }" class="form-control" id="email"/>
+							</div>
+						</div>
+                        <!-- Address -->
+						<div class="form-group">
+							<label class="control-label col-md-3" for="numero">Numéro</label>
+							<div class="col-md-6">
+								<h:outputText value="#{clientCtrl.client.firstAdresse.numero }" class="form-control" id="numero"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3" for="rue">Rue</label>
+							<div class="col-md-6">
+								<h:outputText value="#{clientCtrl.client.firstAdresse.voie }" class="form-control" id="rue"/>
+							</div>
+						</div>
+						<!-- State -->
+						<div class="form-group">
+							<label class="control-label col-md-3" for="cp">Code postal</label>
+							<div class="col-md-6">
+								<h:outputText value="#{clientCtrl.client.firstAdresse.codePostal }" class="form-control" id="cp"/>
+							</div>
+						</div>
+						<!-- City -->
+						<div class="form-group">
+							<label class="control-label col-md-3" for="city">Ville</label>
+							<div class="col-md-6">
+								<h:outputText value="#{clientCtrl.client.firstAdresse.ville }" class="form-control" id="city"/>
+							</div>
+						</div>                                         
+                    </h:form>
+                </div>
+                <hr />
 
-      </h:panelGroup>
-    </h:panelGroup>
-  </h:panelGroup>
-</h:panelGroup>
+
+      <!-- Payment details section -->
+        <!-- Title -->
+          <h5 class="title">Détails de paiement</h5>
+
+          <!-- Radio buttons to select payment type -->
+
+          <label class="radio-inline">
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked="checked" />
+            Carte de crédit
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="2" />
+            Carte de paiment
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="optionsRadios" id="optionsRadios3" value="3" />
+            Banque en ligne
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="optionsRadios" id="optionsRadios4" value="4" />
+            Paiement en liquide à la livraison
+          </label>          
+          <label class="radio-inline">
+            <input type="radio" name="optionsRadios" id="optionsRadios5" value="5" />
+            Paypal
+          </label>                    
+
+          <hr />
+
+          <!-- Confirm order button -->
+              <div class="row">
+                <div class="col-md-4 col-md-offset-8">
+                  <div class="pull-right">
+                    <a href="checkout.xhtml" class="btn btn-danger">Confirmez votre paiement</a>
+                  </div>
+                </div>
+              </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Cart ends -->
 
-	</ui:define>
+	<!-- Page content ends -->
+    </ui:define>
 </ui:composition>

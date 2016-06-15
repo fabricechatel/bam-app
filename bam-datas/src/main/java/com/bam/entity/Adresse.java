@@ -23,16 +23,16 @@ public class Adresse implements Serializable {
 	@Column(name="ID_ADRESSE", unique=true, nullable=false)
 	private int idAdresse;
 
-	@Column(name="CODE_POSTAL", nullable=false, length=16)
+	@Column(name="CODE_POSTAL", length=16)
 	private String codePostal;
 
-	@Column(nullable=false, length=16)
+	@Column(length=16)
 	private String numero;
 
-	@Column(nullable=false, length=64)
+	@Column(length=64)
 	private String ville;
 
-	@Column(nullable=false, length=128)
+	@Column(length=128)
 	private String voie;
 
 	//bi-directional many-to-many association to Client
@@ -119,5 +119,13 @@ public class Adresse implements Serializable {
 	public void setCommandes(Set<Commande> commandes) {
 		this.commandes = commandes;
 	}
+
+	@Override
+	public String toString() {
+		return "Adresse [idAdresse=" + idAdresse + ", codePostal=" + codePostal
+				+ ", numero=" + numero + ", ville=" + ville + ", voie=" + voie
+				+ "]";
+	}
+	
 
 }

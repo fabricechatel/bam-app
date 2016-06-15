@@ -71,6 +71,10 @@ border-bottom:1px solid #f4f4f4;
 height:0px;
 }
 
+.form-group.required .control-label:after { 
+   content:"*";
+   color:red;
+}
 
 .bor{
 height:5px;
@@ -1460,4 +1464,10 @@ footer .payment-icons img{
  	.sitem img{
  		max-width: 35px;
  	}
+ 	
+	.required label:after {
+    	color: #e32;
+    	content: ' *';
+    	display:inline;
+	}
 }
