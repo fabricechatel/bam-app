@@ -20,9 +20,9 @@ import com.bam.entity.Panier;
 import com.bam.entity.Utilisateur;
 
 
-@ManagedBean(name="panierCtrl")
+@ManagedBean(name="validationCtrl")
 @SessionScoped
-public class PanierCtrl implements Serializable {
+public class ValidationCtrl implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,16 +33,15 @@ public class PanierCtrl implements Serializable {
 	List<LiensPanierArticle> listePanier;
 	private String idSession;
 	Panier panier;
-	HttpServletRequest request;
 	
 
 
 	@PostConstruct
 	public void init() {
 		
-		//client.setIdClient(3);  ///// test
+		client.setIdClient(3);  ///// test
 		
-		request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		if ((request.getRemoteUser() != null) && (client == null)){
 			client = new Client();
 			
@@ -52,10 +51,10 @@ public class PanierCtrl implements Serializable {
 				if ((u != null) && (u.getClient() != null)){
 					client = u.getClient();
 					client.setIdClient(3);  ///// test
+					
+					
 					System.out.println("Client ---------------->"+client);
 					panier = facade.getPanierBusiness().getPanierByClientId(client.getIdClient());
-					
-					
 				}
 			}
 		} else {
@@ -63,8 +62,6 @@ public class PanierCtrl implements Serializable {
 		
 			idSession=request.getSession().getId();
 			System.out.println("Session ###########################> "+idSession);
-			
-			
 			
 			if(cookie==null) {
 				createPanier(idSession);		
@@ -125,11 +122,10 @@ public class PanierCtrl implements Serializable {
 	}
 	
 	public void updateLien(LiensPanierArticle l){
-//		System.out.println("CTRL++++++++++++++++++++=====>>"+l);
-//		System.out.println(l.getId().getIdArticle());
-//		facade.getPanierBusiness().updateLienPanierArticle(l);
-//		init();
-		System.out.println(request.getAttributeNames().toString());
+		System.out.println("CTRL++++++++++++++++++++=====>>"+l);
+		System.out.println(l.getId().getIdArticle());
+		facade.getPanierBusiness().updateLienPanierArticle(l);
+		init();
 	}
 	
 	public void setFacade(Facade facade) {
@@ -137,14 +133,9 @@ public class PanierCtrl implements Serializable {
 	}
 
 	public void updatePanier(){
-		
-		
-		
 		Panier p = getPanier();
 		System.out.println("CTRL++++++++++++++++++++=====>>"+ p);
 		facade.getPanierBusiness().sauvegarderPanier(p);
-		
-		
 	}
 
 	public List<LiensPanierArticle> getListePanier() {
