@@ -29,7 +29,7 @@ public class Article implements Serializable {
 	@Column(nullable=false, precision=10)
 	private BigDecimal prix;
 
-	@Column(nullable=false)
+	@Column(name="QUANTITESTOCK", nullable=false)
 	private int quantite;
 
 	@Column(nullable=false, length=64)
