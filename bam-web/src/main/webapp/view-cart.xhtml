@@ -74,12 +74,14 @@
 				
 				</h:dataTable>
 				<input type="hidden" name="${_csrf.parameterName}"	value="${_csrf.token}" />
+<!-- 				<h:commandLink class="btn btn-default " type="button" value="params" action="#{panierCtrl.getParams}" /> -->
 				</h:form> 
                
 <!--                Buttons -->
               <h:panelGroup layout="block" class="row">
                 <h:panelGroup layout="block" class="col-md-4 col-md-offset-8">
                   <h:panelGroup layout="block" class="pull-right">
+                  
                     <a href="index.jsp" class="btn btn-default">Continuer vos achats</a>
                     <a href="validation.xhtml" class="btn btn-danger">Valider</a>
                   </h:panelGroup>

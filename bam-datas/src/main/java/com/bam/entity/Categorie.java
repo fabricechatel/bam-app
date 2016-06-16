@@ -1,7 +1,9 @@
 package com.bam.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Set;
 
 
@@ -21,6 +23,20 @@ public class Categorie implements Serializable {
 
 	private byte active;
 
+	public Categorie(int idCategorie, int idparent,
+			String libelleCategorie, byte active) {
+		super();
+		this.idCategorie = idCategorie;
+		this.active = active;
+		this.idparent = idparent;
+		this.libelleCategorie = libelleCategorie;
+	}
+	
+	public Categorie(int idCategorie, String libelleCategorie, byte active) {
+		this.idCategorie = idCategorie;
+		this.active = active;
+		this.libelleCategorie = libelleCategorie;
+	}
 	private int idparent;
 
 	@Column(name="LIBELLE_CATEGORIE")
@@ -36,6 +52,8 @@ public class Categorie implements Serializable {
 
 	public Categorie() {
 	}
+
+
 
 	public int getIdCategorie() {
 		return this.idCategorie;

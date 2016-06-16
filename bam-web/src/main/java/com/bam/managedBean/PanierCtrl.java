@@ -125,11 +125,10 @@ public class PanierCtrl implements Serializable {
 	}
 	
 	public void updateLien(LiensPanierArticle l){
-//		System.out.println("CTRL++++++++++++++++++++=====>>"+l);
-//		System.out.println(l.getId().getIdArticle());
-//		facade.getPanierBusiness().updateLienPanierArticle(l);
-//		init();
-		System.out.println(request.getAttributeNames().toString());
+		System.out.println("CTRL++++++++++++++++++++=====>>"+l);
+		System.out.println(l.getId().getIdArticle());
+		facade.getPanierBusiness().updateLienPanierArticle(l);
+		init();		
 	}
 	
 	public void setFacade(Facade facade) {
@@ -137,14 +136,9 @@ public class PanierCtrl implements Serializable {
 	}
 
 	public void updatePanier(){
-		
-		
-		
 		Panier p = getPanier();
 		System.out.println("CTRL++++++++++++++++++++=====>>"+ p);
-		facade.getPanierBusiness().sauvegarderPanier(p);
-		
-		
+		facade.getPanierBusiness().sauvegarderPanier(p);	
 	}
 
 	public List<LiensPanierArticle> getListePanier() {
@@ -159,6 +153,11 @@ public class PanierCtrl implements Serializable {
 		facade.getPanierBusiness().creerPanier(ref);
 	}
 	
+	
+	public void getParams(){
+		System.out.println(request.getSession().getAttributeNames().toString());
+
+	}
 	
 //    public List getCookies() {
 //        FacesContext context = FacesContext.getCurrentInstance();
