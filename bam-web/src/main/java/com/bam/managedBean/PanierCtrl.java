@@ -162,10 +162,12 @@ public class PanierCtrl implements Serializable {
 
 	public void ajouterAuPanier(int idArticle) {
 		
-		for (LiensPanierArticle e : listePanier){
+		for (LiensPanierArticle e : getLiens()){
 			if (e.getArticle().getIdArticle() == idArticle){
 				e.setQuantitepanier( e.getQuantitepanier() + 1 );
+				System.out.println("update=======================1");
 				updateLien(e);
+				System.out.println("update=======================2");
 				return;
 			}
 		}
@@ -174,7 +176,9 @@ public class PanierCtrl implements Serializable {
 		pk.setIdpanier(panier.getIdpanier());
 		LiensPanierArticle lien = new LiensPanierArticle(1, facade.getArticleBusiness().ChercherArticleParId(idArticle), panier);
 		lien.setId(pk);
+		System.out.println("save=======================1");
 		facade.getPanierBusiness().saveLienPanierArticle(lien);
+		System.out.println("save=======================2");
 		init();
 		
 		
