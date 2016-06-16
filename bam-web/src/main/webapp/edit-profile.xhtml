@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" [
   <!ENTITY % xhtml-symbol
     PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
@@ -29,7 +29,8 @@
 						<ul id="navi">
 							<li><a href="myaccount.xhtml">Mon Compte</a></li>
 							<li><a href="wish-list.xhtml">Liste de souhaits</a></li>
-							<li><a href="order-history.xhtml">Historique de commandes</a></li>
+							<li><a href="order-history.xhtml">Historique de
+									commandes</a></li>
 							<li><a href="edit-profile.xhtml">Modifier profil</a></li>
 						</ul>
 						</nav>
@@ -45,84 +46,92 @@
 							<!-- Edit profile form -->
 							<h:form class="form-horizontal" id="formModification">
 								<h:panelGroup id="modif">
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="civilite">Civilité</label>
 										<h:selectOneRadio value="#{clientCtrl.client.civilite }"
-											id="civilite">
+											id="civilite" required="true">
 											<f:selectItem itemValue="M" itemLabel="M" />
 											<f:selectItem itemValue="Mme" itemLabel="Mme" />
 										</h:selectOneRadio>
 									</div>
 									<!-- Name -->
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="nom">Nom</label>
 										<div class="col-md-6">
 											<h:inputText value="#{clientCtrl.client.nom }"
-												styleClass="form-control" id="nom" >
-											<f:validateLength minimum="3" maximum="15"/>
-											<f:validateRegex pattern="[a-zA-Z]+"/>	
+												styleClass="form-control" id="nom" required="true"
+												requiredMessage="Entrez le nom">
+												<f:validateLength minimum="3" maximum="15" />
+												<f:validateRegex pattern="[a-zA-Z]+" />
 											</h:inputText>
-											<h:message for="nom"/>											
+											<h:message for="nom" />
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="prenom">Prénom</label>
 										<div class="col-md-6">
 											<h:inputText value="#{clientCtrl.client.prenom }"
-												class="form-control" id="prenom" >
-											<f:validateLength minimum="3" maximum="15"/>
-											<f:validateRegex pattern="[a-zA-Z]+"/>
+												class="form-control" id="prenom" required="true"
+												requiredMessage="Entrez le prénom">
+												<f:validateLength minimum="3" maximum="15" />
+												<f:validateRegex pattern="[a-zA-Z]+" />
 											</h:inputText>
-											<h:message for="prenom"/>											
+											<h:message for="prenom" />
 										</div>
 									</div>
 									<!-- Email -->
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="email">Email</label>
 										<div class="col-md-6">
 											<h:inputText type="text" value="#{clientCtrl.client.email }"
-												class="form-control" id="email"
-												validatorMessage="Email non valide" >
-											<f:validateLength minimum="3" maximum="20"/>
-											<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+												class="form-control" id="email" required="true"
+												requiredMessage="Entrez le mail"
+												validatorMessage="Email non valide">
+												<f:validateLength minimum="3" maximum="20" />
+												<f:validateRegex
+													pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 											</h:inputText>
-											<h:message for="email"/>
+											<h:message for="email" />
 										</div>
 									</div>
 									<!-- Address -->
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="numero">Numéro</label>
 										<div class="col-md-6">
 											<h:inputText type="text"
 												value="#{clientCtrl.adresseClient.numero }"
-												class="form-control" id="numero" />
+												class="form-control" id="numero" required="true"
+												requiredMessage="Entrez le numéro" />
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="rue">Rue</label>
 										<div class="col-md-6">
 											<h:inputText type="text"
 												value="#{clientCtrl.adresseClient.voie }"
-												class="form-control" id="rue" />
+												class="form-control" id="rue" required="true"
+												requiredMessage="Entrez la voie" />
 										</div>
 									</div>
 									<!-- State -->
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="cp">Code
 											postal</label>
 										<div class="col-md-6">
 											<h:inputText type="text"
 												value="#{clientCtrl.adresseClient.codePostal }"
-												class="form-control" id="cp" />
+												class="form-control" id="cp" required="true"
+												requiredMessage="Entrez le code postal" />
 										</div>
 									</div>
 									<!-- City -->
-									<div class="form-group">
+									<div class="form-group required">
 										<label class="control-label col-md-3" for="city">Ville</label>
 										<div class="col-md-6">
 											<h:inputText type="text"
 												value="#{clientCtrl.adresseClient.ville }"
-												class="form-control" id="city" />
+												class="form-control" id="city" required="true"
+												requiredMessage="Entrez la ville" />
 										</div>
 									</div>
 									<!-- Password -->
@@ -131,9 +140,19 @@
 											de passe</label>
 										<div class="col-md-6">
 											<h:inputSecret type="password"
-												value="#{clientCtrl.client.utilisateur.mdp }"
-												class="form-control" id="mdp1" />
-											<h:message for="mdp1"/>
+												value="#{clientCtrl.password }" class="form-control"
+												id="mdp1" requiredMessage="Entrez un mot de passe" />
+											<h:message for="mdp1" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-md-3" for="mdp2">Confirmer
+											le mot de passe</label>
+										<div class="col-md-6">
+											<h:inputSecret type="password"
+												value="#{clientCtrl.passwordConfirm }" class="form-control"
+												id="mdp2" requiredMessage="Entrez un mot de passe" />
+											<h:message for="mdp2" />
 										</div>
 									</div>
 									<!-- Buttons -->
@@ -143,8 +162,8 @@
 											action="#{clientCtrl.updateClientEtUtilisateur() }" />
 										&#160;&#160;&#160;&#160;&#160;
 										<h:commandButton value="Reset" type="reset" />
-										<hr/>
-										<h:message for="success" style="color:green"/>
+										<hr />
+										<h:message for="success" style="color:green" />
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
 									</div>

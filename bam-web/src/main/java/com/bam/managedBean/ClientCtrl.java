@@ -204,6 +204,15 @@ public class ClientCtrl implements Serializable {
 	}
 
 	public void updateClientEtUtilisateur() {
+		if (!password.isEmpty()) {
+			if (!password.equals(passwordConfirm)) {
+				FacesMessage message = new FacesMessage("Confirmation mot de passe erronée");
+	            FacesContext context = FacesContext.getCurrentInstance();
+	            context.addMessage(success.getClientId(context), message);
+	            return;
+			}
+			client.getUtilisateur().setMdp(password);
+		}
 		if (client.getAdresses().isEmpty()) { 
 			//Adresse a = new Adresse();
 			//BeanUtils.copyProperties(a, adresseClient);
