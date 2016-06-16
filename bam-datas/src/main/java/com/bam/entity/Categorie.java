@@ -25,7 +25,7 @@ public class Categorie implements Serializable {
 	@Column(name="LIBELLE_CATEGORIE")
 	private String libelleCategorie;
 	
-	@Column(nullable=false)
+	@Column(name="IDPARENT")
 	private int idparent;
 
 	//bi-directional many-to-many association to Article
