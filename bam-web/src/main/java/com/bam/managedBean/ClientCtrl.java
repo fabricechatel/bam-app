@@ -1,6 +1,7 @@
 package com.bam.managedBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Component;
 //import javax.inject.Inject;
 //import javax.inject.Named;
 
+
 import com.bam.business.Facade;
 import com.bam.entity.Adresse;
 import com.bam.entity.Client;
@@ -32,7 +34,7 @@ import com.bam.entity.Utilisateur;
 import com.bam.entity.UtilisateurRole;
 
 
-//@ManagedBean(name="clientCtrl")
+@ManagedBean(name="clientCtrl")
 //@RequestScoped
 
 //@Component("clientCtrl")
@@ -46,6 +48,7 @@ public class ClientCtrl implements Serializable {
 	private Client client;
 	private String password;
 	private String passwordConfirm;
+	private int idShippingAddress;
 	
 	private UIComponent success;
 
@@ -58,6 +61,7 @@ public class ClientCtrl implements Serializable {
 	private UtilisateurRole utilisateurRoleACreer = new UtilisateurRole();
 	private Adresse adresseClient = new Adresse();
 	private Utilisateur utilisateurDejaExiste;
+	private List<Adresse> listeAdresse = new ArrayList<Adresse>();
 
 	private boolean agree;
 
@@ -81,9 +85,14 @@ public class ClientCtrl implements Serializable {
 					if (client.getFirstAdresse() != null) {
 						adresseClient = client.getFirstAdresse();
 					}
+					if (client.getAdresses() != null) {
+						listeAdresse.addAll(client.getAdresses());
+					}
 				}
 			}
 		}
+		
+		
 	}
 
 	public Client getClient() {
@@ -148,6 +157,19 @@ public class ClientCtrl implements Serializable {
 //	public void setMessageModifClient(String messageModifClient) {
 //		this.messageModifClient = messageModifClient;
 //	}
+	public int getIdShippingAddress() {
+		return idShippingAddress;
+	}
+	public void setIdShippingAddress(int idShippingAddress) {
+		this.idShippingAddress = idShippingAddress;
+	}
+
+	public List<Adresse> getListeAdresse() {
+		return listeAdresse;
+	}
+	public void setListeAdresse(List<Adresse> listeAdresse) {
+		this.listeAdresse = listeAdresse;
+	}
 
 	public boolean isAgree() {
 		return agree;
@@ -221,4 +243,20 @@ public class ClientCtrl implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(success.getClientId(context), message);
 	}
+	
+	public void afficheAdresseSelectionne(int id) {
+		
+		System.out.println("psg");
+		
+	    System.out.println(idShippingAddress);
+	    
+	    System.out.println(id);
+//        for(Adresse a : listeAdresse) {
+//            if (a.getIdAdresse() == idShippingAddress) {
+//                System.out.println("Adress selected"+a.getIdAdresse());
+//            }
+//        }
+	}
+	
+	
 }

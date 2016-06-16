@@ -8,7 +8,9 @@
 <ui:composition template="/commun/template.xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:p="http://primefaces.org/ui">
                 
 <ui:define name="content-to-include">
 	<!-- Page content starts -->
@@ -26,19 +28,21 @@
           <h5 class="title">Expédition &amp; Détails de facturation</h5>
           <!-- Address and Shipping details form -->
             <div class="form form-small">
+            
+            	
+						
                     <!-- Register form -->
                     <h:form class="form-horizontal" id="formCheckout1">
+                      	<a4j:jsFunction name="toto"
+							action="#{clientCtrl.afficheAdresseSelectionne()}">
+							<a4j:param name="adresse" assignTo="#{clientCtrl.idShippingAddress}"></a4j:param>
+						</a4j:jsFunction>
+						
                         <!-- Name -->
-						<div class="form-group">
-							<label class="control-label col-md-3" for="civilite">Civilité</label>
-							<div class="col-md-6">
-								<h:outputText value="#{clientCtrl.client.civilite }" styleClass="form-control" id="civilite"/>  
-							</div>
-						</div>                         
 						<div class="form-group">
 							<label class="control-label col-md-3" for="nom">Nom</label>
 							<div class="col-md-6">
-								<h:outputText value="#{clientCtrl.client.nom }" styleClass="form-control" id="nom"/>  
+								<h:outputText value="#{clientCtrl.client.civilite}. #{clientCtrl.client.nom }" styleClass="form-control" id="nom"/>  
 							</div>
 						</div>  
 						<div class="form-group">
@@ -55,33 +59,35 @@
 							</div>
 						</div>
                         <!-- Address -->
-						<div class="form-group">
-							<label class="control-label col-md-3" for="numero">Numéro</label>
-							<div class="col-md-6">
-								<h:outputText value="#{clientCtrl.client.firstAdresse.numero }" class="form-control" id="numero"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3" for="rue">Rue</label>
-							<div class="col-md-6">
-								<h:outputText value="#{clientCtrl.client.firstAdresse.voie }" class="form-control" id="rue"/>
-							</div>
-						</div>
-						<!-- State -->
-						<div class="form-group">
-							<label class="control-label col-md-3" for="cp">Code postal</label>
-							<div class="col-md-6">
-								<h:outputText value="#{clientCtrl.client.firstAdresse.codePostal }" class="form-control" id="cp"/>
-							</div>
-						</div>
-						<!-- City -->
-						<div class="form-group">
-							<label class="control-label col-md-3" for="city">Ville</label>
-							<div class="col-md-6">
-								<h:outputText value="#{clientCtrl.client.firstAdresse.ville }" class="form-control" id="city"/>
-							</div>
-						</div>                                         
-                    </h:form>
+                        <div class="form-group">
+                        <p:panelGrid styleClass="panelgrid-dotted-border">
+                            <f:facet name="header">
+                              <p:row>
+                                <p:column colspan="3">
+                                  <h:outputText value="Shipping Address"/>
+                                </p:column>
+                              </p:row>
+                            </f:facet>
+                            <ui:repeat var="liste" value="#{clientCtrl.listeAdresse}">
+                            <p:row >
+                              <p:column style="width: 50px;">
+                              <h:selectOneListbox  onselect="toto(#{liste.idAdresse})" />
+                              <h:selectBooleanCheckbox />
+<!--                                  <input type="checkbox"  onselect="toto(#{liste.idAdresse})"/> -->
+                              </p:column>
+                              <p:column style="width: 200px;">
+                                <p:outputLabel for="numeroRue" value="Numéro - Rue" style="font-weight: bold;"/><br/>
+                                <p:outputLabel for="cpVille" value="Code Postal - Ville" style="font-weight: bold;"/>
+                              </p:column>
+                              <p:column style="width: 200px;">
+                                <h:outputText id="numeroRue" value="#{liste.numero}, #{liste.voie}"/><br/>
+                                <h:outputText id="cpVille" value="#{liste.codePostal}, #{liste.ville}"/>
+                             </p:column>
+                            </p:row>
+                            </ui:repeat>
+                         </p:panelGrid>
+                         </div>
+                   </h:form>
                 </div>
                 <hr />
 
