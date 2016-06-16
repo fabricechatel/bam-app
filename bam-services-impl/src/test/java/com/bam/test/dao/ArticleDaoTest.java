@@ -21,8 +21,8 @@ public class ArticleDaoTest {
 	
 	@Test
 	public void test(){
-		
-		List<Article> lesArticles = articleDao.findAll();
+		List<Article> lesArticles = articleDao.lesArticlesSpectacles();
+		//List<Article> lesArticles = articleDao.findAll();
 		//List<Article> lesArticles = articleDao.ChercherArticleParNom("guitare");
 		for(Article art : lesArticles)
 			System.out.println(art.getRefarticle() + " " + art.getIdArticle() + " " + art.getLibelle());
