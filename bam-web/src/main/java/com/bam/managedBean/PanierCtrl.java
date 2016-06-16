@@ -29,8 +29,19 @@ public class PanierCtrl implements Serializable {
 	
 	@ManagedProperty(value = "#{facadeImpl}")
 	Facade facade;
+	
 	Client client;
 	private String cookie;
+	
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+		panier = facade.getPanierBusiness().getPanierByClientId(client.getIdClient());
+	}
+
 	List<LiensPanierArticle> listePanier;
 	private String idSession;
 	Panier panier;
@@ -39,26 +50,16 @@ public class PanierCtrl implements Serializable {
 
 
 	@PostConstruct
-	public void init() {
-		
-		//client.setIdClient(3);  ///// test
-		
+	public void init() {		
 		request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		if ((request.getRemoteUser() != null) && (client == null)){
-			client = new Client();
-			
+		if (request.getRemoteUser() != null){			
 			if (facade != null) {
-				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
-				System.out.println("Utilisateur ---------------->"+u);
-				if ((u != null) && (u.getClient() != null)){
-					client = u.getClient();
-					client.setIdClient(3);  ///// test
-					System.out.println("Client ---------------->"+client);
-					panier = facade.getPanierBusiness().getPanierByClientId(client.getIdClient());
-					
-					System.out.println("par client" );
-					
-				}
+				
+				System.out.println("Client ---------------->"+client.getIdClient());
+				panier = facade.getPanierBusiness().getPanierByClientId(client.getIdClient());
+				
+				System.out.println("par client" );
+				
 			}
 		} else {
 		
@@ -77,11 +78,7 @@ public class PanierCtrl implements Serializable {
 			}
 		}
 		
-		
-		
-		listePanier = new ArrayList<>(getPanier().getLiensPanierArticles());
-		
-		
+		listePanier = new ArrayList<>(getPanier().getLiensPanierArticles());		
 	}
 	
 	public String getCookie() {
@@ -161,13 +158,20 @@ public class PanierCtrl implements Serializable {
 	
 
 	public void ajouterAuPanier(int idArticle) {
-		
-		for (LiensPanierArticle e : getLiens()){
-			if (e.getArticle().getIdArticle() == idArticle){
+		System.out.println("Id "+idArticle);
+//		for (LiensPanierArticle e : getLiens()){
+//			if (e.getArticle().getIdArticle() == idArticle){
+//				e.setQuantitepanier( e.getQuantitepanier() + 1 );
+//				System.out.println("update=======================1");
+//				updateLien(e);
+//				System.out.println("update=======================2");
+//				return;
+//			}
+//		}
+		for (LiensPanierArticle e : listePanier) {
+			if (e.getArticle().getIdArticle() == idArticle) {
 				e.setQuantitepanier( e.getQuantitepanier() + 1 );
-				System.out.println("update=======================1");
 				updateLien(e);
-				System.out.println("update=======================2");
 				return;
 			}
 		}
@@ -175,6 +179,7 @@ public class PanierCtrl implements Serializable {
 		pk.setIdArticle(idArticle);
 		pk.setIdpanier(panier.getIdpanier());
 		LiensPanierArticle lien = new LiensPanierArticle(1, facade.getArticleBusiness().ChercherArticleParId(idArticle), panier);
+		System.out.println(lien);
 		lien.setId(pk);
 		System.out.println("save=======================1");
 		facade.getPanierBusiness().saveLienPanierArticle(lien);

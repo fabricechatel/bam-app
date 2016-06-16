@@ -22,7 +22,7 @@ public class Panier implements Serializable {
 	private String refinternaute;
 
 	//bi-directional many-to-one association to LiensPanierArticle
-	@OneToMany(mappedBy="panier",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="panier",fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<LiensPanierArticle> liensPanierArticles;
 
 	//bi-directional many-to-one association to Client

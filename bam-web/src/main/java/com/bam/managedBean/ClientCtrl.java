@@ -45,6 +45,9 @@ public class ClientCtrl implements Serializable {
 
 	@ManagedProperty(value="#{facadeImpl}")
 	private Facade facade;
+	
+	@ManagedProperty(value = "#{panierCtrl}")
+	PanierCtrl panier;
 
 	private Client clientACreer = new Client();
 	private Utilisateur utilisateurACreer = new Utilisateur();
@@ -83,6 +86,7 @@ public class ClientCtrl implements Serializable {
 				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
 				if ((u != null) && (u.getClient() != null)){
 					client = u.getClient();
+					panier.setClient(client);
 					if (client.getFirstAdresse() != null) {
 						adresseClient = client.getFirstAdresse();
 					}
@@ -91,9 +95,7 @@ public class ClientCtrl implements Serializable {
 					}
 				}
 			}
-		}
-		
-		
+		}	
 	}
 
 	public Client getClient() {
