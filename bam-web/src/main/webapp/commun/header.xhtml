@@ -28,7 +28,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-5 col-md-offset-3">
+				<div class="col-md-6 col-md-offset-2">
 
 					<!-- Search form -->
 					<form class="form-inline" role="form">
@@ -40,27 +40,40 @@
 						<button type="submit" class="btn btn-default">Rechercher</button>
 					</form>
 
-					<div class="hlinks">
-						<span> <!-- item details with price --> <a href="#cart"
-								role="button" data-toggle="modal"><h:outputText value="#{panierCtrl.listePanier.size()}" /> articles dans votre <i class="icon-shopping-cart"></i></a> -<span class="bold"><h:outputText id="prixtotal" value="#{panierCtrl.prixTotalPanier}" />€</span>
-
-
-						</span>
-
+					
 						<ui:fragment rendered="${!empty request.remoteUser}">
-							<!-- Login and Register link -->							
-							<span class="lr"><h:outputText value="Bienvenue ${request.remoteUser}" /> /</span>
-							<h:form>
-							<h:commandLink action="#{login.logout}" value="Se deconnecter"></h:commandLink>
+						<div>
+							<h:form class="hlinks" style="max-width: 600px;">
+								
+									<span> <!-- item details with price -->
+									 <a href="#cart" role="button" data-toggle="modal">
+									   <h:outputText value="#{panierCtrl.listePanier.size()}" /> articles dans
+											votre <i class="icon-shopping-cart"></i></a>
+											 <span class="bold"><h:outputText id="prixtotal" value="#{panierCtrl.prixTotalPanier}" />€</span>
+									 </span>&nbsp;&nbsp;&nbsp;				
+								<span>
+									<h:outputText	value="Bienvenue ${request.remoteUser} /" />
+									<h:commandLink action="#{login.logout}"	value="se&nbsp;déconnecter" /></span> 
+								<!-- Login and Register link -->
 								<input type="hidden" name="${_csrf.parameterName}"
 									value="${_csrf.token}" />
 							</h:form>
+							</div>
 						</ui:fragment>
 						<ui:fragment rendered="${empty request.remoteUser}">
+						<div class="hlinks">
+							<span> <!-- item details with price --> <a
+								href="view-cart.xhtml" ><h:outputText
+										value="#{panierCtrl.listePanier.size()}" /> articles dans
+									votre <i class="icon-shopping-cart"></i></a> <span class="bold"><h:outputText
+										id="prixtotal" value="#{panierCtrl.prixTotalPanier}" />€</span>
+							</span>
 							<!-- Login and Register link -->
-							<span class="lr"><a href="login.xhtml" >Connexion</a> / <a href="register.xhtml">Enregistrement</a></span>
+							<span class="lr"><a href="login.xhtml">Connexion</a> / <a
+								href="register.xhtml" role="button" data-toggle="modal">Enregistrement</a></span>
+								</div>
 						</ui:fragment>
-					</div>
+					
 
 				</div>
 
@@ -309,7 +322,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="myaccount.xhtml">Compte</a></li>
 								<li><a href="view-cart.xhtml">panier</a></li>
-								<li><a href="checkout.xhtml">Paiement</a></li>
+<!-- 								<li><a href="checkout.xhtml">Paiement</a></li> -->
 								<li><a href="order-history.xhtml">Historiques</a></li>
 								<li><a href="edit-profile.xhtml">modifier profil</a></li>
 							</ul></li>
