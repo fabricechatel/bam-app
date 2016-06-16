@@ -312,55 +312,65 @@
 					</button>
 
 				</div>
+				<h:form>
 				<nav class="collapse navbar-collapse bs-navbar-collapse"
 					role="navigation">
-				<ul class="nav navbar-nav">
-					<li><a href="index.xhtml"><i class="icon-home"></i></a></li>
-					<ui:fragment rendered="${!empty request.remoteUser}">
+					<ul class="nav navbar-nav">
+						<li><a href="index.xhtml"><i class="icon-home"></i></a></li>
+						<ui:fragment rendered="${!empty request.remoteUser}">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Mon compte <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="myaccount.xhtml">Compte</a></li>
+									<li><a href="view-cart.xhtml">panier</a></li>
+									<li><a href="order-history.xhtml">Historiques</a></li>
+									<li><a href="edit-profile.xhtml">modifier profil</a></li>
+								</ul></li>
+						</ui:fragment>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Mon compte <b class="caret"></b></a>
+							data-toggle="dropdown">Tutoriels <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="myaccount.xhtml">Compte</a></li>
-								<li><a href="view-cart.xhtml">panier</a></li>
-<!-- 								<li><a href="checkout.xhtml">Paiement</a></li> -->
-								<li><a href="order-history.xhtml">Historiques</a></li>
-								<li><a href="edit-profile.xhtml">modifier profil</a></li>
+								<li><a href="blog.xhtml">Accès aux tutos</a></li>
 							</ul></li>
-					</ui:fragment>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Tutoriels <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="blog.xhtml">Accès aux tutos</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Instruments <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="items.xhtml">vents</a></li>
-							<li><a href="items.xhtml">Cuivres</a></li>
-							<li><a href="items.xhtml">Bois</a></li>
-							<li><a href="items.xhtml">Cordes</a></li>
-							<li><a href="items.xhtml">Numérique/Digital</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="items.xhtml"
-						class="dropdown-toggle" data-toggle="dropdown">CD/DVD <b
-							class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="items.xhtml">CD/DVD</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="items.xhtml"
-						class="dropdown-toggle" data-toggle="dropdown">Mp3 <b
-							class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="items.xhtml">Télécharger</a></li>
-						</ul></li>
-					<li class="dropdown"><a href="items.xhtml"
-						class="dropdown-toggle" data-toggle="dropdown">Logiciels <b
-							class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="items.xhtml">Télécharger</a></li>
-						</ul></li>
-				</ul>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">Instruments <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+							<li><h:commandLink actionListener="#{ArticleCtrl.recupererLesInstruments()}">
+										Acceder</h:commandLink>
+									</li>
+<!-- 								<li><a href="items.xhtml">vents</a></li> -->
+<!-- 								<li><a href="items.xhtml">Cuivres</a></li> -->
+<!-- 								<li><a href="items.xhtml">Bois</a></li> -->
+<!-- 								<li><a href="items.xhtml">Cordes</a></li> -->
+<!-- 								<li><a href="items.xhtml">Numérique/Digital</a></li> -->
+							</ul></li>
+						<li class="dropdown"><a href="items.xhtml"
+							class="dropdown-toggle" data-toggle="dropdown">CD/DVD <b
+								class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><h:commandLink action="#{ArticleCtrl.recupererLesCdDvd()}">
+										Discographie</h:commandLink>
+									</li>
+							</ul></li>
+						<li class="dropdown"><a href="items.xhtml"
+							class="dropdown-toggle" data-toggle="dropdown">Mp3 <b
+								class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><h:commandLink action="#{ArticleCtrl.recupererLesMp3()}">
+										Catalogue</h:commandLink>
+									</li>
+							</ul></li>
+						<li class="dropdown"><a href="items.xhtml"
+							class="dropdown-toggle" data-toggle="dropdown">Logiciels <b
+								class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><h:commandLink >
+										A venir</h:commandLink>
+									</li>
+							</ul></li>
+					</ul>
 				</nav>
+				</h:form>
 			</div>
 		</div>
 	</ui:composition>

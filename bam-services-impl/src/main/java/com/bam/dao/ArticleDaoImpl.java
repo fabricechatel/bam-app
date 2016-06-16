@@ -30,4 +30,46 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article, Integer> implements 
 		return lesCommentaires;
 	}
 
+	@Override
+	public List<Article> lesArticlesMusique() {
+		Query query = em.createQuery("SELECT a FROM Article a JOIN a.categories c WHERE c.idCategorie = 5 OR c.idCategorie = 1");
+		List<Article> lesArt = query.getResultList();
+		return lesArt;
+	}
+
+	@Override
+	public List<Article> lesArticlesCdDvd() {
+		Query query = em.createQuery("SELECT a FROM Article a JOIN a.categories c WHERE c.idCategorie = 5 OR c.idCategorie = 4");
+		List<Article> lesArt = query.getResultList();
+		return lesArt;
+	}
+
+	@Override
+	public List<Article> lesArticlesMusiquesDematerialisees() {
+		Query query = em.createQuery("SELECT a FROM Article a JOIN a.categories c WHERE c.idCategorie = 1 OR c.idCategorie = 15");
+		List<Article> lesArt = query.getResultList();
+		return lesArt;
+	}
+
+	@Override
+	public List<Article> lesArticlesInstruments() {
+		Query query = em.createQuery("SELECT a FROM Article a JOIN a.categories c WHERE c.idparent = 2");
+		List<Article> lesArt = query.getResultList();
+		return lesArt;
+	}
+
+	@Override
+	public List<Article> lesArticlesMp3() {
+		Query query = em.createQuery("SELECT a FROM Article a JOIN a.categories c WHERE c.idCategorie = 1");
+		List<Article> lesArt = query.getResultList();
+		return lesArt;
+	}
+
+	@Override
+	public List<Article> lesArticlesSpectacles() {
+		Query query = em.createQuery("SELECT a FROM Article a JOIN a.categories c WHERE c.idCategorie = 9");
+		List<Article> lesArt = query.getResultList();
+		return lesArt;
+	}
+
 }

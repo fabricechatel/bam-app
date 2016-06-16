@@ -45,4 +45,40 @@ public class ArticleBusinessImpl implements ArticleBusiness{
 		return articleDao.lesCommentairesDUnArticle(id_art);
 	}
 
+	@Override
+	public List<Article> lesArticlesCdDvd() {
+		// TODO Auto-generated method stub
+		return articleDao.lesArticlesCdDvd();
+	}
+
+	@Override
+	public List<Article> lesArticlesMusiquesDematerialisees() {
+		// TODO Auto-generated method stub
+		return articleDao.lesArticlesMusiquesDematerialisees();
+	}
+
+	@Override
+	public List<Article> lesArticlesInstruments() {
+		// TODO Auto-generated method stub
+		return articleDao.lesArticlesInstruments();
+	}
+
+	@Override
+	public List<Article> lesArticlesMp3() {
+		// TODO Auto-generated method stub
+		return articleDao.lesArticlesMp3();
+	}
+
+	@Override
+	public List<Article> lesArticlesSpectacles() {
+		// TODO Auto-generated method stub
+		return articleDao.lesArticlesSpectacles();
+	}
+
+	@Override
+	public List<Article> lesArticlesMusique() {
+		// TODO Auto-generated method stub
+		return articleDao.lesArticlesMusique();
+	}
+
 }

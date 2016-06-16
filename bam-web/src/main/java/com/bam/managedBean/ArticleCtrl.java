@@ -132,4 +132,48 @@ public class ArticleCtrl implements Serializable{
 		return lesCommentaires;
 		
 	}
+	
+	public String recupererLesMusiques(){
+		List<Article> musiques = facade.getArticleBusiness().lesArticlesMusique();
+//		if (!descCtrl.getLesArticlesSelectionnes().isEmpty())
+//		descCtrl.getLesArticlesSelectionnes().clear();
+		descCtrl.setLesArticlesSelectionnes(musiques);
+		return "items.xhtml?faces-redirect=true";
+	}
+	
+	public String recupererLesCdDvd(){
+		List<Article> cd = facade.getArticleBusiness().lesArticlesCdDvd();
+//		if (descCtrl.getLesArticlesSelectionnes() != null)
+//		descCtrl.getLesArticlesSelectionnes().clear();
+		descCtrl.setLesArticlesSelectionnes(cd);
+		return "items.xhtml?faces-redirect=true";	}
+
+	public String recupererLesMusiquesDematerialisees(){
+		List<Article> musiques = facade.getArticleBusiness().lesArticlesMusiquesDematerialisees();
+//		if (descCtrl.getLesArticlesSelectionnes() != null)
+//		descCtrl.getLesArticlesSelectionnes().clear();
+		descCtrl.setLesArticlesSelectionnes(musiques);
+		return "items.xhtml?faces-redirect=true";	}
+	
+	public String recupererLesInstruments(){
+		List<Article> instrus = facade.getArticleBusiness().lesArticlesInstruments();
+//		if (descCtrl.getLesArticlesSelectionnes() != null)
+//		descCtrl.getLesArticlesSelectionnes().clear();
+		descCtrl.setLesArticlesSelectionnes(instrus);
+		return "items.xhtml?faces-redirect=true";	}
+
+	public String recupererLesMp3(){
+		List<Article> mp3s = facade.getArticleBusiness().lesArticlesMp3();
+//		if (descCtrl.getLesArticlesSelectionnes() != null)
+//		descCtrl.getLesArticlesSelectionnes().clear();
+		descCtrl.setLesArticlesSelectionnes(mp3s);
+		return "items.xhtml?faces-redirect=true";	}
+	
+	public String recupererLesSpectacles(){
+		List<Article> specs = facade.getArticleBusiness().lesArticlesSpectacles();
+//		if (descCtrl.getLesArticlesSelectionnes() != null)
+//		descCtrl.getLesArticlesSelectionnes().clear();
+		descCtrl.setLesArticlesSelectionnes(specs);
+		return "items.xhtml?faces-redirect=true";	}
+	
 }
