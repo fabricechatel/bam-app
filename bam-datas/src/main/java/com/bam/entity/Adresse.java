@@ -127,5 +127,9 @@ public class Adresse implements Serializable {
 				+ "]";
 	}
 	
+	public String getComplete() {
+		return  numero + ", " + voie + " " + codePostal + " " + ville;
+	}
+	
 
 }

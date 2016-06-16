@@ -1,7 +1,10 @@
 package com.bam.managedBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,35 +25,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-//import javax.inject.Inject;
-//import javax.inject.Named;
-
 import com.bam.business.Facade;
 import com.bam.entity.Adresse;
 import com.bam.entity.Client;
 import com.bam.entity.Utilisateur;
 import com.bam.entity.UtilisateurRole;
 
-
-//@ManagedBean(name="clientCtrl")
-//@RequestScoped
-
-//@Component("clientCtrl")
-//@Scope("request")
-
-@Component("clientCtrl")
-@Scope("request")
+@ManagedBean(name="clientCtrl")
+@RequestScoped
 public class ClientCtrl implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Client client;
 	private String password;
 	private String passwordConfirm;
+	private int idShippingAddress;
 	
 	private UIComponent success;
 
-	//@ManagedProperty(value="#{facadeImpl}")
-	@Autowired
+	@ManagedProperty(value="#{facadeImpl}")
 	private Facade facade;
 
 	private Client clientACreer = new Client();
@@ -58,6 +51,18 @@ public class ClientCtrl implements Serializable {
 	private UtilisateurRole utilisateurRoleACreer = new UtilisateurRole();
 	private Adresse adresseClient = new Adresse();
 	private Utilisateur utilisateurDejaExiste;
+	
+	private Map<Integer, Boolean> checked = new HashMap<Integer, Boolean>();
+	
+	public Map<Integer, Boolean> getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Map<Integer, Boolean> checked) {
+		this.checked = checked;
+	}
+
+	private List<Adresse> listeAdresse = new ArrayList<Adresse>();
 
 	private boolean agree;
 
@@ -81,9 +86,14 @@ public class ClientCtrl implements Serializable {
 					if (client.getFirstAdresse() != null) {
 						adresseClient = client.getFirstAdresse();
 					}
+					if (client.getAdresses() != null) {
+						listeAdresse.addAll(client.getAdresses());
+					}
 				}
 			}
 		}
+		
+		
 	}
 
 	public Client getClient() {
@@ -91,6 +101,14 @@ public class ClientCtrl implements Serializable {
 	}
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	public Facade getFacade() {
+		return facade;
+	}
+	
+	public void setFacade(Facade facade) {
+		this.facade = facade;
 	}
 	
 	public Client getClientACreer() {
@@ -141,13 +159,26 @@ public class ClientCtrl implements Serializable {
 //	public void setMessageAjoutClient(String messageAjoutClient) {
 //		this.messageAjoutClient = messageAjoutClient;
 //	}
-
+//
 //	public String getMessageModifClient() {
 //		return messageModifClient;
 //	}
 //	public void setMessageModifClient(String messageModifClient) {
 //		this.messageModifClient = messageModifClient;
 //	}
+	public int getIdShippingAddress() {
+		return idShippingAddress;
+	}
+	public void setIdShippingAddress(int idShippingAddress) {
+		this.idShippingAddress = idShippingAddress;
+	}
+
+	public List<Adresse> getListeAdresse() {
+		return listeAdresse;
+	}
+	public void setListeAdresse(List<Adresse> listeAdresse) {
+		this.listeAdresse = listeAdresse;
+	}
 
 	public boolean isAgree() {
 		return agree;
@@ -230,4 +261,19 @@ public class ClientCtrl implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(success.getClientId(context), message);
 	}
+	
+	public void afficheAdresseSelectionne() {
+		
+		
+	    System.out.println(idShippingAddress);
+	    
+//	    System.out.println(id);
+//        for(Adresse a : listeAdresse) {
+//            if (a.getIdAdresse() == idShippingAddress) {
+//                System.out.println("Adress selected"+a.getIdAdresse());
+//            }
+//        }
+	}
+	
+	
 }
