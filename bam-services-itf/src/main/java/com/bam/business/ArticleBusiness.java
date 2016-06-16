@@ -18,5 +18,6 @@ public interface ArticleBusiness {
 	List<Article> lesArticlesMp3();
 	List<Article> lesArticlesSpectacles();
 	List<Article> lesArticlesMusique();
+	Article ChercherArticleParId(int id);
 
 }

@@ -16,7 +16,7 @@ public class Panier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idpanier;
 
 	private String refinternaute;
@@ -26,7 +26,7 @@ public class Panier implements Serializable {
 	private List<LiensPanierArticle> liensPanierArticles;
 
 	//bi-directional many-to-one association to Client
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="ID_CLIENT")
 	private Client client;
 

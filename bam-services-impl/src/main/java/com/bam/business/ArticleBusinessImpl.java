@@ -32,6 +32,11 @@ public class ArticleBusinessImpl implements ArticleBusiness{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Article ChercherArticleParId(int id) {
+		return articleDao.find(id);
+	}
 
 	@Override
 	public List<Article> LesArticles() {

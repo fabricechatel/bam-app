@@ -79,6 +79,12 @@ public class PanierBusinessImpl implements PanierBusiness {
 	public void updateLienPanierArticle(LiensPanierArticle lien){
 		lienDao.update(lien);
 	}
+	
+	@Transactional
+	public void saveLienPanierArticle(LiensPanierArticle lien){
+		lienDao.save(lien);
+	}
+
 
 	@Transactional
 	public void deleteLienPanierArticle(LiensPanierArticle lien) {
@@ -92,10 +98,22 @@ public class PanierBusinessImpl implements PanierBusiness {
 		return liens;
 	}
 
-	@Override
-	public Panier getPanierByClientId(int idClient) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public Panier getPanierByClientId(int idClient) {		
+		return dao.getPanierByClientId(idClient);
+	}
+
+	@Transactional
+	public Panier getPanierByCookie(String cookie) {		
+		return dao.getPanierByCookie(cookie);
+	}
+
+	@Transactional
+	public void creerPanier(String ref) {
+			Panier panier = new Panier();
+			panier.setClient(null);
+			panier.setRefinternaute(ref);
+			dao.save(panier);
 	}
 
 

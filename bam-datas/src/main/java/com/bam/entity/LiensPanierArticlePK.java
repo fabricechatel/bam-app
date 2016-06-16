@@ -12,10 +12,10 @@ public class LiensPanierArticlePK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(insertable=false, updatable=false)
+	@Column(updatable=false)
 	private int idpanier;
 
-	@Column(name="ID_ARTICLE", insertable=false, updatable=false)
+	@Column(name="ID_ARTICLE", updatable=false)
 	private int idArticle;
 
 	public LiensPanierArticlePK() {

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.bam.business.Facade;
 import com.bam.entity.Client;
 import com.bam.entity.LiensPanierArticle;
+import com.bam.entity.LiensPanierArticlePK;
 import com.bam.entity.Panier;
 import com.bam.entity.Utilisateur;
 
@@ -55,6 +56,7 @@ public class PanierCtrl implements Serializable {
 					System.out.println("Client ---------------->"+client);
 					panier = facade.getPanierBusiness().getPanierByClientId(client.getIdClient());
 					
+					System.out.println("par client" );
 					
 				}
 			}
@@ -64,6 +66,8 @@ public class PanierCtrl implements Serializable {
 			idSession=request.getSession().getId();
 			System.out.println("Session ###########################> "+idSession);
 			
+			
+			System.out.println("par cookie" );
 			
 			
 			if(cookie==null) {
@@ -76,6 +80,7 @@ public class PanierCtrl implements Serializable {
 		
 		
 		listePanier = new ArrayList<>(getPanier().getLiensPanierArticles());
+		
 		
 	}
 	
@@ -135,8 +140,8 @@ public class PanierCtrl implements Serializable {
 		this.facade = facade;
 	}
 
-	public void updatePanier(){
-		Panier p = getPanier();
+	public void updatePanier(Panier p){
+		p = getPanier();
 		System.out.println("CTRL++++++++++++++++++++=====>>"+ p);
 		facade.getPanierBusiness().sauvegarderPanier(p);	
 	}
@@ -154,9 +159,25 @@ public class PanierCtrl implements Serializable {
 	}
 	
 	
-	public void getParams(){
-		System.out.println(request.getSession().getAttributeNames().toString());
 
+	public void ajouterAuPanier(int idArticle) {
+		
+		for (LiensPanierArticle e : listePanier){
+			if (e.getArticle().getIdArticle() == idArticle){
+				e.setQuantitepanier( e.getQuantitepanier() + 1 );
+				updateLien(e);
+				return;
+			}
+		}
+		LiensPanierArticlePK pk =new LiensPanierArticlePK();
+		pk.setIdArticle(idArticle);
+		pk.setIdpanier(panier.getIdpanier());
+		LiensPanierArticle lien = new LiensPanierArticle(1, facade.getArticleBusiness().ChercherArticleParId(idArticle), panier);
+		lien.setId(pk);
+		facade.getPanierBusiness().saveLienPanierArticle(lien);
+		init();
+		
+		
 	}
 	
 //    public List getCookies() {

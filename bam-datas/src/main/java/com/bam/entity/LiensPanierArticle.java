@@ -33,11 +33,19 @@ public class LiensPanierArticle implements Serializable {
 	private Article article;
 
 	//bi-directional many-to-one association to Panier
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="IDPANIER", insertable=false, updatable=false)
 	private Panier panier;
 
 	public LiensPanierArticle() {
+	}
+	
+
+	public LiensPanierArticle(int quantitepanier, Article article, Panier panier) {
+		super();
+		this.quantitepanier = quantitepanier;
+		this.article = article;
+		this.panier = panier;
 	}
 
 	public LiensPanierArticlePK getId() {
