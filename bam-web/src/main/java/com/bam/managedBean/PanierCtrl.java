@@ -30,6 +30,9 @@ public class PanierCtrl implements Serializable {
 	@ManagedProperty(value = "#{facadeImpl}")
 	Facade facade;
 	
+	@ManagedProperty(value = "#{clientCtrl}")
+	ClientCtrl clientCtrl;
+	
 	Client client;
 	private String cookie;
 	
@@ -50,7 +53,12 @@ public class PanierCtrl implements Serializable {
 
 
 	@PostConstruct
-	public void init() {		
+	public void init() {
+		clientCtrl.init();
+		client = clientCtrl.getClient();
+		System.out.println("---------------------------------------------------");
+		System.out.println(client);
+		System.out.println("---------------------------------------------------");
 		request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		if (request.getRemoteUser() != null){			
 			if (facade != null) {
@@ -188,11 +196,18 @@ public class PanierCtrl implements Serializable {
 		
 		
 	}
+
+	
+	public void setClientCtrl(ClientCtrl clientCtrl) {
+		this.clientCtrl = clientCtrl;
+	}
+
 	
 //    public List getCookies() {
 //        FacesContext context = FacesContext.getCurrentInstance();
 //        Map cookieMap = context.getExternalContext().getRequestCookieMap();
 //        return new ArrayList(cookieMap.values());
 //    }
+	
 	
 }

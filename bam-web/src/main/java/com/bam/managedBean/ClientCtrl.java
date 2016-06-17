@@ -19,6 +19,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,12 @@ import org.springframework.stereotype.Component;
 import com.bam.business.Facade;
 import com.bam.entity.Adresse;
 import com.bam.entity.Client;
+import com.bam.entity.Panier;
 import com.bam.entity.Utilisateur;
 import com.bam.entity.UtilisateurRole;
 
 @ManagedBean(name="clientCtrl")
-@RequestScoped
+@SessionScoped
 public class ClientCtrl implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -46,8 +48,8 @@ public class ClientCtrl implements Serializable {
 	@ManagedProperty(value="#{facadeImpl}")
 	private Facade facade;
 	
-	@ManagedProperty(value = "#{panierCtrl}")
-	PanierCtrl panier;
+//	@ManagedProperty(value = "#{panierCtrl}")
+//	PanierCtrl panier;
 
 	private Client clientACreer = new Client();
 	private Utilisateur utilisateurACreer = new Utilisateur();
@@ -86,7 +88,7 @@ public class ClientCtrl implements Serializable {
 				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
 				if ((u != null) && (u.getClient() != null)){
 					client = u.getClient();
-					panier.setClient(client);
+					//panier.setClient(client);
 					if (client.getFirstAdresse() != null) {
 						adresseClient = client.getFirstAdresse();
 					}
@@ -226,6 +228,18 @@ public class ClientCtrl implements Serializable {
 				clientACreer.setUtilisateur(utilisateurACreer);
 				clientACreer.setEnabled(true);
 				facade.getClientBusiness().sauvegarderClient(clientACreer);
+				try {
+					HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+					PanierCtrl test = (PanierCtrl) session.getAttribute("panierCtrl");
+					Panier p = facade.getPanierBusiness().getPanierByCookie(test.getCookie());
+					p.setClient(clientACreer);
+					facade.getPanierBusiness().sauvegarderPanier(p);
+				} catch (Exception e) {
+					System.out.println("################################");
+					e.printStackTrace();
+					System.out.println("################################");
+				}
+				
 				if (clientACreer.getIdClient() != 0) {
 					//messageAjoutClient = "Client bien ajouté";
 		            FacesMessage message = new FacesMessage("Votre compte est bien été crée");
@@ -276,6 +290,9 @@ public class ClientCtrl implements Serializable {
 //            }
 //        }
 	}
-	
+	// test seb
+	public void initPage() {
+		init();
+	}
 	
 }

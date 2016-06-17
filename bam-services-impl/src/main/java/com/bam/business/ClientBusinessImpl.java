@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.bam.dao.AdresseDao;
 import com.bam.dao.ClientDao;
+import com.bam.dao.PanierDao;
 import com.bam.business.ClientBusiness;
 import com.bam.entity.Adresse;
 import com.bam.entity.Client;
+import com.bam.entity.Panier;
 
 @Service
 public class ClientBusinessImpl implements ClientBusiness {
@@ -20,13 +22,19 @@ public class ClientBusinessImpl implements ClientBusiness {
 	@Autowired
 	AdresseDao daoAdresse;
 	
+	@Autowired
+	PanierDao daoPanier;
+	
 	public void setDao(ClientDao daoClient) {
 		this.daoClient = daoClient;
 	}
 	
 	@Override
 	public void sauvegarderClient(Client client) {
-		daoClient.save(client);		
+		daoClient.save(client);
+		//Panier p = new Panier();
+		//p.setClient(client);
+		//daoPanier.save(p);
 	}
 	
 	@Override

@@ -39,6 +39,7 @@ public class PanierBusinessImpl implements PanierBusiness {
 	public void sauvegarderPanier(Panier entity) {
 		for(LiensPanierArticle l: entity.getLiensPanierArticles())
 			lienDao.update(l);
+		dao.update(entity);
 	}
 
 	@Transactional

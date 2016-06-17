@@ -42,7 +42,7 @@
 <!-- 					Product image -->
 					<h:column>
 						<f:facet name="header">Image</f:facet>
-						<a href="single-item.xhtml"><img src="img/photos/2.png" alt="" /></a>
+						<a href="single-item.xhtml"><img src="#{ArticleCtrl.GetFicheByIdArticle(item.article.idArticle).image}" alt="" /></a>
 					</h:column>
 					
 <!-- 					Quantity with refresh and remove button -->

@@ -9,7 +9,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-
+<f:metadata>
+	<f:event type="preRenderView" listener="#{clientCtrl.initPage()}"/>
+</f:metadata>
 
 	<ui:define name="content-to-include">
 
