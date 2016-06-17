@@ -40,15 +40,15 @@
 						<h:outputText value="#{item.article.libelle}" />
 					</h:column>
 <!-- 					Product image -->
-					<h:column>
-						<f:facet name="header">Image</f:facet>
-						<a href="single-item.xhtml"><img src="img/photos/2.png" alt="" /></a>
-					</h:column>
+<!-- 					<h:column> -->
+<!-- 						<f:facet name="header">Image</f:facet> -->
+<!-- 						<a href="single-item.xhtml"><img src="img/photos/2.png" alt="" /></a> -->
+<!-- 					</h:column> -->
 					
 <!-- 					Quantity with refresh and remove button -->
-					<h:column class="item-input">
+					<h:column class="item-input"> 
 						
-						<f:facet name="header">Quantit�</f:facet>
+						<f:facet name="header">Quantité</f:facet>
 						<h:panelGroup layout="block" class="input-group">
 							<h:inputText class="form-control" id="quantite" type="text" value="#{item.quantitepanier}" required="true" />
 							<span class="input-group-btn">

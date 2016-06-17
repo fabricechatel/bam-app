@@ -3,6 +3,10 @@ package com.bam.entity;
 import java.io.Serializable;
 
 import javax.persistence.*;
+
+import com.mysql.fabric.xmlrpc.base.Array;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,8 +26,8 @@ public class Panier implements Serializable {
 	private String refinternaute;
 
 	//bi-directional many-to-one association to LiensPanierArticle
-	@OneToMany(mappedBy="panier",fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<LiensPanierArticle> liensPanierArticles;
+	@OneToMany(mappedBy="panier",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private List<LiensPanierArticle> liensPanierArticles = new ArrayList<>();
 
 	//bi-directional many-to-one association to Client
 	@OneToOne

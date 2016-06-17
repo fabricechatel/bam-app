@@ -31,6 +31,7 @@ public abstract class GenericDaoImpl<T,ID extends Serializable> implements Gener
 		}
 		
 		@Override
+		@Transactional
 		public void save(T entity) {
 			System.out.println("save");
 			em.persist(entity);
@@ -38,6 +39,7 @@ public abstract class GenericDaoImpl<T,ID extends Serializable> implements Gener
 		}
 
 		@Override
+		@Transactional
 		public void delete(T entity) { 
 			System.out.println("delete"+entity.toString());
 			T toRemoved = em.merge(entity);
@@ -56,6 +58,7 @@ public abstract class GenericDaoImpl<T,ID extends Serializable> implements Gener
 		}
 
 		@Override
+		@Transactional
 		public T update(T entity) {
 			return em.merge(entity);
 		}

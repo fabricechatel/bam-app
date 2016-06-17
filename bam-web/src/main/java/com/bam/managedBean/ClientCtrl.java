@@ -49,6 +49,14 @@ public class ClientCtrl implements Serializable {
 	@ManagedProperty(value = "#{panierCtrl}")
 	PanierCtrl panier;
 
+	public PanierCtrl getPanier() {
+		return panier;
+	}
+
+	public void setPanier(PanierCtrl panier) {
+		this.panier = panier;
+	}
+
 	private Client clientACreer = new Client();
 	private Utilisateur utilisateurACreer = new Utilisateur();
 	private UtilisateurRole utilisateurRoleACreer = new UtilisateurRole();
@@ -80,12 +88,15 @@ public class ClientCtrl implements Serializable {
 	public void init(){
 		System.out.println(facade);
 		HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		if ((request.getRemoteUser() != null) && (client == null)){
-			client = new Client();
+		if (request.getRemoteUser() != null) {
+			if (client == null){			
+				client = new Client();
+			}
 			if (facade != null) {
 				Utilisateur u = facade.getUtilisateurBusiness().findByUserName(request.getRemoteUser());
 				if ((u != null) && (u.getClient() != null)){
 					client = u.getClient();
+					System.out.println("clientCtrl set panier");
 					panier.setClient(client);
 					if (client.getFirstAdresse() != null) {
 						adresseClient = client.getFirstAdresse();

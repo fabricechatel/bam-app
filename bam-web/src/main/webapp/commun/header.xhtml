@@ -12,6 +12,8 @@
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <body>
 	<ui:composition>
+	
+	 <f:view><f:event type="preRenderView" listener="#{clientCtrl.init()}"/> </f:view>
 
 		<!-- Header starts -->
 		<header>
