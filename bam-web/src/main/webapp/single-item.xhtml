@@ -135,7 +135,9 @@
 											<div class="input-group">
 <!-- 												<input type="text" class="form-control input-sm" value="1" /> -->
 												<span class="input-group-btn">
-													<h:commandButton value="Ajouter au panier" action="#{panierCtrl.ajouterAuPanier(o.idArticle)}" class="btn btn-default"   />
+												<h:form>
+													<h:commandButton value="Ajouter au panier" action="#{panierCtrl.ajouterAuPanier(DescCtrl.article.idArticle)}" class="btn btn-default"   />
+													</h:form>
 <!-- 														+ panier</button> -->
 												</span>
 											</div>

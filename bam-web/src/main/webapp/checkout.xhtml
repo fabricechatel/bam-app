@@ -30,15 +30,46 @@
             <div class="form form-small">
             
             	
-						
+					<div class="modal-body">		
+					
+					<h:dataTable 	value="#{panierCtrl.listePanier}" 
+								var="item" 
+								styleClass="table table-striped tcart">
+					<!-- Index -->
+					
+
+					<!-- Product  name -->
+					<h:column>
+						<f:facet name="header">Nom</f:facet>
+						<h:outputText value="#{item.article.libelle}" />
+					</h:column>
+					
+					<!-- Quantity  -->
+					<h:column class="item-input">
+						<f:facet name="header">Quantité</f:facet>
+						<h:outputText id="quantite" value="#{item.quantitepanier}"   />
+						<f:facet name="footer">Total</f:facet>
+					</h:column>
+			
+					<!-- Total cost -->
+					<h:column>
+						<f:facet name="header">Prix Total</f:facet>
+						<h:outputText id="prixCummule" value="#{item.prixCummule}" />
+						<f:facet name="footer"><h:outputText id="prixtotal" value="#{panierCtrl.prixTotalPanier}" /></f:facet>
+					</h:column>	
+									
+				
+				</h:dataTable>
+					
+					</div>
                     <!-- Register form -->
                     <h:form class="form-horizontal" id="formCheckout1">
-                      	<a4j:jsFunction name="toto"
-							action="#{clientCtrl.afficheAdresseSelectionne()}">
-							<a4j:param name="adresse" assignTo="#{clientCtrl.idShippingAddress}"></a4j:param>
-						</a4j:jsFunction>
+<!--                       	<a4j:jsFunction name="toto" -->
+<!-- 							action="#{clientCtrl.afficheAdresseSelectionne()}"> -->
+<!-- 							<a4j:param name="adresse" assignTo="#{clientCtrl.idShippingAddress}"></a4j:param> -->
+<!-- 						</a4j:jsFunction> -->
 						
-                        <!-- Name -->
+<!--                         Name -->
 						<div class="form-group">
 							<label class="control-label col-md-3" for="nom">Nom</label>
 							<div class="col-md-6">
@@ -51,24 +82,24 @@
 								<h:outputText  value="#{clientCtrl.client.prenom }" class="form-control" id="prenom"/>
 							</div>
 						</div>					
-						<!-- Email -->
+<!-- 						Email -->
 						<div class="form-group">
 							<label class="control-label col-md-3" for="email">Email</label>
 							<div class="col-md-6">
 								<h:outputText  value="#{clientCtrl.client.email }" class="form-control" id="email"/>
 							</div>
 						</div>
-                        <!-- Address -->
-                        <div class="form-group">
-                        <p:dataTable value="#{clientCtrl.listeAdresse}" var="item">
-						    <p:column>
-						        <p:selectBooleanCheckbox value="#{clientCtrl.checked[item.idAdresse]}" />
-						    </p:column>
-						   <p:column>
-								<f:facet name="header">Adresse</f:facet>
-								<h:outputText value="#{item.complete}" />
-							</p:column>
-						</p:dataTable>
+<!--                         Address -->
+<!--                         <div class="form-group"> -->
+<!--                         <p:dataTable value="#{clientCtrl.listeAdresse}" var="item"> -->
+<!-- 						    <p:column> -->
+<!-- 						        <p:selectBooleanCheckbox value="#{clientCtrl.checked[item.idAdresse]}" /> -->
+<!-- 						    </p:column> -->
+<!-- 						   <p:column> -->
+<!-- 								<f:facet name="header">Adresse</f:facet> -->
+<!-- 								<h:outputText value="#{item.complete}" /> -->
+<!-- 							</p:column> -->
+<!-- 						</p:dataTable> -->
                         
 <!--                         <p:panelGrid styleClass="panelgrid-dotted-border"> -->
 <!--                             <f:facet name="header"> -->
@@ -95,7 +126,7 @@
 <!--                             </p:row> -->
 <!--                             </ui:repeat> -->
 <!--                          </p:panelGrid> -->
-                         </div>
+<!--                          </div> -->
                    </h:form>
                 </div>
                 <hr />
